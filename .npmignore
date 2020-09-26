@@ -4,5 +4,4 @@ docs
 tsconfig.json
 babel.config.js
 node_modules
-storybook-static
 *.code-workspace
