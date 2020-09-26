@@ -1,0 +1,17 @@
+# build
+dist
+node_modules
+
+# development
+*.code-workspace
+.VSCodeCounte
+scratch
+*.gz
+
+# filesystem
+*.log
+.cache
+.DS_Store
+
+# testing
+/coverage

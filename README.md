@@ -1,11 +1,19 @@
 # tods-react-draws
 
-This package includes React Components for displaying draw structures defined in the JSON format of the [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview).
+React Components for displaying draw structures defined in the JSON format of the [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview).
 
 ## Install
 
 ```bash
 yarn add tods-react-draws # or npm install tods-react-draws
+```
+
+## Usage
+
+Check the **example** directory...
+
+```js
+import { DrawStructure } from 'tods-react-draws';
 ```
 
 ## Development
