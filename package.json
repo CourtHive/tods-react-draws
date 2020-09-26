@@ -2,6 +2,13 @@
   "version": "0.1.1",
   "license": "MIT",
   "private": false,
+  "keywords": [
+    "TODS",
+    "tournament",
+    "tournaments",
+    "competition",
+    "tennis"
+  ],
   "homepage": "https://github.com/CourtHive/tods-react-draws",
   "bugs": {
     "url": "https://github.com/CourtHive/tods-react-draws/issues",

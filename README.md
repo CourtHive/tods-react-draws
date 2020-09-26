@@ -1,6 +1,8 @@
 # tods-react-draws
 
-React Components for displaying draw structures defined in the JSON format of the [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview).
+React Components for displaying draw structures.
+
+Consumes [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview).
 
 ## Install
 
