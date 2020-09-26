@@ -2,7 +2,9 @@
 
 React Components for displaying draw structures.
 
-Consumes [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview).
+Consumes JSON which conforms to the [Tennis Open Data Standards](https://itftennis.atlassian.net/wiki/spaces/TODS/overview)
+
+[Online Documentation with Examples](https://courthive.github.io/tods-react-draws)
 
 ## Install
 
