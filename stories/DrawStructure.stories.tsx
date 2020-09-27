@@ -1,10 +1,14 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { DrawStructure, Props } from '../src';
+import { DrawGridStructure } from '../src';
+
+import { roundsDefinition, generateColumns } from '../test/mocks/firstMock';
+
+const columns = generateColumns({ height: 70, roundsDefinition });
 
 const meta: Meta = {
   title: 'Draw',
-  component: DrawStructure,
+  component: DrawGridStructure,
   argTypes: {
     children: {
       control: {
@@ -19,8 +23,11 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story<Props> = args => <DrawStructure {...args} />;
+const Template: Story = args => <DrawGridStructure {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  columns,
+  roundsDefinition,
+};
