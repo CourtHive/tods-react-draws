@@ -10,7 +10,6 @@ export function generateColumns({ height, roundsDefinition }) {
     return generateColumn({ matchUpsCount, round, index });
   });
 
-  console.log({ columns });
   return columns;
 
   function calcHeight({ height, columnMultiplier }) {
@@ -49,7 +48,7 @@ export function generateColumns({ height, roundsDefinition }) {
       round,
       matchUpHeight,
       firstMatchUpHeight,
-      matchUps: generateRange(0, matchUpsCount).map((r, i) => {
+      matchUps: generateRange(0, matchUpsCount)?.map((r, i) => {
         const roundPosition = i + 1;
         const drawPositions = generateDrawPositions
           ? [i * 2 + 1, i * 2 + 2]
