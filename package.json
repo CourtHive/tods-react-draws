@@ -58,19 +58,8 @@
   "name": "tods-react-draws",
   "author": "Charles Allen",
   "module": "dist/tods-react-draws.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/tods-react-draws.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/tods-react-draws.esm.js",
-      "limit": "10 KB"
-    }
-  ],
   "devDependencies": {
     "@babel/core": "7.11.6",
-    "@size-limit/preset-small-lib": "4.6.0",
     "@storybook/addon-essentials": "6.0.22",
     "@storybook/addon-info": "5.3.21",
     "@storybook/addon-links": "6.0.22",
@@ -79,6 +68,11 @@
     "@types/react": "16.9.49",
     "@types/react-dom": "16.9.8",
     "babel-loader": "8.1.0",
+    "@babel/preset-typescript": "7.10.4",
+    "@types/jest": "26.0.14",
+    "docz": "2.3.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-jest": "24.0.2",
     "husky": "4.3.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
