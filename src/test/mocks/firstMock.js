@@ -6,7 +6,7 @@ export function generateColumns({ height, roundsDefinition }) {
   const topMargin = roundsDefinition.find(r => r.feedTop) && height / 2;
 
   const columns = roundsDefinition.map((round, index) => {
-    const { matchUpsCount } = round;
+    const matchUpsCount = round.matchUps?.length || round.matchUpsCount;
     return generateColumn({ matchUpsCount, round, index });
   });
 
@@ -44,25 +44,25 @@ export function generateColumns({ height, roundsDefinition }) {
     const generateDrawPositions =
       roundNumber === 1 || round.columnType === 'details';
 
+    const fakeMatchUps = generateRange(0, matchUpsCount)?.map((r, i) => {
+      const roundPosition = i + 1;
+      const drawPositions = generateDrawPositions ? [i * 2 + 1, i * 2 + 2] : [];
+
+      return {
+        roundNumber,
+        roundPosition,
+        score: '6-1 6-3',
+        matchUpId: `m-${roundNumber}-${roundPosition}`,
+        drawPositions,
+      };
+    });
+
+    const matchUps = round.matchUps || fakeMatchUps;
     return {
       round,
+      matchUps,
       matchUpHeight,
       firstMatchUpHeight,
-      matchUps: generateRange(0, matchUpsCount)?.map((r, i) => {
-        const roundPosition = i + 1;
-        const drawPositions = generateDrawPositions
-          ? [i * 2 + 1, i * 2 + 2]
-          : [];
-
-        return {
-          roundNumber,
-          roundPosition,
-          score: '6-1 6-3',
-          matchUpId: `m-${roundNumber}-${roundPosition}`,
-          drawPositions,
-          sides: [{ sideNumber: 1 }, { sideNumber: 2 }],
-        };
-      }),
     };
   }
 }

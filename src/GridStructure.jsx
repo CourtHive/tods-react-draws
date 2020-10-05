@@ -7,14 +7,16 @@ import { utilities } from 'tods-competition-factory';
 const { numericSort } = utilities;
 
 export function GridStructure(props) {
-  const { columns } = props;
+  const { columns, roundMatchUps } = props;
   const classes = useStyles();
 
-  const handleScoreClick = ({ matchUp }) => console.log({ matchUp });
+  const handleScoreClick = value => {
+    console.log(value);
+  };
   const handleParticipantClick = ({ matchUp }) => console.log({ matchUp });
 
   const MatchUpSide = props => {
-    const { sideNumber, matchUp, scoreSourceMatchUp, height, round } = props;
+    const { sideNumber, matchUp, height, round, isFinal } = props;
     const isEven = (sideNumber - 1) % 2;
     const isDetails = round?.columnType === 'details';
 
@@ -29,28 +31,30 @@ export function GridStructure(props) {
       (round.feedTop && sideNumber === 2) ||
       (round.feedBottom && sideNumber === 1);
     const scoreString =
+      !isFinal &&
       matchUp?.roundNumber > 1 &&
       !(matchUp?.roundPosition === 1 && sideNumber === 1) &&
       !isFedScorePosition &&
-      matchUp?.score;
+      'Boo';
     const displayText = round.columnType === 'classic';
     const displayDetails = round.columnType === 'details';
 
     const PreviousMatchUpScore = () => {
+      const { roundNumber, roundPosition } = matchUp;
       const scoreProps = {
-        onClick: () => handleScoreClick({ matchUp: scoreSourceMatchUp }),
+        onClick: () =>
+          handleScoreClick({ sideNumber, roundNumber, roundPosition }),
         className: classes.score,
       };
 
       return <div {...scoreProps}>{displayText && scoreString}</div>;
     };
 
-    const Participant = props => {
-      const { index } = props || {};
+    const Participant = () => {
       const drawPositions = (matchUp?.drawPositions || []).sort(numericSort);
       const drawPosition = drawPositions[sideNumber - 1] || '';
       const dpText = (drawPosition && `${drawPosition}`) || '';
-      const sideText = `Side ${sideNumber} ${index || ''}`;
+      const sideText = `${sideNumber ? 'Side' : 'Winner'} ${sideNumber || ''}`;
       const teamString = matchUp?.roundNumber === 1 && 'Team';
 
       const participantProps = {
@@ -93,13 +97,7 @@ export function GridStructure(props) {
   };
 
   const MatchUp = props => {
-    const {
-      matchUp,
-      scoreSourceMatchUp,
-      matchUpHeight,
-      firstMatchUpHeight,
-      round,
-    } = props;
+    const { matchUp, matchUpHeight, firstMatchUpHeight, round } = props;
     const { roundPosition, sides } = matchUp;
 
     const contentHeight =
@@ -108,13 +106,13 @@ export function GridStructure(props) {
 
     return (
       <>
-        {sides.map((side, index) => {
+        {(sides || [{}, {}]).map((side, index) => {
           const sideProps = {
             ...side,
             matchUp,
-            scoreSourceMatchUp,
             round,
             height: heights[index],
+            sideNumber: index + 1,
           };
           return <MatchUpSide key={index} {...sideProps} />;
         })}
@@ -124,6 +122,14 @@ export function GridStructure(props) {
 
   function getScoreSourceMatchUp({ matchUp, round }) {
     const { roundNumber, roundPosition } = matchUp;
+    const previousRoundNumber = roundNumber - 1;
+    const matchUpsCount = roundMatchUps[roundNumber].length;
+    const previouRoundMatchUpsCount =
+      roundMatchUps[previousRoundNumber]?.length;
+    const targetRoundPosition =
+      matchUpsCount === previouRoundMatchUpsCount
+        ? roundPosition
+        : roundPosition / 2;
     return { roundNumber, roundPosition, round };
   }
 
@@ -143,7 +149,7 @@ export function GridStructure(props) {
           ...side,
           matchUp,
           round,
-          scoreSourceMatchUp: matchUp,
+          isFinal: true,
           height: firstMatchUpHeight,
         };
 
@@ -163,12 +169,14 @@ export function GridStructure(props) {
         const matchUp = matchUpsCount
           ? matchUps[matchUps.length - 1]
           : columnIndex && columns[columnIndex - 1]?.matchUps[0];
+        const { sideNumber, roundNumber, roundPosition } = matchUp;
         const scoreProps = {
-          onClick: () => handleScoreClick({ matchUp }),
+          onClick: () =>
+            handleScoreClick({ sideNumber, roundNumber, roundPosition }),
           className: classes.score,
         };
 
-        const scoreString = matchUp?.score;
+        const scoreString = 'Foo';
         if (!matchUp || matchUp.roundNumber === 1) return null;
 
         return (
@@ -183,15 +191,10 @@ export function GridStructure(props) {
           <>
             <RoundName />
             {matchUps.map((matchUp, key) => {
-              const scoreSourceMatchUp = getScoreSourceMatchUp({
-                matchUp,
-                round,
-              });
               const matchUpProps = {
                 matchUp,
                 round,
                 matchUpHeight,
-                scoreSourceMatchUp,
                 firstMatchUpHeight,
               };
 
