@@ -26,7 +26,15 @@ const App = () => {
     roundMatchUps,
   });
   const columns = generateColumns({ height: 70, roundsDefinition });
-  const args = { roundsDefinition, columns, roundMatchUps };
+
+  const onScoreClick = ({ matchUp }) => {
+    console.log('Scoring matchUp', { matchUp });
+  };
+  const onParticipantClick = ({ matchUp, sideNumber }) => {
+    console.log('Participant matchUp', { matchUp, sideNumber });
+  };
+  const args = { columns, roundMatchUps, onScoreClick, onParticipantClick };
+
   return (
     <div>
       <DrawGridStructure {...args} />
