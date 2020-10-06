@@ -2,13 +2,10 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { DrawGridStructure } from '../../dist';
-import {
-  // roundsDefinition,
-  generateColumns,
-} from '../../src/test/mocks/firstMock';
 
 import { getRoundMatchUps } from '../../src/test/mocks/generateElimination';
 import { generateRoundsDefinition } from '../../src/generateRoundsDefinition';
+import { generateStandardElimination } from '../../src/generators/columnGenerators/standardElimination';
 
 const App = () => {
   const { roundMatchUps } = getRoundMatchUps();
@@ -25,7 +22,7 @@ const App = () => {
   const { roundsDefinition } = generateRoundsDefinition({
     roundMatchUps,
   });
-  const columns = generateColumns({ height: 70, roundsDefinition });
+  const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
   const onScoreClick = ({ matchUp }) => {
     console.log('Scoring matchUp', { matchUp });
