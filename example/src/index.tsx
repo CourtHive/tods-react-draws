@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DrawGridStructure } from '../../dist';
+import { EliminationStructure } from '../../dist';
 
 import { getRoundMatchUps } from '../../src/test/mocks/generateElimination';
 import { generateRoundsDefinition } from '../../src/generateRoundsDefinition';
@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div>
-      <DrawGridStructure {...args} />
+      <EliminationStructure {...args} />
     </div>
   );
 };

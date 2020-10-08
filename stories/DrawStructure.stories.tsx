@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { DrawGridStructure } from '../src';
+import { EliminationStructure } from '../src';
 
 import { generateRoundsDefinition } from '../src/generateRoundsDefinition';
 import { getRoundMatchUps } from '../src/test/mocks/generateElimination';
@@ -26,7 +26,7 @@ const columns = generateColumns({ height: 70, roundsDefinition });
 
 const meta: Meta = {
   title: 'Draw',
-  component: DrawGridStructure,
+  component: EliminationStructure,
   argTypes: {
     children: {
       control: {
@@ -41,7 +41,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = args => <DrawGridStructure {...args} />;
+const Template: Story = args => <EliminationStructure {...args} />;
 
 export const Default = Template.bind({});
 

@@ -1,13 +1,12 @@
-import React from 'react';
-import { GridStructure } from './GridStructure';
+export { EliminationStructure } from './EliminationStructure';
 
 /**
  * A Component to generate draws
- */
 export const DrawGridStructure = props => {
   return (
     <div>
-      <GridStructure {...props} />
+      <EliminationStructure {...props} />
     </div>
   );
 };
+ */

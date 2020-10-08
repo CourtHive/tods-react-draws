@@ -6,7 +6,7 @@ import { useStyles } from './styles/gridStyles';
 import { utilities } from 'tods-competition-factory';
 const { numericSort } = utilities;
 
-export function GridStructure(props) {
+export function EliminationStructure(props) {
   const { columns, roundMatchUps, onScoreClick, onParticipantClick } = props;
   const classes = useStyles();
 
