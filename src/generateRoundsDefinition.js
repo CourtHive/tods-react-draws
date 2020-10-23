@@ -19,15 +19,16 @@ export function generateRoundsDefinition({ roundMatchUps }) {
       roundNumber,
     };
 
-    if (matchUpsCount == previousRoundMatchUpsCount) {
+    if (matchUpsCount === previousRoundMatchUpsCount) {
       if (feedTop) {
-        definition.feedTop === true;
+        definition.feedTop = true;
         feedTop = false;
       } else {
-        definition.feedBottom === true;
+        definition.feedBottom = true;
         feedTop = true;
       }
     }
+    previousRoundMatchUpsCount = matchUpsCount;
 
     return definition;
   });
