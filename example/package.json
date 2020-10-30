@@ -8,7 +8,7 @@
     "build": "parcel build index.html"
   },
   "dependencies": {
-    "@babel/core": "7.11.6",
+    "@babel/core": "7.12.3",
     "@babel/preset-env": "^7.11.5",
     "react-app-polyfill": "^1.0.0"
   },
