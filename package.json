@@ -85,6 +85,6 @@
     "typescript": "4.0.5"
   },
   "dependencies": {
-    "tods-competition-factory": "^0.1.31"
+    "tods-competition-factory": "^0.4.0"
   }
 }
