@@ -5,7 +5,7 @@ import { EliminationStructure } from '../../dist';
 
 import { getRoundMatchUps } from '../../src/test/mocks/generateElimination';
 import { generateRoundsDefinition } from '../../src/generateRoundsDefinition';
-import { generateStandardElimination } from '../../src/generators/columnGenerators/standardElimination';
+import { generateStandardElimination } from '../../src/generators/columnGenerators/generateStandardElimination';
 
 const App = () => {
   const { roundMatchUps } = getRoundMatchUps();
