@@ -39,7 +39,10 @@
     "size": "size-limit",
     "analyze": "size-limit --why",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o ./docs"
+    "build-storybook": "build-storybook -o ./docs",
+    "postinstall": "husky install",
+    "prepublishOnly": "pinst --disable",
+    "postpublish": "pinst --enable"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -59,11 +62,10 @@
   "author": "Charles Allen",
   "module": "dist/tods-react-draws.esm.js",
   "devDependencies": {
-
-    "@material-ui/core": "4.11.3",
     "@babel/core": "7.12.17",
     "@babel/preset-react": "7.12.13",
     "@babel/preset-typescript": "7.12.17",
+    "@material-ui/core": "4.11.3",
     "@storybook/addon-essentials": "6.1.18",
     "@storybook/addon-info": "5.3.21",
     "@storybook/addon-links": "6.1.18",
@@ -76,7 +78,8 @@
     "docz": "2.3.1",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-jest": "24.1.5",
-    "husky": "4.3.8",
+    "husky": "5",
+    "pinst": "^2.1.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-is": "17.0.1",
