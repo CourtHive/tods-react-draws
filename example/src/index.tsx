@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import { EliminationStructure } from '../../dist';
 
 import { getRoundMatchUps } from '../../src/test/mocks/generateElimination';
-import { generateRoundsDefinition } from '../../src/generateRoundsDefinition';
+import { generateRoundsDefinition } from '../../src/generators/generateRoundsDefinition';
 import { generateStandardElimination } from '../../src/generators/columnGenerators/generateStandardElimination';
 
 const App = () => {
