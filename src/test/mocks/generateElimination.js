@@ -1,6 +1,7 @@
 import {
   drawDefinitionConstants,
   tournamentEngine,
+  mocksEngine,
   drawEngine,
   fixtures,
 } from 'tods-competition-factory';
@@ -57,7 +58,7 @@ function tournamentRecordWithParticipants({
 }) {
   tournamentEngine.newTournamentRecord({ startDate, endDate });
 
-  const { participants } = tournamentEngine.generateFakeParticipants({
+  const { participants } = mocksEngine.generateParticipants({
     participantsCount,
     matchUpType,
   });

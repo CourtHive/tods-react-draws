@@ -10,6 +10,18 @@ export function EliminationStructure(props) {
   const { columns, roundMatchUps, onScoreClick, onParticipantClick } = props;
   const classes = useStyles();
 
+  const getScoreString = ({ matchUp }) => {
+    if (typeof matchUp?.score === 'string') {
+      return matchUp.score;
+    } else if (typeof matchUp?.score === 'object') {
+      if (matchUp.winningSide === 2) {
+        return matchUp.score.scoreStringSide2 || '';
+      } else {
+        return matchUp.score.scoreStringSide1 || '';
+      }
+    }
+  };
+
   const getScoringMatchUp = ({ sideNumber, roundNumber, roundPosition }) => {
     const targetRoundNumber = roundNumber - 1;
     const currentRoundMatchUpsCount = roundMatchUps[roundNumber]?.length;
@@ -62,7 +74,9 @@ export function EliminationStructure(props) {
       (round.feedTop && sideNumber === 2) ||
       (round.feedBottom && sideNumber === 1);
     const scoreString =
-      !isFinal && !isFedScorePosition && scoringMatchUp?.score;
+      !isFinal &&
+      !isFedScorePosition &&
+      getScoreString({ matchUp: scoringMatchUp });
     const displayText = round.columnType === 'classic';
     const displayDetails = round.columnType === 'details';
 
@@ -200,7 +214,7 @@ export function EliminationStructure(props) {
           className: classes.score,
         };
 
-        const scoreString = scoringMatchUp?.score;
+        const scoreString = getScoreString({ matchUp: scoringMatchUp });
         if (!matchUp || matchUp.roundNumber === 1) return null;
 
         return (
