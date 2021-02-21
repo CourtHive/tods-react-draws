@@ -20,10 +20,7 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 200,
     maxWidth: 250,
   },
-  roundColumn: {
-    minWidth: 100,
-    maxWidth: 110,
-  },
+  roundColumn: {},
   participant: {
     paddingLeft: 3,
     paddingRight: 3,

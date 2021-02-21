@@ -24,11 +24,11 @@ const App = () => {
   });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
-  const onScoreClick = ({ matchUp }) => {
-    console.log('Scoring matchUp', { matchUp });
+  const onScoreClick = ({ matchUp, e }) => {
+    console.log('Scoring matchUp', { matchUp, e });
   };
-  const onParticipantClick = ({ matchUp, sideNumber }) => {
-    console.log('Participant matchUp', { matchUp, sideNumber });
+  const onParticipantClick = ({ matchUp, sideNumber, e }) => {
+    console.log('Participant matchUp', { matchUp, sideNumber, e });
   };
   const args = { columns, roundMatchUps, onScoreClick, onParticipantClick };
 

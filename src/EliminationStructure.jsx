@@ -41,14 +41,14 @@ export function EliminationStructure(props) {
 
     return { scoringMatchUp, sideIndex };
   };
-  const handleScoreClick = ({ scoringMatchUp }) => {
+  const handleScoreClick = ({ scoringMatchUp, e }) => {
     if (typeof onScoreClick === 'function') {
-      onScoreClick({ matchUp: scoringMatchUp });
+      onScoreClick({ matchUp: scoringMatchUp, e });
     }
   };
-  const handleParticipantClick = ({ matchUp, sideNumber }) => {
+  const handleParticipantClick = ({ matchUp, sideNumber, e }) => {
     if (typeof onParticipantClick === 'function') {
-      onParticipantClick({ matchUp, sideNumber });
+      onParticipantClick({ matchUp, sideNumber, e });
     }
   };
 
@@ -82,8 +82,9 @@ export function EliminationStructure(props) {
 
     const PreviousMatchUpScore = () => {
       const scoreProps = {
-        onClick: () => {
-          handleScoreClick({ scoringMatchUp, sideIndex });
+        onClick: e => {
+          console.log('e', e);
+          handleScoreClick({ scoringMatchUp, sideIndex, e });
         },
         className: classes.score,
       };
@@ -95,11 +96,23 @@ export function EliminationStructure(props) {
       const drawPositions = (matchUp?.drawPositions || []).sort(numericSort);
       const drawPosition = drawPositions[sideNumber - 1] || '';
       const dpText = (drawPosition && `${drawPosition}`) || '';
-      const sideText = `${sideNumber ? 'Side' : 'Winner'} ${sideNumber || ''}`;
-      const teamString = matchUp?.roundNumber === 1 && 'Team';
+
+      const displaySideNumber = matchUp?.winningSide || sideNumber;
+      const side = matchUp?.sides?.find(
+        side => side.sideNumber === displaySideNumber
+      );
+      const participantName = side?.participant?.participantName || '';
+      //const teamString = matchUp?.roundNumber === 1 && 'Team';
+      const teamString = '';
 
       const participantProps = {
-        onClick: () => handleParticipantClick({ matchUp, sideNumber }),
+        onClick: e => {
+          handleParticipantClick({
+            matchUp,
+            sideNumber,
+            e,
+          });
+        },
         className: classes.participant,
         width: '100%',
         direction: 'row',
@@ -108,7 +121,7 @@ export function EliminationStructure(props) {
 
       return (
         <Grid container {...participantProps}>
-          <Grid item>{displayText && sideText}</Grid>
+          <Grid item>{displayText && participantName}</Grid>
           <Grid item>
             {(displayText && teamString) || (displayDetails && dpText)}
           </Grid>
@@ -119,8 +132,7 @@ export function EliminationStructure(props) {
     const TeamParticipant = () => {
       return (
         <Grid container direction="column">
-          <Participant index={2} />
-          <Participant index={1} />
+          <Participant />
         </Grid>
       );
     };
@@ -208,8 +220,13 @@ export function EliminationStructure(props) {
           roundPosition,
         });
         const scoreProps = {
-          onClick: () => {
-            handleScoreClick({ scoringMatchUp, sideIndex });
+          onClick: event => {
+            console.log('boo', event);
+            handleScoreClick({
+              scoringMatchUp,
+              sideIndex,
+              event,
+            });
           },
           className: classes.score,
         };
