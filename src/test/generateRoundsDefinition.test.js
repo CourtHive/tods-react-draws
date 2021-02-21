@@ -1,4 +1,4 @@
-import { generateRoundsDefinition } from '../generateRoundsDefinition';
+import { generateRoundsDefinition } from '../generators/generateRoundsDefinition';
 import {
   drawEngine,
   mocksEngine,

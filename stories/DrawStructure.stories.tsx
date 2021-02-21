@@ -2,14 +2,36 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { EliminationStructure } from '../src';
 
-import { generateRoundsDefinition } from '../src/generateRoundsDefinition';
-import { getRoundMatchUps } from '../src/test/mocks/generateElimination';
+import { generateRoundsDefinition } from '../src/generators/generateRoundsDefinition';
 import {
   /*roundsDefinition,*/ generateColumns,
 } from '../src/test/mocks/firstMock';
 
-const { roundMatchUps } = getRoundMatchUps();
+import {
+  drawEngine,
+  mocksEngine,
+  tournamentEngine,
+} from 'tods-competition-factory';
 
+const drawProfiles = [
+  {
+    drawSize: 32,
+  },
+];
+const {
+  drawIds: [drawId],
+} = mocksEngine.generateTournamentRecord({
+  drawProfiles,
+});
+
+const { matchUps } = tournamentEngine.allDrawMatchUps({
+  drawId,
+  inContext: true,
+});
+
+const { roundMatchUps } = drawEngine.getRoundMatchUps({
+  matchUps,
+});
 // add some mocked scores
 const roundKeys = Object.keys(roundMatchUps);
 roundKeys.forEach(key => {

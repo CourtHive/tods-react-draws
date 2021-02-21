@@ -1,14 +1,37 @@
 import React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Default as DrawGridStructure } from '../stories/DrawStructure.stories';
-import { generateRoundsDefinition } from '../src/generateRoundsDefinition';
-import { getRoundMatchUps } from '../src/test/mocks/generateElimination';
+import { generateRoundsDefinition } from '../src/generators/generateRoundsDefinition';
+
+import {
+  drawEngine,
+  mocksEngine,
+  tournamentEngine,
+} from 'tods-competition-factory';
 
 import {
   /*roundsDefinition,*/ generateColumns,
 } from '../src/test/mocks/firstMock';
 
-const { roundMatchUps } = getRoundMatchUps();
+const drawProfiles = [
+  {
+    drawSize: 32,
+  },
+];
+const {
+  drawIds: [drawId],
+} = mocksEngine.generateTournamentRecord({
+  drawProfiles,
+});
+
+const { matchUps } = tournamentEngine.allDrawMatchUps({
+  drawId,
+  inContext: true,
+});
+
+const { roundMatchUps } = drawEngine.getRoundMatchUps({
+  matchUps,
+});
 
 // add some mocked scores
 const roundKeys = Object.keys(roundMatchUps);

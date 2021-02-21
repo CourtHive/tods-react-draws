@@ -16,6 +16,15 @@ const App = () => {
   const drawProfiles = [
     {
       drawSize: 32,
+      participantsCount: 30,
+      outcomes: [
+        {
+          roundNumber: 1,
+          roundPosition: 2,
+          scoreString: '6-2 6-1',
+          winningSide: 1,
+        },
+      ],
     },
   ];
   const {
@@ -29,22 +38,8 @@ const App = () => {
     inContext: true,
   });
 
-  const { roundMatchUps, roundProfile } = drawEngine.getRoundMatchUps({
-    matchUps,
-  });
-
-  // add some mocked scores
-  const roundKeys = Object.keys(roundMatchUps);
-  roundKeys.forEach(key => {
-    roundMatchUps[key].forEach(matchUp => {
-      if (!matchUp.sides) matchUp.sides = matchUp.Sides;
-      matchUp.score = `6-${matchUp.roundNumber} 6-${matchUp.roundPosition}`;
-    });
-  });
-
-  const { roundsDefinition } = generateRoundsDefinition({
-    roundMatchUps,
-  });
+  const { roundMatchUps } = drawEngine.getRoundMatchUps({ matchUps });
+  const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
   const onScoreClick = ({ matchUp, e }) => {
