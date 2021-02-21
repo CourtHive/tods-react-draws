@@ -5039,6 +5039,18 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
+tods-competition-factory@^0.4.47:
+  version "0.4.47"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.4.47.tgz#76680046e6084b2ffe89e676d34477b8858194b8"
+  integrity sha512-ypKCSUefPjCJgbyTr7KucDV6sY6LswUKdIhRMXCn9cpBG57/EAbdaG16uVLJNVwGXVh0V4USlEiITpmBLePvVQ==
+  dependencies:
+    tods-matchup-format-code "^1.0.7"
+
+tods-matchup-format-code@^1.0.7:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.0.8.tgz#10936bbbe6b4ec9ba74436268770aa4735eb8897"
+  integrity sha512-pci163xZA6UwOTGfe9M2aL3Jd2KH1GRbKoSEDUE8mVXhi7x2YqGuW4nUxzx34UTiRO0aYMhwXL7ncKqdJDzXhw==
+
 toidentifier@1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.0.tgz"

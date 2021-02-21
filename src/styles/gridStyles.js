@@ -29,6 +29,21 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: '#f5f5f5',
     },
   },
+  seededPrticipant: {
+    color: '#3e424e',
+    fontWeight: 900,
+  },
+  hoveredPrticipant: {
+    '&:hover': {
+      cursor: 'pointer',
+      backgroundColor: '#f5f5f5',
+    },
+  },
+  readyToScore: {
+    height: 17,
+    backgroundColor: '#edf4fc',
+    cursor: 'pointer',
+  },
   score: {
     paddingLeft: 3,
   },

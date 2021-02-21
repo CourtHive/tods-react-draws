@@ -1,7 +1,9 @@
 import React from 'react';
 
-import { Grid } from '@material-ui/core';
+import cx from 'classnames';
 import { useStyles } from './styles/gridStyles';
+
+import { Grid } from '@material-ui/core';
 
 import { utilities } from 'tods-competition-factory';
 const { numericSort } = utilities;
@@ -101,9 +103,30 @@ export function EliminationStructure(props) {
       const side = matchUp?.sides?.find(
         side => side.sideNumber === displaySideNumber
       );
-      const participantName = side?.participant?.participantName || '';
+      const seed = side?.seedValue;
+      let participantName = side?.participant?.participantName || '';
+      if (seed) participantName += ` (${seed})`;
+
       //const teamString = matchUp?.roundNumber === 1 && 'Team';
       const teamString = '';
+
+      const readOnly = false;
+      const readyToScore = matchUp?.readyToScore;
+
+      const participantStyle = !readOnly
+        ? {
+            className: cx(classes.participant, {
+              [classes.seededPrticipant]: seed,
+              [classes.readyToScore]: readyToScore,
+              [classes.hoveredPrticipant]: !readOnly,
+            }),
+            width: '100%',
+          }
+        : {
+            className: cx(classes.participant, {
+              [classes.seededPrticipant]: seed,
+            }),
+          };
 
       const participantProps = {
         onClick: e => {
@@ -120,7 +143,7 @@ export function EliminationStructure(props) {
       };
 
       return (
-        <Grid container {...participantProps}>
+        <Grid container {...participantStyle} {...participantProps}>
           <Grid item>{displayText && participantName}</Grid>
           <Grid item>
             {(displayText && teamString) || (displayDetails && dpText)}
