@@ -40,13 +40,11 @@ export function generateStandardElimination({ height, roundsDefinition }) {
       feedOffset;
 
     const matchUps = round.matchUps || [];
-
     const stackedMatchUpValues = matchUps.map(getStackedMatchUpValues).flat();
     const frames = getFrames(stackedMatchUpValues);
 
     return {
       round,
-      matchUps,
       matchUpHeight,
       firstMatchUpHeight,
       frames,

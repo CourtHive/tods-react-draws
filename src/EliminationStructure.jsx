@@ -30,11 +30,11 @@ export function EliminationStructure(props) {
 
   const Side = ({ round, sideDetails, displayOnly }) => {
     const { side, readyToScore, matchUpDetails } = sideDetails || {};
-    const { participant, drawPosition, sideNumber } = side || {};
+    const { bye, drawPosition, participant, sideNumber } = side || {};
     const dpText = drawPosition || '';
     const seed = side?.seedValue;
-    let participantName = participant?.participantName || '';
-    if (seed) participantName += ` (${seed})`;
+    let sideText = bye ? 'BYE' : participant?.participantName || '';
+    if (seed) sideText += ` (${seed})`;
 
     const participantStyle = !displayOnly
       ? {
@@ -69,7 +69,7 @@ export function EliminationStructure(props) {
     return (
       <Grid container {...participantStyle} {...participantProps}>
         <Grid item>
-          {(displayText && participantName) || (displayDetails && dpText)}
+          {(displayText && sideText) || (displayDetails && dpText)}
         </Grid>
       </Grid>
     );
