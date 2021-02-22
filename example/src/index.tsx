@@ -17,6 +17,7 @@ const App = () => {
     {
       drawSize: 32,
       participantsCount: 30,
+      /*
       outcomes: [
         {
           roundNumber: 1,
@@ -31,12 +32,14 @@ const App = () => {
           winningSide: 1,
         },
       ],
+      */
     },
   ];
   const {
     drawIds: [drawId],
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
+    completeAllMatchUps: true,
   });
 
   const { matchUps } = tournamentEngine.allDrawMatchUps({
@@ -57,11 +60,11 @@ const App = () => {
 
   console.log({ roundsDefinition, columns });
 
-  const onScoreClick = ({ matchUp, e }) => {
-    console.log('Scoring matchUp', { matchUp, e });
+  const onScoreClick = ({ matchUpDetails, e }) => {
+    console.log('Scoring matchUp', { matchUpDetails, e });
   };
-  const onParticipantClick = ({ matchUp, sideNumber, e }) => {
-    console.log('Participant matchUp', { matchUp, sideNumber, e });
+  const onParticipantClick = ({ matchUpDetails, sideNumber, e }) => {
+    console.log('Participant matchUp', { matchUpDetails, sideNumber, e });
   };
   const args = { columns, roundMatchUps, onScoreClick, onParticipantClick };
 

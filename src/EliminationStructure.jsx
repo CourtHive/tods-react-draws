@@ -17,14 +17,14 @@ export function EliminationStructure(props) {
     return <div className={className}>{roundName || ' '}</div>;
   };
 
-  const handleScoreClick = ({ scoringMatchUp, e }) => {
+  const handleScoreClick = ({ matchUpDetails, e }) => {
     if (typeof onScoreClick === 'function') {
-      onScoreClick({ matchUp: scoringMatchUp, e });
+      onScoreClick({ matchUpDetails, e });
     }
   };
-  const handleParticipantClick = ({ matchUp, sideNumber, e }) => {
+  const handleParticipantClick = ({ matchUpDetails, sideNumber, e }) => {
     if (typeof onParticipantClick === 'function') {
-      onParticipantClick({ matchUp, sideNumber, e });
+      onParticipantClick({ matchUpDetails, sideNumber, e });
     }
   };
 
@@ -185,14 +185,4 @@ export function EliminationStructure(props) {
       <GridColumns columns={columns} />
     </Grid>
   );
-}
-
-function getScoreString({ sourceMatchUp }) {
-  if (typeof sourceMatchUp?.score === 'object') {
-    if (sourceMatchUp.winningSide === 2) {
-      return sourceMatchUp.score.scoreStringSide2 || '';
-    } else {
-      return sourceMatchUp.score.scoreStringSide1 || '';
-    }
-  }
 }
