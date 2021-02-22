@@ -16,14 +16,12 @@ export const useStyles = makeStyles(theme => ({
   detailsColumn: {
     flexWrap: 'nowrap',
   },
-  initialColumn: {
-    minWidth: 200,
-    maxWidth: 250,
-  },
+  initialColumn: {},
   roundColumn: {},
   participant: {
     paddingLeft: 3,
     paddingRight: 3,
+    whiteSpace: 'nowrap',
     '&:hover': {
       cursor: 'pointer',
       backgroundColor: '#f5f5f5',

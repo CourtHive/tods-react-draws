@@ -21,7 +21,13 @@ const App = () => {
         {
           roundNumber: 1,
           roundPosition: 2,
-          scoreString: '6-2 6-1',
+          scoreString: '6-1 6-2',
+          winningSide: 1,
+        },
+        {
+          roundNumber: 1,
+          roundPosition: 3,
+          scoreString: '6-1 6-3',
           winningSide: 1,
         },
       ],
@@ -38,9 +44,18 @@ const App = () => {
     inContext: true,
   });
 
-  const { roundMatchUps } = drawEngine.getRoundMatchUps({ matchUps });
+  const { roundPresentationProfile } = drawEngine.getRoundPresentationProfile({
+    matchUps,
+  });
+
+  const roundMatchUps = roundPresentationProfile.map(
+    ({ matchUps }) => matchUps
+  );
+
   const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
+
+  console.log({ roundsDefinition, columns });
 
   const onScoreClick = ({ matchUp, e }) => {
     console.log('Scoring matchUp', { matchUp, e });

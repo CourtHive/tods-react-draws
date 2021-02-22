@@ -40,11 +40,67 @@ export function generateStandardElimination({ height, roundsDefinition }) {
       feedOffset;
 
     const matchUps = round.matchUps || [];
+
+    const stackedMatchUpValues = matchUps.map(getStackedMatchUpValues).flat();
+    const frames = getFrames(stackedMatchUpValues);
+
     return {
       round,
       matchUps,
       matchUpHeight,
       firstMatchUpHeight,
+      frames,
     };
+  }
+}
+
+function getFrames(values) {
+  const firstFrame = [values.shift()];
+  const frames = multiChunk(values, [3, 2]);
+  frames.unshift(firstFrame);
+  return frames;
+}
+
+function multiChunk(arr, [size, ...otherSizes]) {
+  return arr.length
+    ? [
+        arr.slice(0, size),
+        ...multiChunk(arr.slice(size), [...otherSizes, size]),
+      ]
+    : [];
+}
+
+function getStackedMatchUpValues(matchUp) {
+  const { sides, schedule } = matchUp || {};
+  const sideDetails = sides.map(side => {
+    const scoreString = winningScoreString(side?.sourceMatchUp);
+    return [
+      { side, matchUpDetails: getMatchUpDetails(matchUp) },
+      {
+        scoreString,
+        sourceMatchUpDetails: getMatchUpDetails(side?.sourceMatchUp),
+      },
+    ];
+  });
+  return [sideDetails[0], schedule, sideDetails[1]].flat();
+}
+
+function getMatchUpDetails(matchUp) {
+  return (({ eventId, drawId, structureId, readyToScore, matchUpStatus }) => ({
+    eventId,
+    drawId,
+    structureId,
+    readyToScore,
+    matchUpStatus,
+  }))(matchUp || {});
+}
+
+function winningScoreString(matchUp) {
+  if (matchUp?.winningSide) {
+    if (matchUp.winningSide === 2) {
+      return matchUp.score.scoreStringSide2 || '';
+    } else {
+      return matchUp.score.scoreStringSide1 || '';
+    }
   }
 }
