@@ -2,7 +2,7 @@ import React from 'react';
 import { useStyles } from '../../styles/gridStyles';
 
 import { Grid } from '@material-ui/core';
-import { Frames } from './Frames';
+import { ColumnComponents } from './ColumnComponents';
 
 export function EliminationStructure(props) {
   const { columns, onScoreClick, onParticipantClick } = props;
@@ -19,44 +19,54 @@ export function EliminationStructure(props) {
     }
   };
 
+  const EliminationColumn = ({ column, columnIndex }) => {
+    const { round } = column;
+
+    const firstRound = round.roundNumber === 1;
+    const classNames = {
+      details: 'detailsColumn',
+      divider: 'verticalDivider',
+      connectors: 'connectorColumn',
+      classic: firstRound ? 'initialColumn' : 'roundColumn',
+    };
+    const divider = round.columnType === 'divider';
+    const columnClass = classNames[round.columnType];
+    const className = classes[columnClass];
+
+    // TODO: column width needs to be calculated based on # of detail columns
+    const detailsCount = round?.details?.length || 1;
+    const maxWidth =
+      round?.columnType === 'details' ? detailsCount * 30 : undefined;
+
+    return (
+      <Grid
+        container
+        direction="column"
+        key={columnIndex}
+        className={className}
+        style={{ maxWidth }}
+      >
+        {!divider && (
+          <ColumnComponents
+            column={column}
+            handleParticipantClick={handleParticipantClick}
+            handleScoreClick={handleScoreClick}
+          />
+        )}
+      </Grid>
+    );
+  };
+
   const EliminationColumns = ({ columns }) =>
-    columns.map((column, columnIndex) => {
-      const { round } = column;
-
-      const firstRound = round.roundNumber === 1;
-      const classNames = {
-        details: 'detailsColumn',
-        divider: 'verticalDivider',
-        connectors: 'connectorColumn',
-        classic: firstRound ? 'initialColumn' : 'roundColumn',
-      };
-      const divider = round.columnType === 'divider';
-      const columnClass = classNames[round.columnType];
-      const className = classes[columnClass];
-
-      // TODO: column width needs to be calculated based on # of detail columns
-      const detailsCount = round?.details?.length || 1;
-      const maxWidth =
-        round?.columnType === 'details' ? detailsCount * 30 : undefined;
-
-      return (
-        <Grid
-          container
-          direction="column"
+    columns.map((column, columnIndex) => (
+      <>
+        <EliminationColumn
+          column={column}
+          columnIndex={columnIndex}
           key={columnIndex}
-          className={className}
-          style={{ maxWidth }}
-        >
-          {!divider && (
-            <Frames
-              column={column}
-              handleParticipantClick={handleParticipantClick}
-              handleScoreClick={handleScoreClick}
-            />
-          )}
-        </Grid>
-      );
-    });
+        />
+      </>
+    ));
 
   return (
     <Grid container direction="row" className={classes.drawRoot}>
