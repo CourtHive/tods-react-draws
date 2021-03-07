@@ -8753,10 +8753,10 @@ eslint-plugin-import@^2.18.2, eslint-plugin-import@^2.22.0:
     resolve "^1.17.0"
     tsconfig-paths "^3.9.0"
 
-eslint-plugin-jest@24.1.5:
-  version "24.1.5"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.1.5.tgz"
-  integrity sha512-FIP3lwC8EzEG+rOs1y96cOJmMVpdFNreoDJv29B5vIupVssRi8zrSY3QadogT0K3h1Y8TMxJ6ZSAzYUmFCp2hg==
+eslint-plugin-jest@24.1.7:
+  version "24.1.7"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.1.7.tgz#77cb4e88ec2559721aa083a5905ef9e27fa12059"
+  integrity sha512-p5Dk/Rgiv+ThxguYl96dj7Hqkow09dwSH1G5ALKdREM4pHO1V1xP0N6/myzoquD3z4h+1YPYHzM+g7Fd0xyaXg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
@@ -19260,9 +19260,9 @@ to-vfile@^6.0.0:
     vfile "^4.0.0"
 
 tods-competition-factory@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.1.tgz#5679e297d4d8515fff1f0113899a4fd74d3d27f9"
-  integrity sha512-OhvV5E7O50TQLAkNB7ADe944VIc/BT9ccXmPOOg0EnD0kLWJUwuNWxgFYPT03qyWLChpjG83YQ1HidKHXUJ9UA==
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.3.tgz#eeb3dae0c0f5d2aa735a4433a358e6215742881b"
+  integrity sha512-VwO0gbaWh+UhhtX5btU2ceNG2YD9zRK1S74zvOigh5qQ+Q+Q5rsKBICYUGgqt07LMalH1pPE3CxDlozBwzoZCA==
   dependencies:
     tods-matchup-format-code "^1.0.7"
 
