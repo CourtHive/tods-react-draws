@@ -4,29 +4,21 @@ export function generateRoundsDefinition({ roundMatchUps }) {
 
   const roundNumbers = Object.keys(roundMatchUps);
   const firstRoundMatchUpsCount = roundMatchUps[roundNumbers[0]].length;
-  const roundsColumns = roundNumbers.map(roundNumber => {
-    const previousRoundMatchUps =
-      roundNumber > 1 && roundMatchUps[roundNumber - 1];
-    const matchUps = roundMatchUps[roundNumber].map(matchUp => {
-      matchUp.sides.forEach(side => {
-        if (previousRoundMatchUps && side?.participantId) {
-          side.sourceMatchUp = previousRoundMatchUps.find(matchUp =>
-            matchUp.drawPositions.includes(side.drawPosition)
-          );
-        }
-      });
-      return matchUp;
-    });
+  const roundsColumns = roundNumbers.map(key => {
+    const roundNumber = parseInt(key);
+    const matchUps = roundMatchUps[roundNumber];
     const matchUpsCount = matchUps.length;
     const columnMultiplier =
       Math.log2(firstRoundMatchUpsCount / matchUpsCount) + 1;
+
+    const roundName = matchUps[0].roundName || `Round ${roundNumber}`;
     const definition = {
-      matchUps,
-      columnMultiplier,
       matchUpsCount: matchUps.length,
       columnType: 'classic',
-      roundName: `Round ${roundNumber}`,
+      columnMultiplier,
       roundNumber,
+      roundName,
+      matchUps,
     };
 
     if (matchUpsCount === previousRoundMatchUpsCount) {
@@ -38,6 +30,44 @@ export function generateRoundsDefinition({ roundMatchUps }) {
         feedTop = true;
       }
     }
+
+    const getTargetRoundPosition = (roundPosition, sideNumber) =>
+      (roundPosition - 1) * 2 + sideNumber;
+
+    const previousRoundMatchUps =
+      roundNumber > 1 && roundMatchUps[roundNumber - 1];
+    matchUps.forEach(matchUp => {
+      const { roundPosition } = matchUp;
+      matchUp.sides.forEach((side, sideIndex) => {
+        const sideNumber = sideIndex + 1;
+
+        if (previousRoundMatchUps) {
+          if (definition.feedTop) {
+            if (sideNumber === 2) {
+              side.sourceMatchUp = previousRoundMatchUps.find(
+                matchUp => matchUp.roundPosition === roundPosition
+              );
+            }
+          } else if (definition.feedBottom) {
+            if (sideNumber === 1) {
+              side.sourceMatchUp = previousRoundMatchUps.find(
+                matchUp => matchUp.roundPosition === roundPosition
+              );
+            }
+          } else {
+            const targetRoundPosition = getTargetRoundPosition(
+              roundPosition,
+              sideNumber
+            );
+            side.sourceMatchUp = previousRoundMatchUps.find(
+              matchUp => matchUp.roundPosition === targetRoundPosition
+            );
+          }
+        }
+      });
+      return matchUp;
+    });
+
     previousRoundMatchUpsCount = matchUpsCount;
 
     return definition;
@@ -57,9 +87,10 @@ export function generateRoundsDefinition({ roundMatchUps }) {
   if (finalRound.matchUps.length === 1) {
     const final = {
       matchUpsCount: 0,
+      finalMatchUp: finalRound.matchUps[0],
       columnMultiplier: finalRound.columnMultiplier + 1,
       columnType: 'classic',
-      roundName: 'Final',
+      roundName: 'Winner',
     };
     roundsDefinition.push(final);
   }

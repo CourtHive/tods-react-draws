@@ -39,10 +39,13 @@ export function generateStandardElimination({ height, roundsDefinition }) {
       (topMargin || 0) +
       feedOffset;
 
+    const isFinal = round.finalMatchUp;
     const matchUps = round.matchUps || [];
-    const stackedMatchUpValues = matchUps
-      .map(matchUp => getStackedMatchUpValues({ matchUp }))
-      .flat();
+
+    const stackedMatchUpValues = isFinal
+      ? getFinalMatchUpValues({ matchUp: round.finalMatchUp })
+      : matchUps.map(matchUp => getStackedMatchUpValues({ matchUp })).flat();
+
     const frames = getFrames(stackedMatchUpValues);
 
     return {
@@ -70,19 +73,33 @@ function multiChunk(arr, [size, ...otherSizes]) {
     : [];
 }
 
+function getFinalMatchUpValues({ matchUp }) {
+  const { sides, /*schedule,*/ winningSide } = matchUp || {};
+  // const scoreString = winningScoreString(matchUp);
+  const matchUpDetails = matchUp;
+  const side =
+    winningSide && sides.find(({ sideNumber }) => sideNumber === winningSide);
+
+  return [
+    {
+      side,
+      matchUpDetails,
+      readyToScore: matchUp.readyToScore,
+    },
+  ];
+}
+
 function getStackedMatchUpValues({ matchUp }) {
   const { sides, schedule } = matchUp || {};
   const sideDetails = sides.map(side => {
     const scoreString = winningScoreString(side?.sourceMatchUp);
-    const matchUpDetails = getMatchUpDetails({ matchUp });
-    const sourceMatchUpDetails = getMatchUpDetails({
-      matchUp: side?.sourceMatchUp,
-    });
+    const matchUpDetails = matchUp;
+    const sourceMatchUpDetails = side?.sourceMatchUp;
     return [
       {
         side,
         matchUpDetails,
-        readyToScore: sourceMatchUpDetails?.readyToScore,
+        readyToScore: side?.sourceMatchUp?.readyToScore,
       },
       {
         scoreString,
@@ -91,27 +108,6 @@ function getStackedMatchUpValues({ matchUp }) {
     ];
   });
   return [sideDetails[0], schedule, sideDetails[1]].flat();
-}
-
-function getMatchUpDetails({ matchUp }) {
-  const matchUpDetails = (({
-    eventId,
-    drawId,
-    matchUpId,
-    roundNumber,
-    structureId,
-    readyToScore,
-    matchUpStatus,
-  }) => ({
-    eventId,
-    drawId,
-    matchUpId,
-    roundNumber,
-    structureId,
-    readyToScore,
-    matchUpStatus,
-  }))(matchUp || {});
-  return matchUpDetails;
 }
 
 function winningScoreString(matchUp) {

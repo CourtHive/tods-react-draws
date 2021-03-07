@@ -1,32 +1,21 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
+
 import { useStyles } from '../../styles/gridStyles';
 import cx from 'classnames';
-
-import { Grid } from '@material-ui/core';
 
 export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const classes = useStyles();
   const { side, matchUpDetails, readyToScore } = sideDetails || {};
-  // const { roundNumber } = matchUpDetails || {};
+  const { finishingRound, sourceDrawPositionRange } = matchUpDetails || {};
   const { bye, drawPosition, participant, sideNumber } = side || {};
-  const dpText = drawPosition || '';
-  const seed = side?.seedValue;
+  const dpText = sourceDrawPositionRange || drawPosition || '';
+
   let sideText = bye ? 'BYE' : participant?.participantName || '';
+  const seed = side?.seedValue;
   if (seed) sideText += ` (${seed})`;
 
-  /*
-  const isFinal = matchUp?.finishingRound === 1;
-  const sideIndex =
-    isFinal && matchUp?.winningSide
-      ? matchUp?.winningSide - 1
-      : round?.feedBottom
-      ? 3 - displaySideNumber - 1
-      : displaySideNumber - 1;
-
-  const dpText =
-    matchUp?.sides[sideIndex]?.sourceDrawPositionRange ||
-    matchUp?.sides[sideIndex]?.drawPosition;
-    */
+  if (round.finalMatchUp) console.log({ matchUpDetails });
 
   const participantStyle = !displayOnly
     ? {

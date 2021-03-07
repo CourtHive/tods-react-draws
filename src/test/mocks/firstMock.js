@@ -138,6 +138,6 @@ export const roundsDefinition = [
     matchUpsCount: 0,
     columnMultiplier: 6,
     columnType: 'classic',
-    roundName: 'Final',
+    roundName: 'Winner',
   },
 ];
