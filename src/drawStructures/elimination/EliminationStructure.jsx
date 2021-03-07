@@ -9,17 +9,17 @@ import { Grid } from '@material-ui/core';
 export function EliminationStructure(props) {
   const classes = useStyles();
 
-  const {
-    eventData,
-    drawId,
-    structureId,
-    onScoreClick,
-    onParticipantClick,
-  } = props;
+  const { eventData, onScoreClick, onParticipantClick } = props;
 
-  const drawData = eventData?.drawsData.find(
-    drawData => drawData.drawId === drawId
-  );
+  const { drawsData } = eventData;
+  let { drawId, structureId } = props;
+
+  if (!drawId) drawId = drawsData?.length && drawsData[0].drawId;
+  const drawData = drawsData?.find(drawData => drawData.drawId === drawId);
+
+  if (!structureId)
+    structureId =
+      drawData?.structures?.length && drawData.structures[0].structureId;
   const structureData = structureId
     ? drawData?.structures?.find(
         structureData => structureData.structureId === structureId

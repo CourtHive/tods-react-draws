@@ -29,7 +29,6 @@ const App = () => {
     },
   ];
   const {
-    drawIds: [drawId],
     eventIds: [eventId],
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
@@ -37,10 +36,6 @@ const App = () => {
   });
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
-  const structureId = eventData.drawsData.find(
-    drawData => drawData.drawId == drawId
-  )?.structures[0]?.structureId;
-
   const onScoreClick = ({ matchUpDetails, e }) => {
     console.log('Scoring matchUp', { matchUpDetails, e });
   };
@@ -49,8 +44,6 @@ const App = () => {
   };
   const args = {
     eventData,
-    drawId,
-    structureId,
     onScoreClick,
     onParticipantClick,
   };
