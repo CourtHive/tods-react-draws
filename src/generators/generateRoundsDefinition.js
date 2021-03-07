@@ -2,14 +2,24 @@ export function generateRoundsDefinition({ roundMatchUps }) {
   let previousRoundMatchUpsCount;
   let feedTop = true;
 
-  const roundKeys = Object.keys(roundMatchUps);
-  const firstRoundMatchUpsCount = roundMatchUps[roundKeys[0]].length;
-  const roundsColumns = roundKeys.map((key, i) => {
-    const matchUps = roundMatchUps[key];
+  const roundNumbers = Object.keys(roundMatchUps);
+  const firstRoundMatchUpsCount = roundMatchUps[roundNumbers[0]].length;
+  const roundsColumns = roundNumbers.map(roundNumber => {
+    const previousRoundMatchUps =
+      roundNumber > 1 && roundMatchUps[roundNumber - 1];
+    const matchUps = roundMatchUps[roundNumber].map(matchUp => {
+      matchUp.sides.forEach(side => {
+        if (previousRoundMatchUps && side?.participantId) {
+          side.sourceMatchUp = previousRoundMatchUps.find(matchUp =>
+            matchUp.drawPositions.includes(side.drawPosition)
+          );
+        }
+      });
+      return matchUp;
+    });
     const matchUpsCount = matchUps.length;
     const columnMultiplier =
       Math.log2(firstRoundMatchUpsCount / matchUpsCount) + 1;
-    const roundNumber = i + 1;
     const definition = {
       matchUps,
       columnMultiplier,
@@ -33,7 +43,7 @@ export function generateRoundsDefinition({ roundMatchUps }) {
     return definition;
   });
 
-  const firstRoundMatchUps = roundMatchUps[roundKeys[0]];
+  const firstRoundMatchUps = roundMatchUps[roundNumbers[0]];
   const detailsColumn = {
     columnType: 'details',
     details: ['drawPosition'],
