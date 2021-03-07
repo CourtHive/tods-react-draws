@@ -1,12 +1,34 @@
 import React from 'react';
 import { useStyles } from '../../styles/gridStyles';
 
-import { Grid } from '@material-ui/core';
+import { generateStandardElimination } from '../../generators/columnGenerators/generateStandardElimination';
+import { generateRoundsDefinition } from '../../generators/generateRoundsDefinition';
 import { ColumnComponents } from './ColumnComponents';
+import { Grid } from '@material-ui/core';
 
 export function EliminationStructure(props) {
-  const { columns, onScoreClick, onParticipantClick } = props;
   const classes = useStyles();
+
+  const {
+    eventData,
+    drawId,
+    structureId,
+    onScoreClick,
+    onParticipantClick,
+  } = props;
+
+  const drawData = eventData?.drawsData.find(
+    drawData => drawData.drawId === drawId
+  );
+  const structureData = structureId
+    ? drawData?.structures?.find(
+        structureData => structureData.structureId === structureId
+      )
+    : drawData?.structures && drawData.structures[0];
+
+  const { roundMatchUps } = structureData || {};
+  const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
+  const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
   const handleScoreClick = ({ matchUpDetails, e }) => {
     if (typeof onScoreClick === 'function') {
@@ -57,20 +79,15 @@ export function EliminationStructure(props) {
     );
   };
 
-  const EliminationColumns = ({ columns }) =>
-    columns.map((column, columnIndex) => (
-      <>
+  return (
+    <Grid container direction="row" className={classes.drawRoot}>
+      {columns.map((column, columnIndex) => (
         <EliminationColumn
           column={column}
           columnIndex={columnIndex}
           key={columnIndex}
         />
-      </>
-    ));
-
-  return (
-    <Grid container direction="row" className={classes.drawRoot}>
-      <EliminationColumns columns={columns} />
+      ))}
     </Grid>
   );
 }
