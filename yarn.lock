@@ -19254,10 +19254,11 @@ to-vfile@^6.0.0:
     is-buffer "^2.0.0"
     vfile "^4.0.0"
 
-tods-competition-factory@^0.4.64:
-  version "0.4.68"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.4.68.tgz#10d2ed4c208db478046a2cc54c2720a2edcf95da"
-  integrity sha512-vqwd8tYQn4R+Kn3ghn9jNdbVE1zp3/QaJJmBZqn1m8mtV+bfmwujibsEVyPHTy7IkvhmX8Tl27ttZIsqstQZYg==
+tods-competition-factory@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.1.tgz#5679e297d4d8515fff1f0113899a4fd74d3d27f9"
+  integrity sha512-OhvV5E7O50TQLAkNB7ADe944VIc/BT9ccXmPOOg0EnD0kLWJUwuNWxgFYPT03qyWLChpjG83YQ1HidKHXUJ9UA==
+
   dependencies:
     tods-matchup-format-code "^1.0.7"
 

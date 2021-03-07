@@ -5206,10 +5206,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@^0.4.47:
-  version "0.4.47"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.4.47.tgz#76680046e6084b2ffe89e676d34477b8858194b8"
-  integrity sha512-ypKCSUefPjCJgbyTr7KucDV6sY6LswUKdIhRMXCn9cpBG57/EAbdaG16uVLJNVwGXVh0V4USlEiITpmBLePvVQ==
+tods-competition-factory@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.1.tgz#5679e297d4d8515fff1f0113899a4fd74d3d27f9"
+  integrity sha512-OhvV5E7O50TQLAkNB7ADe944VIc/BT9ccXmPOOg0EnD0kLWJUwuNWxgFYPT03qyWLChpjG83YQ1HidKHXUJ9UA==
   dependencies:
     tods-matchup-format-code "^1.0.7"
 
