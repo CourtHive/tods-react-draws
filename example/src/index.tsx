@@ -3,14 +3,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { EliminationStructure } from '../../dist';
 
-import { generateRoundsDefinition } from '../../src/generators/generateRoundsDefinition';
-import { generateStandardElimination } from '../../src/generators/columnGenerators/generateStandardElimination';
-
-import {
-  drawEngine,
-  mocksEngine,
-  tournamentEngine,
-} from 'tods-competition-factory';
+import { mocksEngine, tournamentEngine } from 'tods-competition-factory';
 
 const App = () => {
   const drawProfiles = [
@@ -37,28 +30,16 @@ const App = () => {
   ];
   const {
     drawIds: [drawId],
+    eventIds: [eventId],
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
     completeAllMatchUps: true,
   });
 
-  const { matchUps } = tournamentEngine.allDrawMatchUps({
-    drawId,
-    inContext: true,
-  });
-
-  const { roundPresentationProfile } = drawEngine.getRoundPresentationProfile({
-    matchUps,
-  });
-
-  const roundMatchUps = roundPresentationProfile.map(
-    ({ matchUps }) => matchUps
-  );
-
-  const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
-  const columns = generateStandardElimination({ height: 70, roundsDefinition });
-
-  console.log({ roundsDefinition, columns });
+  const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
+  const structureId = eventData.drawsData.find(
+    drawData => drawData.drawId == drawId
+  )?.structures[0]?.structureId;
 
   const onScoreClick = ({ matchUpDetails, e }) => {
     console.log('Scoring matchUp', { matchUpDetails, e });
@@ -66,7 +47,13 @@ const App = () => {
   const onParticipantClick = ({ matchUpDetails, sideNumber, e }) => {
     console.log('Participant matchUp', { matchUpDetails, sideNumber, e });
   };
-  const args = { columns, roundMatchUps, onScoreClick, onParticipantClick };
+  const args = {
+    eventData,
+    drawId,
+    structureId,
+    onScoreClick,
+    onParticipantClick,
+  };
 
   return (
     <div>
