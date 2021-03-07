@@ -3,8 +3,7 @@ dist
 node_modules
 
 # development
-*.code-workspace
-.VSCodeCounte
+.VSCodeCount
 scratch
 *.gz
 
