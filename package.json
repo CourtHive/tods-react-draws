@@ -18,6 +18,9 @@
     "type": "git",
     "url": "https://github.com/CourtHive/tods-react-draws"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
