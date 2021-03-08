@@ -19,32 +19,13 @@ const drawProfiles = [
   },
 ];
 const {
-  drawIds: [drawId],
+  eventIds: [eventId],
 } = mocksEngine.generateTournamentRecord({
   drawProfiles,
+  completeAllMatchUps: true,
 });
 
-const { matchUps } = tournamentEngine.allDrawMatchUps({
-  drawId,
-  inContext: true,
-});
-
-const { roundMatchUps } = drawEngine.getRoundMatchUps({
-  matchUps,
-});
-// add some mocked scores
-const roundKeys = Object.keys(roundMatchUps);
-roundKeys.forEach(key => {
-  roundMatchUps[key].forEach(matchUp => {
-    if (!matchUp.sides) matchUp.sides = matchUp.Sides;
-    matchUp.score = `6-${matchUp.roundNumber} 6-${matchUp.roundPosition}`;
-  });
-});
-
-const { roundsDefinition } = generateRoundsDefinition({
-  roundMatchUps,
-});
-const columns = generateColumns({ height: 70, roundsDefinition });
+const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
 const meta: Meta = {
   title: 'Draw',
@@ -68,6 +49,5 @@ const Template: Story = args => <EliminationStructure {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  columns,
-  roundMatchUps,
+  eventData,
 };
