@@ -36,11 +36,15 @@ const App = () => {
   });
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
-  const onScoreClick = ({ matchUpDetails, e }) => {
-    console.log('Scoring matchUp', { matchUpDetails, e });
+  const onScoreClick = ({ matchUp, e }) => {
+    console.log('Scoring matchUp', { matchUp, e });
   };
-  const onParticipantClick = ({ matchUpDetails, sideNumber, e }) => {
-    console.log('Participant matchUp', { matchUpDetails, sideNumber, e });
+  const onParticipantClick = ({ matchUp, sideNumber, e }) => {
+    console.log('Participant matchUp', {
+      sideNumber,
+      matchUp,
+      e,
+    });
   };
   const args = {
     eventData,

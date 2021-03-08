@@ -46,7 +46,9 @@ export function generateStandardElimination({ height, roundsDefinition }) {
       ? getFinalMatchUpValues({ matchUp: round.finalMatchUp })
       : matchUps.map(matchUp => getStackedMatchUpValues({ matchUp })).flat();
 
-    const frames = getFrames(stackedMatchUpValues);
+    const frames = isFinal
+      ? stackedMatchUpValues
+      : getFrames(stackedMatchUpValues);
 
     return {
       round,
@@ -74,18 +76,25 @@ function multiChunk(arr, [size, ...otherSizes]) {
 }
 
 function getFinalMatchUpValues({ matchUp }) {
-  const { sides, /*schedule,*/ winningSide } = matchUp || {};
-  // const scoreString = winningScoreString(matchUp);
-  const matchUpDetails = matchUp;
+  const { sides, winningSide } = matchUp || {};
+  const scoreString = winningScoreString(matchUp);
   const side =
     winningSide && sides.find(({ sideNumber }) => sideNumber === winningSide);
 
   return [
-    {
-      side,
-      matchUpDetails,
-      readyToScore: matchUp.readyToScore,
-    },
+    [
+      {
+        side,
+        matchUp,
+        readyToScore: matchUp.readyToScore,
+      },
+    ],
+    [
+      {
+        scoreString,
+        sourceMatchUp: side?.sourceMatchUp,
+      },
+    ],
   ];
 }
 
@@ -93,17 +102,15 @@ function getStackedMatchUpValues({ matchUp }) {
   const { sides, schedule } = matchUp || {};
   const sideDetails = sides.map(side => {
     const scoreString = winningScoreString(side?.sourceMatchUp);
-    const matchUpDetails = matchUp;
-    const sourceMatchUpDetails = side?.sourceMatchUp;
     return [
       {
         side,
-        matchUpDetails,
+        matchUp,
         readyToScore: side?.sourceMatchUp?.readyToScore,
       },
       {
         scoreString,
-        sourceMatchUpDetails,
+        sourceMatchUp: side?.sourceMatchUp,
       },
     ];
   });

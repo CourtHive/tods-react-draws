@@ -6,16 +6,15 @@ import cx from 'classnames';
 
 export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const classes = useStyles();
-  const { side, matchUpDetails, readyToScore } = sideDetails || {};
-  const { finishingRound, sourceDrawPositionRange } = matchUpDetails || {};
+  const { side, matchUp, sourceMatchUp } = sideDetails || {};
+  const { sourceDrawPositionRange } = matchUp || {};
   const { bye, drawPosition, participant, sideNumber } = side || {};
   const dpText = sourceDrawPositionRange || drawPosition || '';
+  const readyToScore = side?.sourceMatchUp?.readyToScore;
 
   let sideText = bye ? 'BYE' : participant?.participantName || '';
   const seed = side?.seedValue;
   if (seed) sideText += ` (${seed})`;
-
-  if (round.finalMatchUp) console.log({ matchUpDetails });
 
   const participantStyle = !displayOnly
     ? {
@@ -35,7 +34,7 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const participantProps = {
     onClick: e => {
       onClick({
-        matchUpDetails,
+        matchUp,
         sideNumber,
         e,
       });

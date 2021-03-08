@@ -30,14 +30,14 @@ export function EliminationStructure(props) {
   const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
-  const handleScoreClick = ({ matchUpDetails, e }) => {
+  const handleScoreClick = ({ matchUp, e }) => {
     if (typeof onScoreClick === 'function') {
-      onScoreClick({ matchUpDetails, e });
+      onScoreClick({ matchUp, e });
     }
   };
-  const handleParticipantClick = ({ matchUpDetails, sideNumber, e }) => {
+  const handleParticipantClick = ({ matchUp, sideNumber, e }) => {
     if (typeof onParticipantClick === 'function') {
-      onParticipantClick({ matchUpDetails, sideNumber, e });
+      onParticipantClick({ matchUp, sideNumber, e });
     }
   };
 

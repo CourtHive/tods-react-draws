@@ -22,11 +22,11 @@ export const ColumnComponents = ({
   };
 
   const Score = ({ round, scoreDetails, displayOnly, onClick }) => {
-    const { scoreString, sourceMatchUpDetails } = scoreDetails || {};
+    const { scoreString, sourceMatchUp } = scoreDetails || {};
     const displayText = round?.columnType === 'classic';
     const scoreProps = {
       onClick: e => {
-        !displayOnly && onClick({ matchUpDetails: sourceMatchUpDetails, e });
+        !displayOnly && onClick({ matchUp: sourceMatchUp, e });
       },
       className: classes.score,
     };
@@ -35,6 +35,7 @@ export const ColumnComponents = ({
   };
 
   const Frame = ({ frame, index }) => {
+    const isFinal = round.finalMatchUp;
     const isDetails = round?.columnType === 'details';
     const scoreDetails = (index && frame[0]) || [];
     const sideDetails = frame[frame.length - 1];
@@ -51,7 +52,8 @@ export const ColumnComponents = ({
       style: { height },
       direction: 'column',
       justify: 'space-between',
-      className: (isEven && !isDetails && classes.borderRight) || undefined,
+      className:
+        (isEven && !isDetails && !isFinal && classes.borderRight) || undefined,
     };
 
     const className = columnEnd
