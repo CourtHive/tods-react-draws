@@ -2,16 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { EliminationStructure } from '../src';
 
-import { generateRoundsDefinition } from '../src/generators/generateRoundsDefinition';
-import {
-  /*roundsDefinition,*/ generateColumns,
-} from '../src/test/mocks/firstMock';
-
-import {
-  drawEngine,
-  mocksEngine,
-  tournamentEngine,
-} from 'tods-competition-factory';
+import { mocksEngine, tournamentEngine } from 'tods-competition-factory';
 
 const drawProfiles = [
   {
