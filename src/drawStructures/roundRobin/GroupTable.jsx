@@ -12,6 +12,7 @@ import { useStyles } from './roundRobinStyles';
 export function GroupTable(props) {
   const classes = useStyles();
   const { columnData, rowData } = props;
+  const { onCellClick } = props;
 
   return (
     <TableContainer component={Paper}>
@@ -19,7 +20,7 @@ export function GroupTable(props) {
         <TableHead>
           <TableRow>
             {columnData.map(column => (
-              <TableCell></TableCell>
+              <HeaderCell column={column} onCellClick={onCellClick} />
             ))}
           </TableRow>
         </TableHead>
@@ -36,3 +37,23 @@ export function GroupTable(props) {
     </TableContainer>
   );
 }
+
+const HeaderCell = ({ column, onCellClick }) => {
+  const classes = useStyles();
+  const cellClassName = column.getHeader?.()?.cellClassName;
+  const headerClassName = column.getHeader?.()?.headerClassName;
+
+  return (
+    <TableCell
+      className={cellClassName}
+      id={column.key}
+      key={column.key}
+      onClick={onCellClick}
+      classes={{ root: classes.root, head: classes.head }}
+    >
+      <Grid container className={headerClassName}>
+        <Grid item>{column.getHeader?.()?.children || ''}</Grid>
+      </Grid>
+    </TableCell>
+  );
+};

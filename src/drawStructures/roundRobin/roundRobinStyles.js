@@ -8,4 +8,14 @@ export const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
   },
+  root: {
+    padding: '0 16px 0 16px',
+    fontFamily: 'inherit',
+  },
+  body: {
+    padding: '0 16px 0 16px',
+  },
+  head: {
+    padding: '0 16px 0 16px',
+  },
 }));

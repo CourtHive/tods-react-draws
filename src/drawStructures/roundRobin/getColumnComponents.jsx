@@ -2,9 +2,12 @@ export function getColumnComponents() {
   const columnComponents = [
     {
       key: 'drawPosition',
-      getHeader: () => ({ node: undefined, className: '' }),
+      getHeader: () => ({ children: <></>, className: '' }),
       getValue: row => {
-        return <></>;
+        return {
+          children: <></>,
+          className: '',
+        };
       },
     },
   ];
