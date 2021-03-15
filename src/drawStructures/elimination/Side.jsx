@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 
-import { useStyles } from '../../styles/gridStyles';
+import { useStyles } from './eliminationStyles';
 import cx from 'classnames';
 
 export const Side = ({ round, sideDetails, displayOnly, onClick }) => {

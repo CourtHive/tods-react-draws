@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../../styles/gridStyles';
+import { useStyles } from './eliminationStyles';
 
 import { generateStandardElimination } from '../../generators/columnGenerators/generateStandardElimination';
 import { generateRoundsDefinition } from '../../generators/generateRoundsDefinition';

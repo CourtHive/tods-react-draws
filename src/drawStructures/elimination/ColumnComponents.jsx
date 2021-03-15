@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../../styles/gridStyles';
+import { useStyles } from './eliminationStyles';
 import { Grid } from '@material-ui/core';
 import { Side } from './Side';
 
