@@ -32,7 +32,7 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
       const { participant, bye, qualifier } = side || {};
       const participantResult = participantResults.find(
         result => result.drawPosition === drawPosition
-      );
+      )?.participantResult;
       const matchUps = groupMatchUps
         .filter(({ drawPositions }) => drawPositions.includes(drawPosition))
         .sort(matchUpColumnSort);
@@ -44,13 +44,15 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
         participantResult,
         qualifier,
         bye,
+        rowIndex,
       };
     });
     const positionColumns = positionRows.map(
-      ({ participant, bye, qualifier }) => ({
+      ({ participant, bye, qualifier }, rowIndex) => ({
         participant,
-        bye,
         qualifier,
+        bye,
+        rowIndex,
       })
     );
     const headerRow = {

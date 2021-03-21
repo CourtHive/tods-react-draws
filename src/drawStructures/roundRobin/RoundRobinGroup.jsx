@@ -7,9 +7,23 @@ import { getColumnComponents } from './getColumnComponents';
 export function RoundRobinGroup(props) {
   const classes = useStyles();
 
-  const { rowData, onScoreClick, onParticipantClick } = props;
+  const {
+    contextData,
+    dictionary,
+    rowData,
+    onScoreClick,
+    onParticipantClick,
+  } = props;
 
-  const { columnComponents } = getColumnComponents({ rowData });
+  console.log({ rowData });
+
+  const { columnComponents } = getColumnComponents({
+    rowData,
+    dictionary,
+    contextData,
+    onScoreClick,
+    onParticipantClick,
+  });
 
   return (
     <div className={classes.tableContainer}>
@@ -17,8 +31,6 @@ export function RoundRobinGroup(props) {
         columnData={[]}
         rowData={rowData}
         columnComponents={columnComponents}
-        onScoreClick={onScoreClick}
-        onParticipantClick={onParticipantClick}
         data={rowData}
       />
     </div>

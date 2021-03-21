@@ -17,15 +17,19 @@ const HeaderCell = ({ component, row }) => {
   const cellClassName = component.getHeader?.()?.cellClassName;
   const headerClassName = component.getHeader?.()?.headerClassName;
 
+  const handleOnClick = e => {
+    component.headerClick?.(e, row);
+  };
+
   return (
     <TableCell
       className={cellClassName}
       key={component.key}
-      onClick={component.headerClick?.(row)}
+      onClick={handleOnClick}
       classes={{ root: classes.root, head: classes.head }}
     >
       <Grid container className={headerClassName}>
-        <Grid item>{component.getHeader?.()?.children || ''}</Grid>
+        <Grid item>{component.getHeader?.(row)?.children || ''}</Grid>
       </Grid>
     </TableCell>
   );
@@ -36,11 +40,15 @@ const RowCell = ({ component, row }) => {
   const cellClassName = component.getValue?.()?.cellClassName;
   const headerClassName = component.getValue?.()?.headerClassName;
 
+  const handleOnClick = e => {
+    component.onClick?.(e, row);
+  };
+
   return (
     <TableCell
       className={cellClassName}
       key={component.key}
-      onClick={component.onClick?.(row)}
+      onClick={handleOnClick}
       classes={{ root: classes.root, head: classes.head }}
     >
       <Grid container className={headerClassName}>
@@ -52,8 +60,7 @@ const RowCell = ({ component, row }) => {
 
 export function GroupTable(props) {
   const classes = useStyles();
-  const { columnComponents, rowData, onScoreClick, onParticipantClick } = props;
-  console.log({ rowData });
+  const { columnComponents, rowData } = props;
   const bodyRows = rowData.slice(1);
 
   return (
@@ -64,9 +71,9 @@ export function GroupTable(props) {
             {columnComponents.map((component, index) => (
               <HeaderCell
                 key={`${component.key}${index}`}
+                index={index}
                 row={rowData.slice(0, 1)}
                 component={component}
-                onParticipantClick={onParticipantClick}
               />
             ))}
           </TableRow>
@@ -78,9 +85,8 @@ export function GroupTable(props) {
                 <RowCell
                   key={`${index}${component.key}`}
                   row={row}
+                  index={index}
                   component={component}
-                  onScoreClick={onScoreClick}
-                  onParticipantClick={onParticipantClick}
                 ></RowCell>
               ))}
             </TableRow>

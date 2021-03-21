@@ -52,6 +52,7 @@ const App = () => {
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
     completeAllMatchUps: completionState,
+    randomWinningSide: false,
   });
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};

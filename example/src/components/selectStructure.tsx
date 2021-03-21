@@ -11,7 +11,7 @@ export function SelectStructure({ structureName, structureNames, onChange }) {
   );
   const menuItems = structureNames.map(t => (
     <MenuItem key={t} value={t}>
-      {t}
+      {t.split('_').join(' ')}
     </MenuItem>
   ));
 

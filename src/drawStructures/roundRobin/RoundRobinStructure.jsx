@@ -6,7 +6,7 @@ import { generateRoundRobinRows } from '../../generators/generateRoundRobinRows'
 export function RoundRobinStructure(props) {
   const classes = useStyles();
 
-  const { eventData, onScoreClick, onParticipantClick } = props;
+  const { eventData, dictionary, onScoreClick, onParticipantClick } = props;
 
   const { drawsData } = eventData;
   let { drawId, structureId } = props;
@@ -16,6 +16,9 @@ export function RoundRobinStructure(props) {
   if (!structureId)
     structureId =
       drawData?.structures?.length && drawData.structures[0].structureId;
+
+  const { eventId } = eventData.eventInfo;
+  const contextData = { drawId, eventId, structureId };
 
   const structureData = drawData?.structures?.find(
     structure => structure.structureId === structureId
@@ -32,6 +35,8 @@ export function RoundRobinStructure(props) {
         <RoundRobinGroup
           rowData={rowData}
           key={`CHRRG-${key}`}
+          dictionary={dictionary}
+          contextData={contextData}
           onScoreClick={onScoreClick}
           onParticipantClick={onParticipantClick}
         />
