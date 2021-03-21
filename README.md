@@ -17,7 +17,7 @@ yarn add tods-react-draws # or npm install tods-react-draws
 Check the **example** directory...
 
 ```js
-import { DrawStructure } from 'tods-react-draws';
+import { EliminationStructure } from 'tods-react-draws';
 ```
 
 ## Development
