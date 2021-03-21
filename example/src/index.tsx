@@ -21,7 +21,7 @@ const App = () => {
   const classes = useStyles();
 
   const initialDrawDetails = {
-    drawType: SINGLE_ELIMINATION,
+    drawType: ROUND_ROBIN,
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
@@ -67,6 +67,7 @@ const App = () => {
   };
 
   const structures = eventData.drawsData[0].structures;
+  const structure = structures[structureIndex];
   const structureNames = structures.map(({ structureName }) => structureName);
   const structureName = structureNames[structureIndex];
   const structureId =
@@ -74,7 +75,12 @@ const App = () => {
     structures.length > structureIndex &&
     structures[structureIndex].structureId;
 
-  const isRoundRobin = drawType?.indexOf(ROUND_ROBIN) >= 0;
+  // matchUps in ROUND_ROBIN structures don't have roundPosition
+  // ROUND_ROBIN structures have { structureType: CONTAINER }
+  const isRoundRobin =
+    !structure?.roundMatchUps[1][0].roundPosition ||
+    structure?.structureType === 'CONTAINER';
+
   const args = {
     eventData,
     structureId,

@@ -1,15 +1,26 @@
+import React from 'react';
+
 export function getColumnComponents() {
-  const columnComponents = [
+  const rowDetails = [
     {
       key: 'drawPosition',
-      getHeader: () => ({ children: <></>, className: '' }),
+      getHeader: () => ({ children: <>Header</>, className: '' }),
       getValue: row => {
         return {
-          children: <></>,
+          children: <>{row?.drawPosition}</>,
           className: '',
         };
       },
     },
+  ];
+
+  const columnMatchUps = [];
+  const participantResults = [];
+
+  const columnComponents = [
+    ...rowDetails,
+    ...columnMatchUps,
+    ...participantResults,
   ];
   return { columnComponents };
 }

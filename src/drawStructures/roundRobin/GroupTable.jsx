@@ -1,34 +1,87 @@
 import React from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
+import {
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 
 import { useStyles } from './roundRobinStyles';
 
+const HeaderCell = ({ component, row }) => {
+  const classes = useStyles();
+  const cellClassName = component.getHeader?.()?.cellClassName;
+  const headerClassName = component.getHeader?.()?.headerClassName;
+
+  return (
+    <TableCell
+      className={cellClassName}
+      key={component.key}
+      onClick={component.headerClick?.(row)}
+      classes={{ root: classes.root, head: classes.head }}
+    >
+      <Grid container className={headerClassName}>
+        <Grid item>{component.getHeader?.()?.children || ''}</Grid>
+      </Grid>
+    </TableCell>
+  );
+};
+
+const RowCell = ({ component, row }) => {
+  const classes = useStyles();
+  const cellClassName = component.getValue?.()?.cellClassName;
+  const headerClassName = component.getValue?.()?.headerClassName;
+
+  return (
+    <TableCell
+      className={cellClassName}
+      key={component.key}
+      onClick={component.onClick?.(row)}
+      classes={{ root: classes.root, head: classes.head }}
+    >
+      <Grid container className={headerClassName}>
+        <Grid item>{component.getValue?.(row)?.children || ''}</Grid>
+      </Grid>
+    </TableCell>
+  );
+};
+
 export function GroupTable(props) {
   const classes = useStyles();
-  const { columnData, rowData } = props;
-  const { onCellClick } = props;
+  const { columnComponents, rowData, onScoreClick, onParticipantClick } = props;
+  console.log({ rowData });
+  const bodyRows = rowData.slice(1);
 
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="groupTable">
         <TableHead>
           <TableRow>
-            {columnData.map(column => (
-              <HeaderCell column={column} onCellClick={onCellClick} />
+            {columnComponents.map((component, index) => (
+              <HeaderCell
+                key={`${component.key}${index}`}
+                row={rowData.slice(0, 1)}
+                component={component}
+                onParticipantClick={onParticipantClick}
+              />
             ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.name}>
-              {columnData.map(column => (
-                <TableCell></TableCell>
+          {rowData.map((row, index) => (
+            <TableRow key={`${row.drawPosition}${index}`}>
+              {columnComponents.map((component, index) => (
+                <RowCell
+                  key={`${index}${component.key}`}
+                  row={row}
+                  component={component}
+                  onScoreClick={onScoreClick}
+                  onParticipantClick={onParticipantClick}
+                ></RowCell>
               ))}
             </TableRow>
           ))}
@@ -37,23 +90,3 @@ export function GroupTable(props) {
     </TableContainer>
   );
 }
-
-const HeaderCell = ({ column, onCellClick }) => {
-  const classes = useStyles();
-  const cellClassName = column.getHeader?.()?.cellClassName;
-  const headerClassName = column.getHeader?.()?.headerClassName;
-
-  return (
-    <TableCell
-      className={cellClassName}
-      id={column.key}
-      key={column.key}
-      onClick={onCellClick}
-      classes={{ root: classes.root, head: classes.head }}
-    >
-      <Grid container className={headerClassName}>
-        <Grid item>{column.getHeader?.()?.children || ''}</Grid>
-      </Grid>
-    </TableCell>
-  );
-};
