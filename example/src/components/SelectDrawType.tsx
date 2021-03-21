@@ -9,6 +9,7 @@ import { drawDefinitionConstants, utilities } from 'tods-competition-factory';
 const {
   SINGLE_ELIMINATION,
   ROUND_ROBIN,
+  DOUBLE_ELIMINATION,
   MULTI_STRUCTURE_DRAWS,
 } = drawDefinitionConstants;
 
@@ -17,7 +18,12 @@ export function DrawType({ drawType, onChange }) {
     <ExpandMoreIcon {...props} fontSize="small" style={{ top: 'unset' }} />
   );
   const drawTypes = utilities
-    .unique([SINGLE_ELIMINATION, ROUND_ROBIN, ...MULTI_STRUCTURE_DRAWS])
+    .unique([
+      SINGLE_ELIMINATION,
+      ROUND_ROBIN,
+      ...MULTI_STRUCTURE_DRAWS,
+      DOUBLE_ELIMINATION,
+    ])
     .sort();
   const menuItems = drawTypes.map(t => (
     <MenuItem key={t} value={t}>

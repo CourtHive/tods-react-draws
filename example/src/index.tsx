@@ -15,13 +15,17 @@ import { Box, Grid } from '@material-ui/core';
 import { useStyles } from './styles';
 import { SelectStructure } from './components/selectStructure';
 
-const { SINGLE_ELIMINATION, ROUND_ROBIN, FEED_IN } = drawDefinitionConstants;
+const {
+  SINGLE_ELIMINATION,
+  FEED_IN,
+  DOUBLE_ELIMINATION,
+} = drawDefinitionConstants;
 
 const App = () => {
   const classes = useStyles();
 
   const initialDrawDetails = {
-    drawType: ROUND_ROBIN,
+    drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
@@ -39,7 +43,8 @@ const App = () => {
   };
   const completionChange = (_, v) => v !== undefined && setCompletionState(v);
 
-  const drawSize = drawType === FEED_IN ? 31 : 32;
+  const drawSize =
+    drawType === DOUBLE_ELIMINATION ? 12 : drawType === FEED_IN ? 31 : 32;
   const drawProfiles = [
     {
       drawType,
@@ -76,11 +81,8 @@ const App = () => {
     structures.length > structureIndex &&
     structures[structureIndex].structureId;
 
-  // matchUps in ROUND_ROBIN structures don't have roundPosition
   // ROUND_ROBIN structures have { structureType: CONTAINER }
-  const isRoundRobin =
-    !structure?.roundMatchUps[1][0].roundPosition ||
-    structure?.structureType === 'CONTAINER';
+  const isRoundRobin = structure?.structureType === 'CONTAINER';
 
   const args = {
     eventData,
