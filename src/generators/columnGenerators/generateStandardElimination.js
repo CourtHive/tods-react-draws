@@ -94,7 +94,7 @@ function getFinalMatchUpValues({ matchUp }) {
     [
       {
         scoreString,
-        sourceMatchUp: side?.sourceMatchUp,
+        sourceMatchUp: matchUp,
       },
     ],
   ];
@@ -112,6 +112,7 @@ function getStackedMatchUpValues({ matchUp, feedBottom }) {
 
     const side = sides[sideIndex];
     const scoreString = side?.sourceMatchUp?.score?.scoreStringSide1;
+
     return [
       {
         side,

@@ -6,13 +6,16 @@ import cx from 'classnames';
 
 export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const classes = useStyles();
+  const isFinal = round.finalMatchUp;
   const { side, matchUp, sideIndex, feedBottom } = sideDetails || {};
   const { bye, drawPosition, participant, sourceDrawPositionRange } =
     side || {};
   const { feedRound } = matchUp || {};
 
   const dpText = sourceDrawPositionRange || drawPosition || '';
-  const readyToScore = side?.sourceMatchUp?.readyToScore;
+  const readyToScore = isFinal
+    ? matchUp?.readyToScore
+    : side?.sourceMatchUp?.readyToScore;
 
   let sideText = bye ? 'BYE' : participant?.participantName || '';
   const seed = side?.seedValue;
