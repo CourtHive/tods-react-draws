@@ -21,7 +21,7 @@ export function DrawType({ drawType, onChange }) {
     .sort();
   const menuItems = drawTypes.map(t => (
     <MenuItem key={t} value={t}>
-      {t}
+      {t.split('_').join(' ')}
     </MenuItem>
   ));
 

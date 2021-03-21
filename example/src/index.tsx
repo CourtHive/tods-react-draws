@@ -1,7 +1,7 @@
 import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DrawType } from './components/drawType';
+import { DrawType } from './components/SelectDrawType';
 import { Completion } from './components/toggleComplete';
 
 import {
@@ -13,6 +13,7 @@ import { EliminationStructure, RoundRobinStructure } from '../../dist';
 
 import { Box, Grid } from '@material-ui/core';
 import { useStyles } from './styles';
+import { SelectStructure } from './components/selectStructure';
 
 const { SINGLE_ELIMINATION, ROUND_ROBIN, FEED_IN } = drawDefinitionConstants;
 
@@ -29,7 +30,13 @@ const App = () => {
   const { drawType, structureIndex } = drawDetails;
 
   const drawTypeChange = drawType =>
-    drawType && setDrawDetails({ structureIndex, drawType });
+    drawType && setDrawDetails({ structureIndex: 0, drawType });
+  const structureChange = newName => {
+    if (newName) {
+      const newIndex = structureNames.indexOf(newName);
+      setDrawDetails({ structureIndex: newIndex, drawType });
+    }
+  };
   const completionChange = (_, v) => v !== undefined && setCompletionState(v);
 
   const drawSize = drawType === FEED_IN ? 31 : 32;
@@ -60,6 +67,8 @@ const App = () => {
   };
 
   const structures = eventData.drawsData[0].structures;
+  const structureNames = structures.map(({ structureName }) => structureName);
+  const structureName = structureNames[structureIndex];
   const structureId =
     structureIndex &&
     structures.length > structureIndex &&
@@ -83,15 +92,20 @@ const App = () => {
           className={classes.headerRoot}
         >
           <Grid item>
-            {' '}
-            <DrawType drawType={drawType} onChange={drawTypeChange} />{' '}
+            <DrawType drawType={drawType} onChange={drawTypeChange} />
           </Grid>
           <Grid item>
-            {' '}
+            <SelectStructure
+              structureName={structureName}
+              structureNames={structureNames}
+              onChange={structureChange}
+            />
+          </Grid>
+          <Grid item>
             <Completion
               completion={completionState}
               onChange={completionChange}
-            />{' '}
+            />
           </Grid>
         </Grid>
       </Box>
