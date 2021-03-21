@@ -1,11 +1,28 @@
 export function generateRoundsDefinition({ roundMatchUps }) {
-  let previousRoundMatchUpsCount;
   let feedTop = true;
 
-  const roundNumbers = Object.keys(roundMatchUps);
-  const firstRoundMatchUpsCount = roundMatchUps[roundNumbers[0]].length;
-  const roundsColumns = roundNumbers.map(key => {
-    const roundNumber = parseInt(key);
+  const roundProfile = Object.assign(
+    {},
+    ...Object.keys(roundMatchUps).map(roundNumber => {
+      return {
+        [roundNumber]: { matchUpsCount: roundMatchUps[roundNumber]?.length },
+      };
+    })
+  );
+
+  const roundNumbers = Object.keys(roundMatchUps).map(key => parseInt(key));
+  roundNumbers.forEach(roundNumber => {
+    if (
+      roundProfile[roundNumber + 1] &&
+      roundProfile[roundNumber + 1].matchUpsCount ===
+        roundProfile[roundNumber].matchUpsCount
+    ) {
+      roundProfile[roundNumber + 1].feedRound = true;
+    }
+  });
+
+  const firstRoundMatchUpsCount = roundProfile[roundNumbers[0]].matchUpsCount;
+  const roundsColumns = roundNumbers.map(roundNumber => {
     const matchUps = roundMatchUps[roundNumber];
     const matchUpsCount = matchUps.length;
     const columnMultiplier =
@@ -21,18 +38,28 @@ export function generateRoundsDefinition({ roundMatchUps }) {
       matchUps,
     };
 
-    if (matchUpsCount === previousRoundMatchUpsCount) {
+    if (roundProfile[roundNumber].feedRound) {
       if (feedTop) {
         definition.feedTop = true;
         feedTop = false;
       } else {
         definition.feedBottom = true;
+        matchUps.forEach(matchUp =>
+          Object.assign(matchUp, { feedBottom: true })
+        );
         feedTop = true;
       }
     }
 
-    const getTargetRoundPosition = (roundPosition, sideNumber) =>
-      (roundPosition - 1) * 2 + sideNumber;
+    const getSourceRoundPosition = ({
+      roundNumber,
+      roundPosition,
+      sideNumber,
+    }) => {
+      return roundProfile[roundNumber].feedRound
+        ? roundPosition
+        : (roundPosition - 1) * 2 + sideNumber;
+    };
 
     const previousRoundMatchUps =
       roundNumber > 1 && roundMatchUps[roundNumber - 1];
@@ -42,33 +69,28 @@ export function generateRoundsDefinition({ roundMatchUps }) {
         const sideNumber = sideIndex + 1;
 
         if (previousRoundMatchUps) {
-          if (definition.feedTop) {
-            if (sideNumber === 2) {
-              side.sourceMatchUp = previousRoundMatchUps.find(
-                matchUp => matchUp.roundPosition === roundPosition
-              );
-            }
-          } else if (definition.feedBottom) {
-            if (sideNumber === 1) {
+          if (matchUp.feedRound) {
+            // for feed rounds { sideNumber: 1 } is always the fed position
+            if (sideNumber !== 1) {
               side.sourceMatchUp = previousRoundMatchUps.find(
                 matchUp => matchUp.roundPosition === roundPosition
               );
             }
           } else {
-            const targetRoundPosition = getTargetRoundPosition(
+            const sourceRoundPosiiton = getSourceRoundPosition({
+              roundNumber,
               roundPosition,
-              sideNumber
+              sideNumber,
+            });
+            const sourceMatchUp = previousRoundMatchUps.find(
+              matchUp => matchUp.roundPosition === sourceRoundPosiiton
             );
-            side.sourceMatchUp = previousRoundMatchUps.find(
-              matchUp => matchUp.roundPosition === targetRoundPosition
-            );
+            side.sourceMatchUp = sourceMatchUp;
           }
         }
       });
       return matchUp;
     });
-
-    previousRoundMatchUpsCount = matchUpsCount;
 
     return definition;
   });
@@ -81,8 +103,9 @@ export function generateRoundsDefinition({ roundMatchUps }) {
     matchUps: firstRoundMatchUps,
     matchUpsCount: firstRoundMatchUps.length,
   };
-  const dividerColumn = { columnType: 'divider' };
-  const roundsDefinition = [detailsColumn, dividerColumn, ...roundsColumns];
+  // const dividerColumn = { columnType: 'divider' };
+  // const roundsDefinition = [detailsColumn, dividerColumn, ...roundsColumns];
+  const roundsDefinition = [detailsColumn, ...roundsColumns];
   const finalRound = roundsColumns[roundsColumns.length - 1];
   if (finalRound.matchUps.length === 1) {
     const final = {

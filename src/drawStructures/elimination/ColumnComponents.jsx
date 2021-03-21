@@ -22,11 +22,13 @@ export const ColumnComponents = ({
   };
 
   const Score = ({ round, scoreDetails, displayOnly, onClick }) => {
-    const { scoreString, sourceMatchUp } = scoreDetails || {};
+    const { scoreString, sourceMatchUp, sideIndex, feedBottom } =
+      scoreDetails || {};
     const displayText = round?.columnType === 'classic';
     const scoreProps = {
       onClick: e => {
-        !displayOnly && onClick({ matchUp: sourceMatchUp, e });
+        !displayOnly &&
+          onClick({ matchUp: sourceMatchUp, e, feedBottom, sideIndex });
       },
       className: classes.score,
     };

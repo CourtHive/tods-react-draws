@@ -30,14 +30,14 @@ export function EliminationStructure(props) {
   const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
-  const handleScoreClick = ({ matchUp, e }) => {
+  const handleScoreClick = ({ e, feedBottom, matchUp, sideIndex }) => {
     if (typeof onScoreClick === 'function') {
-      onScoreClick({ matchUp, e });
+      onScoreClick({ e, feedBottom, matchUp, sideIndex });
     }
   };
-  const handleParticipantClick = ({ matchUp, sideNumber, e }) => {
+  const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
     if (typeof onParticipantClick === 'function') {
-      onParticipantClick({ matchUp, sideNumber, e });
+      onParticipantClick({ e, feedBottom, matchUp, sideIndex });
     }
   };
 
@@ -55,10 +55,7 @@ export function EliminationStructure(props) {
     const columnClass = classNames[round.columnType];
     const className = classes[columnClass];
 
-    // TODO: column width needs to be calculated based on # of detail columns
-    const detailsCount = round?.details?.length || 1;
-    const maxWidth =
-      round?.columnType === 'details' ? detailsCount * 30 : undefined;
+    const width = round?.columnType === 'details' ? 'auto' : undefined;
 
     return (
       <Grid
@@ -66,7 +63,7 @@ export function EliminationStructure(props) {
         direction="column"
         key={columnIndex}
         className={className}
-        style={{ maxWidth }}
+        style={{ width }}
       >
         {!divider && (
           <ColumnComponents

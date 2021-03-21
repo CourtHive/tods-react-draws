@@ -44,7 +44,9 @@ export function generateStandardElimination({ height, roundsDefinition }) {
 
     const stackedMatchUpValues = isFinal
       ? getFinalMatchUpValues({ matchUp: round.finalMatchUp })
-      : matchUps.map(matchUp => getStackedMatchUpValues({ matchUp })).flat();
+      : matchUps
+          .map(matchUp => getStackedMatchUpValues({ matchUp, feedBottom }))
+          .flat();
 
     const frames = isFinal
       ? stackedMatchUpValues
@@ -77,7 +79,7 @@ function multiChunk(arr, [size, ...otherSizes]) {
 
 function getFinalMatchUpValues({ matchUp }) {
   const { sides, winningSide } = matchUp || {};
-  const scoreString = winningScoreString(matchUp);
+  const scoreString = matchUp?.score?.scoreStringSide1;
   const side =
     winningSide && sides.find(({ sideNumber }) => sideNumber === winningSide);
 
@@ -98,31 +100,31 @@ function getFinalMatchUpValues({ matchUp }) {
   ];
 }
 
-function getStackedMatchUpValues({ matchUp }) {
+function getStackedMatchUpValues({ matchUp, feedBottom }) {
   const { sides, schedule } = matchUp || {};
-  const sideDetails = sides.map(side => {
-    const scoreString = winningScoreString(side?.sourceMatchUp);
+  const sideDetails = [0, 1].map(index => {
+    const indexSide = matchUp?.sides[index];
+    const contextIndex =
+      indexSide?.displaySideNumber !== indexSide?.sideNumber
+        ? indexSide?.displaySideNumber - 1
+        : index;
+    const sideIndex = feedBottom ? 1 - contextIndex : contextIndex;
+
+    const side = sides[sideIndex];
+    const scoreString = side?.sourceMatchUp?.score?.scoreStringSide1;
     return [
       {
         side,
         matchUp,
+        sideIndex,
         readyToScore: side?.sourceMatchUp?.readyToScore,
       },
       {
+        sideIndex,
         scoreString,
         sourceMatchUp: side?.sourceMatchUp,
       },
     ];
   });
   return [sideDetails[0], schedule, sideDetails[1]].flat();
-}
-
-function winningScoreString(matchUp) {
-  if (matchUp?.winningSide) {
-    if (matchUp.winningSide === 2) {
-      return matchUp.score.scoreStringSide2 || '';
-    } else {
-      return matchUp.score.scoreStringSide1 || '';
-    }
-  }
 }
