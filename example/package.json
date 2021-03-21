@@ -10,8 +10,13 @@
   "dependencies": {
     "@babel/core": "7.12.17",
     "@babel/preset-env": "^7.11.5",
+    "@material-ui/core": "^4.0.0",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "react": "^16.8.0 || ^17.0.0",
     "react-app-polyfill": "^2.0.0",
-    "tods-competition-factory": "^0.5.16"
+    "react-dom": "^16.8.0 || ^17.0.0",
+    "tods-competition-factory": "^0.5.30"
   },
   "alias": {
     "react": "../node_modules/react",
@@ -20,8 +25,8 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.21",
+    "@types/react": "^16.8.6 || ^17.0.0",
     "@types/react-dom": "17.0.2",
-    "@types/react": "17.0.3",
     "parcel": "1.12.4",
     "typescript": "4.2.3"
   }
