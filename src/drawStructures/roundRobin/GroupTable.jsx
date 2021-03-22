@@ -12,10 +12,10 @@ import Paper from '@material-ui/core/Paper';
 
 import { useStyles } from './roundRobinStyles';
 
-const HeaderCell = ({ component, row }) => {
+const HeaderCell = ({ component, row, colspan = 1 }) => {
   const classes = useStyles();
   const cellClassName = component.getHeader?.()?.cellClassName;
-  const headerClassName = component.getHeader?.()?.headerClassName;
+  const contentClassName = component.getHeader?.()?.contentClassName;
 
   const handleOnClick = e => {
     component.headerClick?.(e, row);
@@ -23,12 +23,13 @@ const HeaderCell = ({ component, row }) => {
 
   return (
     <TableCell
-      className={cellClassName}
+      colSpan={colspan}
       key={component.key}
       onClick={handleOnClick}
+      className={cellClassName}
       classes={{ root: classes.root, head: classes.head }}
     >
-      <Grid container className={headerClassName}>
+      <Grid container className={contentClassName}>
         <Grid item>{component.getHeader?.(row)?.children || ''}</Grid>
       </Grid>
     </TableCell>
@@ -38,7 +39,7 @@ const HeaderCell = ({ component, row }) => {
 const RowCell = ({ component, row }) => {
   const classes = useStyles();
   const cellClassName = component.getValue?.()?.cellClassName;
-  const headerClassName = component.getValue?.()?.headerClassName;
+  const contentClassName = component.getValue?.()?.contentClassName;
 
   const handleOnClick = e => {
     component.onClick?.(e, row);
@@ -51,7 +52,7 @@ const RowCell = ({ component, row }) => {
       onClick={handleOnClick}
       classes={{ root: classes.root, head: classes.head }}
     >
-      <Grid container className={headerClassName}>
+      <Grid container className={contentClassName}>
         <Grid item>{component.getValue?.(row)?.children || ''}</Grid>
       </Grid>
     </TableCell>
@@ -68,14 +69,19 @@ export function GroupTable(props) {
       <Table className={classes.table} aria-label="groupTable">
         <TableHead>
           <TableRow>
-            {columnComponents.map((component, index) => (
-              <HeaderCell
-                key={`${component.key}${index}`}
-                index={index}
-                row={rowData.slice(0, 1)}
-                component={component}
-              />
-            ))}
+            {columnComponents.map((component, index) => {
+              return (
+                index !== 1 && (
+                  <HeaderCell
+                    colspan={index ? 1 : 2}
+                    key={`${component.key}${index}`}
+                    index={index}
+                    row={rowData.slice(0, 1)}
+                    component={component}
+                  />
+                )
+              );
+            })}
           </TableRow>
         </TableHead>
         <TableBody>

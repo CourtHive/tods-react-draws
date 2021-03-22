@@ -15,8 +15,6 @@ export function RoundRobinGroup(props) {
     onParticipantClick,
   } = props;
 
-  console.log({ rowData });
-
   const { columnComponents } = getColumnComponents({
     rowData,
     dictionary,

@@ -9,23 +9,25 @@ import {
   tournamentEngine,
   drawDefinitionConstants,
 } from 'tods-competition-factory';
-import { EliminationStructure, RoundRobinStructure } from '../../dist';
+import { DrawStructure } from '../../dist';
 
 import { Box, Grid } from '@material-ui/core';
-import { useStyles } from './styles';
 import { SelectStructure } from './components/selectStructure';
+import { useStyles } from './styles';
 
 const {
-  SINGLE_ELIMINATION,
   FEED_IN,
   DOUBLE_ELIMINATION,
+  ROUND_ROBIN,
+  // SINGLE_ELIMINATION,
 } = drawDefinitionConstants;
 
 const App = () => {
   const classes = useStyles();
 
   const initialDrawDetails = {
-    drawType: SINGLE_ELIMINATION,
+    drawType: ROUND_ROBIN,
+    // drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
@@ -73,16 +75,12 @@ const App = () => {
   };
 
   const structures = eventData.drawsData[0].structures;
-  const structure = structures[structureIndex];
   const structureNames = structures.map(({ structureName }) => structureName);
   const structureName = structureNames[structureIndex];
   const structureId =
     structureIndex &&
     structures.length > structureIndex &&
     structures[structureIndex].structureId;
-
-  // ROUND_ROBIN structures have { structureType: CONTAINER }
-  const isRoundRobin = structure?.structureType === 'CONTAINER';
 
   const args = {
     eventData,
@@ -118,11 +116,7 @@ const App = () => {
           </Grid>
         </Grid>
       </Box>
-      {isRoundRobin ? (
-        <RoundRobinStructure {...args} />
-      ) : (
-        <EliminationStructure {...args} />
-      )}
+      <DrawStructure {...args} />
     </div>
   );
 };
