@@ -36,7 +36,7 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
       const matchUps = groupMatchUps
         .filter(({ drawPositions }) => drawPositions.includes(drawPosition))
         .sort(matchUpColumnSort);
-      matchUps.splice(rowIndex, 0, {});
+      matchUps.splice(rowIndex, 0, { reflexive: true });
       return {
         drawPosition,
         matchUps,

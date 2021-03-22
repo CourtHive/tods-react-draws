@@ -47,9 +47,9 @@ const RowCell = ({ component, row }) => {
 
   return (
     <TableCell
-      className={cellClassName}
       key={component.key}
       onClick={handleOnClick}
+      className={cellClassName}
       classes={{ root: classes.root, head: classes.head }}
     >
       <Grid container className={contentClassName}>
@@ -62,10 +62,9 @@ const RowCell = ({ component, row }) => {
 export function GroupTable(props) {
   const classes = useStyles();
   const { columnComponents, rowData } = props;
-  const bodyRows = rowData.slice(1);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="groupTable">
         <TableHead>
           <TableRow>

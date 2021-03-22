@@ -37,20 +37,41 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 100,
     textTransform: 'uppercase',
     fontSize: 12,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
     letterSpacing: 0.35,
   },
   cellContent: {
     border: `solid 1px #dadce0`,
     fontSize: 12,
-    lineHeight: 1.6,
+    lineHeight: 1.5,
     letterSpacing: 0.35,
+  },
+  byeContent: {
+    border: `solid 1px #dadce0`,
+    background: 'rgb(252, 244, 237)',
+  },
+  reflexiveContent: {
+    border: `solid 1px #dadce0`,
+    // background: '#eaecf1',
+    background: 'lightblue',
   },
   contentContainer: {
     minWidth: 'max-content',
   },
   centerContent: {
     justifyContent: 'center',
+  },
+  valueHeader: {
+    border: `solid 1px #dadce0`,
+    borderBottom: `2px solid #06143f`,
+    textTransform: 'uppercase',
+    width: 30,
+    fontSize: 12,
+    lineHeight: 1.5,
+  },
+  centerValue: {
+    justifyContent: 'center',
+    width: 30,
   },
   participantHeader: {
     borderBottom: `2px solid #06143f`,
@@ -59,5 +80,8 @@ export const useStyles = makeStyles(theme => ({
   },
   participantContent: {
     width: 200,
+  },
+  tableContainer: {
+    margin: '20px 0 30px 0',
   },
 }));

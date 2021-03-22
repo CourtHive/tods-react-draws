@@ -41,8 +41,9 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
   ];
 
   const columnMatchUps = rowData[0]?.positionColumns?.map((position, i) => {
+    const byeColumn = position?.bye;
     const participantDisplay =
-      position?.participant?.participantName || (position?.bye && 'BYE') || '';
+      position?.participant?.participantName || (byeColumn && 'BYE') || '';
     return {
       key: `drawPosition${i.toString()}`,
       getHeader: row => {
@@ -61,18 +62,18 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       },
       getValue: row => {
         const matchUp = row?.matchUps && row?.matchUps[i];
+        const reflexive = row?.rowIndex === position.rowIndex;
         const score = matchUp?.score?.scoreStringSide1;
+        const cellClassName = reflexive
+          ? classes.reflexiveContent
+          : byeColumn
+          ? classes.byeContent
+          : classes.cellContent;
+
         return {
-          children: (
-            <Grid
-              container
-              justify="space-between"
-              className={classes.contentContainer}
-            >
-              <Grid item>{score}</Grid>
-            </Grid>
-          ),
-          cellClassName: classes.cellContent,
+          matchUp,
+          children: score || '',
+          cellClassName,
           contentClassName: classes.centerContent,
         };
       },
@@ -84,8 +85,8 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       getHeader: row => {
         return {
           children: dictionary?.winLoss || 'W/L',
-          cellClassName: classes.positions,
-          contentClassName: classes.centerContent,
+          cellClassName: classes.valueHeader,
+          contentClassName: classes.centerValue,
         };
       },
       getValue: row => {
@@ -96,7 +97,7 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
             </Grid>
           ),
           cellClassName: classes.cellContent,
-          contentClassName: classes.centerContent,
+          contentClassName: classes.centerValue,
         };
       },
     },
@@ -104,24 +105,16 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       key: 'finishingPosition',
       getHeader: row => {
         return {
-          children: (
-            <Grid container justify="space-between">
-              <Grid item>{dictionary?.finishingPosition || 'Pos'}</Grid>
-            </Grid>
-          ),
-          cellClassName: classes.positions,
-          contentClassName: classes.centerContent,
+          children: dictionary?.finishingPosition || 'Pos',
+          cellClassName: classes.valueHeader,
+          contentClassName: classes.centerValue,
         };
       },
       getValue: row => {
         return {
-          children: (
-            <Grid container justify="space-between">
-              <Grid item>{row?.participantResult?.groupOrder}</Grid>
-            </Grid>
-          ),
+          children: row?.participantResult?.groupOrder || '',
           cellClassName: classes.cellContent,
-          contentClassName: classes.centerContent,
+          contentClassName: classes.centerValue,
         };
       },
     },
