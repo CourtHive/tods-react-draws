@@ -1,25 +1,26 @@
 import React from 'react';
 
+import { useStyles } from './roundRobinStyles';
 import { Grid } from '@material-ui/core';
 
 export function getColumnComponents({ contextData, dictionary, rowData }) {
+  const classes = useStyles();
   const rowDetails = [
     {
       key: 'drawPosition',
       getHeader: () => ({
         children: <>{(rowData && rowData[0].structureName) || ''}</>,
-        className: '',
+        cellClassName: classes.groupName,
+        contentClassName: '',
       }),
-      getValue: row => {
-        return {
-          children: <>{row?.drawPosition}</>,
-          className: '',
-        };
-      },
+      getValue: row => ({
+        children: <>{row?.drawPosition}</>,
+        cellClassName: classes.drawPositions,
+      }),
     },
     {
       key: 'participant',
-      getHeader: () => ({ node: '', className: '' }),
+      getHeader: () => ({ node: '', cellClassName: classes.participantHeader }),
       getValue: row => {
         const participantDisplay =
           row?.participant?.participantName || (row?.bye && 'BYE') || '';
@@ -29,7 +30,7 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
               <Grid item>{participantDisplay}</Grid>
             </Grid>
           ),
-          className: '',
+          contentClassName: classes.participantContent,
         };
       },
       onClick: (e, row) => {
@@ -46,12 +47,9 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       key: `drawPosition${i.toString()}`,
       getHeader: row => {
         return {
-          children: (
-            <Grid container justify="space-between">
-              <Grid item>{participantDisplay}</Grid>
-            </Grid>
-          ),
-          className: '',
+          children: participantDisplay,
+          cellClassName: classes.positions,
+          contentClassName: classes.centerContent,
         };
       },
       headerClick: e => {
@@ -66,11 +64,16 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
         const score = matchUp?.score?.scoreStringSide1;
         return {
           children: (
-            <Grid container justify="space-between">
+            <Grid
+              container
+              justify="space-between"
+              className={classes.contentContainer}
+            >
               <Grid item>{score}</Grid>
             </Grid>
           ),
-          className: '',
+          cellClassName: classes.cellContent,
+          contentClassName: classes.centerContent,
         };
       },
     };
@@ -80,12 +83,9 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       key: 'winLoss',
       getHeader: row => {
         return {
-          children: (
-            <Grid container justify="space-between">
-              <Grid item>{dictionary?.winLoss || 'W/L'}</Grid>
-            </Grid>
-          ),
-          className: '',
+          children: dictionary?.winLoss || 'W/L',
+          cellClassName: classes.positions,
+          contentClassName: classes.centerContent,
         };
       },
       getValue: row => {
@@ -95,7 +95,8 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
               <Grid item>{row?.participantResult?.result}</Grid>
             </Grid>
           ),
-          className: '',
+          cellClassName: classes.cellContent,
+          contentClassName: classes.centerContent,
         };
       },
     },
@@ -108,7 +109,8 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
               <Grid item>{dictionary?.finishingPosition || 'Pos'}</Grid>
             </Grid>
           ),
-          className: '',
+          cellClassName: classes.positions,
+          contentClassName: classes.centerContent,
         };
       },
       getValue: row => {
@@ -118,7 +120,8 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
               <Grid item>{row?.participantResult?.groupOrder}</Grid>
             </Grid>
           ),
-          className: '',
+          cellClassName: classes.cellContent,
+          contentClassName: classes.centerContent,
         };
       },
     },
