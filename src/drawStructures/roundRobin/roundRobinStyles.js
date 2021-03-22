@@ -19,7 +19,7 @@ export const useStyles = makeStyles(theme => ({
     padding: '0 16px 0 16px',
   },
   groupName: {
-    borderBottom: `2px solid #06143f`,
+    borderBottom: `2px solid #040E2C`,
     fontWeight: 'bold',
     maxWidth: 30,
     fontSize: 12,
@@ -32,8 +32,8 @@ export const useStyles = makeStyles(theme => ({
     maxWidth: 30,
   },
   positions: {
-    border: `solid 1px #dadce0`,
-    borderBottom: `2px solid #06143f`,
+    border: `solid 1px #e1e3e6`,
+    borderBottom: `2px solid #040E2C`,
     minWidth: 100,
     textTransform: 'uppercase',
     fontSize: 12,
@@ -41,19 +41,18 @@ export const useStyles = makeStyles(theme => ({
     letterSpacing: 0.35,
   },
   cellContent: {
-    border: `solid 1px #dadce0`,
+    border: `solid 1px #e1e3e6`,
     fontSize: 12,
     lineHeight: 1.5,
     letterSpacing: 0.35,
   },
   byeContent: {
-    border: `solid 1px #dadce0`,
-    background: 'rgb(252, 244, 237)',
+    border: `solid 1px #e1e3e6`,
+    background: '#FFFAD3 ',
   },
   reflexiveContent: {
-    border: `solid 1px #dadce0`,
-    // background: '#eaecf1',
-    background: 'lightblue',
+    border: `solid 1px #e1e3e6`,
+    background: '#FAFAFA',
   },
   contentContainer: {
     minWidth: 'max-content',
@@ -62,8 +61,8 @@ export const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   valueHeader: {
-    border: `solid 1px #dadce0`,
-    borderBottom: `2px solid #06143f`,
+    border: `solid 1px #e1e3e6`,
+    borderBottom: `2px solid #040E2C`,
     textTransform: 'uppercase',
     width: 30,
     fontSize: 12,
@@ -74,7 +73,7 @@ export const useStyles = makeStyles(theme => ({
     width: 30,
   },
   participantHeader: {
-    borderBottom: `2px solid #06143f`,
+    borderBottom: `2px solid #040E2C`,
     width: 200,
     fontWeight: 'bold',
   },
