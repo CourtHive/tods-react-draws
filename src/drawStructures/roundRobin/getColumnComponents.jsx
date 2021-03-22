@@ -62,18 +62,13 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       },
       getValue: row => {
         const matchUp = row?.matchUps && row?.matchUps[i];
-        const reflexive = row?.rowIndex === position.rowIndex;
         const score = matchUp?.score?.scoreStringSide1;
-        const cellClassName = reflexive
-          ? classes.reflexiveContent
-          : byeColumn
-          ? classes.byeContent
-          : classes.cellContent;
 
         return {
           matchUp,
+          byeColumn,
           children: score || '',
-          cellClassName,
+          positionIndex: position.rowIndex,
           contentClassName: classes.centerContent,
         };
       },
