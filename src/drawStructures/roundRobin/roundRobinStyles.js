@@ -48,7 +48,7 @@ export const useStyles = makeStyles(theme => ({
   },
   byeContent: {
     border: `solid 1px #e1e3e6`,
-    background: '#FFFAD3 ',
+    background: '#FFFCE9 ',
   },
   reflexiveContent: {
     border: `solid 1px #e1e3e6`,
