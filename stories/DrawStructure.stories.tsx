@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { EliminationStructure } from '../src';
+import { DrawStructure } from '../src';
 
 import { mocksEngine, tournamentEngine } from 'tods-competition-factory';
 
@@ -20,7 +20,7 @@ const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
 const meta: Meta = {
   title: 'Draw',
-  component: EliminationStructure,
+  component: DrawStructure,
   argTypes: {
     children: {
       control: {
@@ -35,7 +35,7 @@ const meta: Meta = {
 
 export default meta;
 
-const Template: Story = args => <EliminationStructure {...args} />;
+const Template: Story = args => <DrawStructure {...args} />;
 
 export const Default = Template.bind({});
 
