@@ -20,10 +20,11 @@ export function getColumnComponents({
         contentClassName: '',
       }),
       headerClick: (e, row) => {
-        if (typeof eventHandlers?.onStructureClick === 'function') {
+        if (typeof eventHandlers?.onHeaderClick === 'function') {
           const { groupStructureId, structureName } = row;
-          eventHandlers.onStructureClick({
+          eventHandlers.onHeaderClick({
             e,
+            columnName: 'structureName',
             structureId: groupStructureId,
             structureName,
           });
@@ -33,6 +34,18 @@ export function getColumnComponents({
         children: <>{row?.drawPosition}</>,
         cellClassName: classes.drawPositions,
       }),
+      onClick: (e, row) => {
+        if (typeof eventHandlers?.onStatsClick === 'function') {
+          const { drawPosition, participant, participantResult } = row || {};
+          eventHandlers.onStatsClick({
+            e,
+            drawPosition,
+            participant,
+            participantResult,
+            columnName: 'drawPosition',
+          });
+        }
+      },
     },
     {
       key: 'participant',
@@ -92,9 +105,13 @@ export function getColumnComponents({
       getValue: row => {
         const matchUp = row?.matchUps && row?.matchUps[i];
         const sideNumber = getSideNumber(matchUp, row);
-        const { contextScoreString } = getContextScoreString({
+        const {
+          contextScoreString,
+          highlightLosingSide,
+        } = getContextScoreString({
           matchUp,
           sideNumber,
+          dictionary,
         });
         const reflexive = row?.rowIndex === position.rowIndex;
         const byeContent = byeColumn || row.bye;
@@ -103,6 +120,8 @@ export function getColumnComponents({
           ? classes.reflexiveContent
           : byeContent
           ? classes.byeContent
+          : highlightLosingSide
+          ? classes.loserContent
           : classes.cellContent;
 
         return {
@@ -126,6 +145,15 @@ export function getColumnComponents({
           contentClassName: classes.centerValue,
         };
       },
+      headerClick: e => {
+        console.log('winLossColumnClick');
+        if (typeof eventHandlers?.onHeaderClick === 'function') {
+          eventHandlers.onHeaderClick({
+            e,
+            columnName: 'winLoss',
+          });
+        }
+      },
       getValue: row => {
         return {
           children: (
@@ -137,6 +165,18 @@ export function getColumnComponents({
           contentClassName: classes.centerValue,
         };
       },
+      onClick: (e, row) => {
+        if (typeof eventHandlers?.onStatsClick === 'function') {
+          const { drawPosition, participant, participantResult } = row || {};
+          eventHandlers.onStatsClick({
+            e,
+            drawPosition,
+            participant,
+            participantResult,
+            columnName: 'winLoss',
+          });
+        }
+      },
     },
     {
       key: 'finishingPosition',
@@ -147,12 +187,33 @@ export function getColumnComponents({
           contentClassName: classes.centerValue,
         };
       },
+      headerClick: e => {
+        console.log('finishingPositionColumnClick');
+        if (typeof eventHandlers?.onHeaderClick === 'function') {
+          eventHandlers.onHeaderClick({
+            e,
+            columnName: 'finishingPosition',
+          });
+        }
+      },
       getValue: row => {
         return {
           children: row?.participantResult?.groupOrder || '',
           cellClassName: classes.cellContent,
           contentClassName: classes.centerValue,
         };
+      },
+      onClick: (e, row) => {
+        if (typeof eventHandlers?.onStatsClick === 'function') {
+          const { drawPosition, participant, participantResult } = row || {};
+          eventHandlers.onStatsClick({
+            e,
+            drawPosition,
+            participant,
+            participantResult,
+            columnName: 'finishingPosition',
+          });
+        }
       },
     },
   ];

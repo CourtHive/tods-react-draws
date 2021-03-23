@@ -71,8 +71,23 @@ const App = () => {
     onParticipantClick: ({ e, participant, matchUp, sideIndex }) => {
       console.log('Participant', { e, participant, matchUp, sideIndex });
     },
-    onStructureClick: ({ e, structureId, structureName }) => {
-      console.log({ e, structureId, structureName });
+    onHeaderClick: ({ e, structureId, structureName, columnName }) => {
+      console.log({ e, structureId, structureName, columnName });
+    },
+    onStatsClick: ({
+      e,
+      drawPosition,
+      participant,
+      participantResults,
+      columnName,
+    }) => {
+      console.log({
+        e,
+        drawPosition,
+        participant,
+        participantResults,
+        columnName,
+      });
     },
   };
 

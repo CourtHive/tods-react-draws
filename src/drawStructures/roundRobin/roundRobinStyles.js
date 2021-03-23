@@ -46,6 +46,13 @@ export const useStyles = makeStyles(theme => ({
     lineHeight: 1.5,
     letterSpacing: 0.35,
   },
+  loserContent: {
+    border: 'solid 1px #e1e3e6',
+    fontSize: 12,
+    color: 'red',
+    lineHeight: 1.5,
+    letterSpacing: 0.35,
+  },
   byeContent: {
     border: 'solid 1px #e1e3e6',
     background: '#FFFCE9 ',
