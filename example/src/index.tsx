@@ -100,6 +100,7 @@ const App = () => {
     structures[structureIndex].structureId;
 
   const args = {
+    dictionary: {},
     eventData,
     structureId,
     eventHandlers,
