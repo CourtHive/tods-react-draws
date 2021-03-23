@@ -15,7 +15,7 @@ import { useStyles } from './roundRobinStyles';
 const HeaderCell = ({ component, row, colspan = 1 }) => {
   const classes = useStyles();
 
-  const cellValues = component.getHeader?.();
+  const cellValues = component.getHeader?.(row);
   const { cellClassName, contentClassName } = cellValues || {};
 
   const handleOnClick = e => {
@@ -39,17 +39,7 @@ const HeaderCell = ({ component, row, colspan = 1 }) => {
 
 const RowCell = ({ component, row }) => {
   const classes = useStyles();
-
-  const cellValues = component.getValue?.();
-  const { byeColumn, positionIndex, contentClassName } = cellValues || {};
-  const reflexive = row?.rowIndex === positionIndex;
-  const byeContent = byeColumn || (row.bye && positionIndex !== undefined);
-
-  const cellClassName = reflexive
-    ? classes.reflexiveContent
-    : byeContent
-    ? classes.byeContent
-    : classes.cellContent;
+  const { cellClassName, contentClassName } = component.getValue?.(row) || {};
 
   const handleOnClick = e => {
     component.onClick?.(e, row);

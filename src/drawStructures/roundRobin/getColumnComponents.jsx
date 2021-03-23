@@ -2,8 +2,15 @@ import React from 'react';
 
 import { useStyles } from './roundRobinStyles';
 import { Grid } from '@material-ui/core';
+import { getContextScoreString } from './getContextScoreString';
 
-export function getColumnComponents({ contextData, dictionary, rowData }) {
+export function getColumnComponents({
+  contextData,
+  dictionary,
+  rowData,
+  onScoreClick,
+  onParticipantClick,
+}) {
   const classes = useStyles();
   const rowDetails = [
     {
@@ -44,6 +51,11 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
     const byeColumn = position?.bye;
     const participantDisplay =
       position?.participant?.participantName || (byeColumn && 'BYE') || '';
+    const getSideNumber = (matchUp, row) =>
+      matchUp?.sides?.find(
+        side => side.drawPosition && side.drawPosition === row?.drawPosition
+      )?.sideNumber;
+
     return {
       key: `drawPosition${i.toString()}`,
       getHeader: row => {
@@ -58,16 +70,29 @@ export function getColumnComponents({ contextData, dictionary, rowData }) {
       },
       onClick: (e, row) => {
         const matchUp = row?.matchUps && row?.matchUps[i];
-        console.log({ matchUp }, matchUp?.drawPositions);
+        const sideNumber = getSideNumber(matchUp, row);
+        if (typeof onScoreClick === 'function') {
+          onScoreClick({ e, matchUp, sideNumber });
+        }
       },
       getValue: row => {
         const matchUp = row?.matchUps && row?.matchUps[i];
-        const score = matchUp?.score?.scoreStringSide1;
+        const sideNumber = getSideNumber(matchUp, row);
+        const { score } = getContextScoreString({ matchUp, sideNumber });
+        const reflexive = row?.rowIndex === position.rowIndex;
+        const byeContent = byeColumn || row.bye;
+
+        const cellClassName = reflexive
+          ? classes.reflexiveContent
+          : byeContent
+          ? classes.byeContent
+          : classes.cellContent;
 
         return {
           matchUp,
           byeColumn,
           children: score || '',
+          cellClassName,
           positionIndex: position.rowIndex,
           contentClassName: classes.centerContent,
         };
