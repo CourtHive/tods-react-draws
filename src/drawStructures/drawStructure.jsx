@@ -4,7 +4,7 @@ import { EliminationStructure } from './elimination/EliminationStructure';
 import { RoundRobinStructure } from './roundRobin/RoundRobinStructure';
 
 export function DrawStructure(props) {
-  const { dictionary, eventData, onScoreClick, onParticipantClick } = props;
+  const { dictionary, eventData, eventHandlers } = props;
   const drawsData = eventData?.drawsData;
   let { drawId, structureId } = props;
 
@@ -26,8 +26,7 @@ export function DrawStructure(props) {
     eventData,
     structureId,
     dictionary,
-    onScoreClick,
-    onParticipantClick,
+    eventHandlers,
   };
 
   return (

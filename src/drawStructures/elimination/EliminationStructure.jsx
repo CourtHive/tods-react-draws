@@ -9,7 +9,7 @@ import { Grid } from '@material-ui/core';
 export function EliminationStructure(props) {
   const classes = useStyles();
 
-  const { eventData, onScoreClick, onParticipantClick } = props;
+  const { eventData, eventHandlers } = props;
 
   const { drawsData } = eventData;
   let { drawId, structureId } = props;
@@ -27,13 +27,13 @@ export function EliminationStructure(props) {
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
   const handleScoreClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof onScoreClick === 'function') {
-      onScoreClick({ e, feedBottom, matchUp, sideIndex });
+    if (typeof eventHandlers?.onScoreClick === 'function') {
+      eventHandlers.onScoreClick({ e, feedBottom, matchUp, sideIndex });
     }
   };
   const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof onParticipantClick === 'function') {
-      onParticipantClick({ e, feedBottom, matchUp, sideIndex });
+    if (typeof eventHandlers?.onParticipantClick === 'function') {
+      eventHandlers.onParticipantClick({ e, feedBottom, matchUp, sideIndex });
     }
   };
 

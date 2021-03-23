@@ -15,7 +15,9 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
   const groupStructureIds = Object.keys(groupedMatchUps);
   const rows = groupStructureIds.map(groupStructureId => {
     const groupMatchUps = groupedMatchUps[groupStructureId];
-    const structureName = groupMatchUps && groupMatchUps[0].structureName;
+    const structureName =
+      groupMatchUps &&
+      groupMatchUps.find(({ structureName }) => structureName)?.structureName;
     const sides = groupMatchUps.map(({ sides }) => sides).flat();
     const drawPositions = groupMatchUps
       .reduce((drawPositions, matchUp) => {
@@ -48,7 +50,8 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
       };
     });
     const positionColumns = positionRows.map(
-      ({ participant, bye, qualifier }, rowIndex) => ({
+      ({ drawPosition, participant, bye, qualifier }, rowIndex) => ({
+        drawPosition,
         participant,
         qualifier,
         bye,
@@ -56,6 +59,7 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
       })
     );
     const headerRow = {
+      groupStructureId,
       structureName,
       positionColumns,
     };

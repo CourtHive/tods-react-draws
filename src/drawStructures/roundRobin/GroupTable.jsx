@@ -69,13 +69,14 @@ export function GroupTable(props) {
         <TableHead>
           <TableRow>
             {columnComponents.map((component, index) => {
+              const row = rowData.slice(0, 1);
               return (
                 index !== 1 && (
                   <HeaderCell
                     colspan={index ? 1 : 2}
                     key={`${component.key}${index}`}
                     index={index}
-                    row={rowData.slice(0, 1)}
+                    row={row && row[0]}
                     component={component}
                   />
                 )

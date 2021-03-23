@@ -8,18 +8,27 @@ export function getColumnComponents({
   contextData,
   dictionary,
   rowData,
-  onScoreClick,
-  onParticipantClick,
+  eventHandlers,
 }) {
   const classes = useStyles();
   const rowDetails = [
     {
       key: 'drawPosition',
-      getHeader: () => ({
-        children: <>{(rowData && rowData[0].structureName) || ''}</>,
+      getHeader: row => ({
+        children: <>{row?.structureName || ''}</>,
         cellClassName: classes.groupName,
         contentClassName: '',
       }),
+      headerClick: (e, row) => {
+        if (typeof eventHandlers?.onStructureClick === 'function') {
+          const { groupStructureId, structureName } = row;
+          eventHandlers.onStructureClick({
+            e,
+            structureId: groupStructureId,
+            structureName,
+          });
+        }
+      },
       getValue: row => ({
         children: <>{row?.drawPosition}</>,
         cellClassName: classes.drawPositions,
@@ -41,8 +50,10 @@ export function getColumnComponents({
         };
       },
       onClick: (e, row) => {
-        const { drawPosition, participant, rowIndex } = row || {};
-        console.log({ drawPosition, participant, rowIndex, contextData });
+        const { drawPosition, participant } = row || {};
+        if (typeof eventHandlers?.onParticipantClick === 'function') {
+          eventHandlers.onParticipantClick({ e, participant, drawPosition });
+        }
       },
     },
   ];
@@ -58,7 +69,7 @@ export function getColumnComponents({
 
     return {
       key: `drawPosition${i.toString()}`,
-      getHeader: row => {
+      getHeader: () => {
         return {
           children: participantDisplay,
           cellClassName: classes.positions,
@@ -66,19 +77,25 @@ export function getColumnComponents({
         };
       },
       headerClick: e => {
-        console.log({ e, position, contextData });
+        if (typeof eventHandlers?.onParticipantClick === 'function') {
+          const { participant, drawPosition } = position;
+          eventHandlers.onParticipantClick({ e, drawPosition, participant });
+        }
       },
       onClick: (e, row) => {
         const matchUp = row?.matchUps && row?.matchUps[i];
         const sideNumber = getSideNumber(matchUp, row);
-        if (typeof onScoreClick === 'function') {
-          onScoreClick({ e, matchUp, sideNumber });
+        if (typeof eventHandlers?.onScoreClick === 'function') {
+          eventHandlers.onScoreClick({ e, matchUp, sideNumber });
         }
       },
       getValue: row => {
         const matchUp = row?.matchUps && row?.matchUps[i];
         const sideNumber = getSideNumber(matchUp, row);
-        const { score } = getContextScoreString({ matchUp, sideNumber });
+        const { contextScoreString } = getContextScoreString({
+          matchUp,
+          sideNumber,
+        });
         const reflexive = row?.rowIndex === position.rowIndex;
         const byeContent = byeColumn || row.bye;
 
@@ -91,7 +108,7 @@ export function getColumnComponents({
         return {
           matchUp,
           byeColumn,
-          children: score || '',
+          children: contextScoreString || '',
           cellClassName,
           positionIndex: position.rowIndex,
           contentClassName: classes.centerContent,
@@ -102,7 +119,7 @@ export function getColumnComponents({
   const participantResults = [
     {
       key: 'winLoss',
-      getHeader: row => {
+      getHeader: () => {
         return {
           children: dictionary?.winLoss || 'W/L',
           cellClassName: classes.valueHeader,
@@ -123,7 +140,7 @@ export function getColumnComponents({
     },
     {
       key: 'finishingPosition',
-      getHeader: row => {
+      getHeader: () => {
         return {
           children: dictionary?.finishingPosition || 'Pos',
           cellClassName: classes.valueHeader,

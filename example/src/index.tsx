@@ -63,15 +63,17 @@ const App = () => {
   });
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
-  const onScoreClick = ({ matchUp, e, sideIndex }) => {
-    console.log('Scoring matchUp', { matchUp, e, sideIndex });
-  };
-  const onParticipantClick = ({ matchUp, sideIndex, e }) => {
-    console.log('Participant matchUp', {
-      sideIndex,
-      matchUp,
-      e,
-    });
+
+  const eventHandlers = {
+    onScoreClick: ({ e, matchUp, sideIndex }) => {
+      console.log('Scoring', { e, matchUp, sideIndex });
+    },
+    onParticipantClick: ({ e, participant, matchUp, sideIndex }) => {
+      console.log('Participant', { e, participant, matchUp, sideIndex });
+    },
+    onStructureClick: ({ e, structureId, structureName }) => {
+      console.log({ e, structureId, structureName });
+    },
   };
 
   const structures = eventData.drawsData[0].structures;
@@ -85,8 +87,7 @@ const App = () => {
   const args = {
     eventData,
     structureId,
-    onScoreClick,
-    onParticipantClick,
+    eventHandlers,
   };
 
   return (

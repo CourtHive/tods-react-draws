@@ -7,20 +7,13 @@ import { getColumnComponents } from './getColumnComponents';
 export function RoundRobinGroup(props) {
   const classes = useStyles();
 
-  const {
-    contextData,
-    dictionary,
-    rowData,
-    onScoreClick,
-    onParticipantClick,
-  } = props;
+  const { contextData, dictionary, rowData, eventHandlers } = props;
 
   const { columnComponents } = getColumnComponents({
     rowData,
     dictionary,
     contextData,
-    onScoreClick,
-    onParticipantClick,
+    eventHandlers,
   });
 
   return (
