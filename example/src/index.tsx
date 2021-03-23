@@ -18,16 +18,16 @@ import { useStyles } from './styles';
 const {
   FEED_IN,
   DOUBLE_ELIMINATION,
-  ROUND_ROBIN,
-  // SINGLE_ELIMINATION,
+  // ROUND_ROBIN,
+  SINGLE_ELIMINATION,
 } = drawDefinitionConstants;
 
 const App = () => {
   const classes = useStyles();
 
   const initialDrawDetails = {
-    drawType: ROUND_ROBIN,
-    // drawType: SINGLE_ELIMINATION,
+    // drawType: ROUND_ROBIN,
+    drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
