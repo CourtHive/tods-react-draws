@@ -10,8 +10,9 @@ export function Completion({ completion, onChange }) {
       onChange={onChange}
       style={{ height: 36 }}
     >
-      <ToggleButton value={true}>Complete</ToggleButton>
-      <ToggleButton value={false}>Incomplete</ToggleButton>
+      <ToggleButton value={'complete'}>Complete</ToggleButton>
+      <ToggleButton value={'incomplete'}>Incomplete</ToggleButton>
+      <ToggleButton value={'manual'}>Manual</ToggleButton>
     </ToggleButtonGroup>
   );
 }
