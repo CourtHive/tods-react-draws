@@ -1,24 +1,20 @@
 import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { DrawType } from './components/SelectDrawType';
-import { Completion } from './components/toggleComplete';
 
 import {
   mocksEngine,
   tournamentEngine,
   drawDefinitionConstants,
 } from 'tods-competition-factory';
-import { DrawStructure } from '../../dist';
 
-import { Box, Grid } from '@material-ui/core';
-import { SelectStructure } from './components/selectStructure';
 import { useStyles } from './styles';
+
+import { ExampleDrawStructures } from './ExampleDrawStructures';
 
 const {
   FEED_IN,
   DOUBLE_ELIMINATION,
-  // ROUND_ROBIN,
   SINGLE_ELIMINATION,
 } = drawDefinitionConstants;
 
@@ -26,7 +22,6 @@ const App = () => {
   const classes = useStyles();
 
   const initialDrawDetails = {
-    // drawType: ROUND_ROBIN,
     drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
   };
@@ -37,12 +32,6 @@ const App = () => {
 
   const drawTypeChange = drawType =>
     drawType && setDrawDetails({ structureIndex: 0, drawType });
-  const structureChange = newName => {
-    if (newName) {
-      const newIndex = structureNames.indexOf(newName);
-      setDrawDetails({ structureIndex: newIndex, drawType });
-    }
-  };
   const completionChange = (_, v) => v !== undefined && setCompletionState(v);
 
   const drawSize =
@@ -65,96 +54,15 @@ const App = () => {
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
-  const eventHandlers = {
-    onScheduleClick: ({ e, roundNumber }) => {
-      console.log({ e, roundNumber });
-    },
-    onRoundNameClick: ({ e, roundNumber }) => {
-      console.log({ e, roundNumber });
-    },
-    onScoreClick: ({ e, matchUp, sideIndex }) => {
-      console.log('Scoring', { e, matchUp, sideIndex });
-    },
-    onParticipantClick: ({
-      e,
-      participant,
-      drawPosition,
-      matchUp,
-      sideIndex,
-    }) => {
-      console.log('Participant', {
-        e,
-        participant,
-        drawPosition,
-        matchUp,
-        sideIndex,
-      });
-    },
-    onHeaderClick: ({ e, structureId, structureName, columnName }) => {
-      console.log({ e, structureId, structureName, columnName });
-    },
-    onStatsClick: ({
-      e,
-      drawPosition,
-      participant,
-      participantResults,
-      columnName,
-    }) => {
-      console.log({
-        e,
-        drawPosition,
-        participant,
-        participantResults,
-        columnName,
-      });
-    },
-  };
-
-  const structures = eventData.drawsData[0].structures;
-  const structureNames = structures.map(({ structureName }) => structureName);
-  const structureName = structureNames[structureIndex];
-  const structureId =
-    structureIndex &&
-    structures.length > structureIndex &&
-    structures[structureIndex].structureId;
-
-  const args = {
-    dictionary: {},
+  const props = {
     eventData,
-    structureId,
-    eventHandlers,
+    drawDetails,
+    setDrawDetails,
+    completionState,
+    completionChange,
+    drawTypeChange,
   };
-
-  return (
-    <div>
-      <Box className={classes.tabPanel}>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          className={classes.headerRoot}
-        >
-          <Grid item>
-            <DrawType drawType={drawType} onChange={drawTypeChange} />
-          </Grid>
-          <Grid item>
-            <SelectStructure
-              structureName={structureName}
-              structureNames={structureNames}
-              onChange={structureChange}
-            />
-          </Grid>
-          <Grid item>
-            <Completion
-              completion={completionState}
-              onChange={completionChange}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-      <DrawStructure {...args} />
-    </div>
-  );
+  return <ExampleDrawStructures {...props} />;
 };
 
 ReactDOM.render(<App />, document.getElementById('root'));
