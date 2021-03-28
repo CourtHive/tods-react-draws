@@ -31,48 +31,12 @@ export const ExampleDrawStructures = ({
   };
 
   const eventHandlers = {
-    onScheduleClick: ({ e, roundNumber }) => {
-      console.log({ e, roundNumber });
-    },
-    onRoundNameClick: ({ e, roundNumber }) => {
-      console.log({ e, roundNumber });
-    },
-    onScoreClick: ({ e, matchUp, sideIndex }) => {
-      console.log('Scoring', { e, matchUp, sideIndex });
-    },
-    onParticipantClick: ({
-      e,
-      participant,
-      drawPosition,
-      matchUp,
-      sideIndex,
-    }) => {
-      console.log('Participant', {
-        e,
-        participant,
-        drawPosition,
-        matchUp,
-        sideIndex,
-      });
-    },
-    onHeaderClick: ({ e, structureId, structureName, columnName }) => {
-      console.log({ e, structureId, structureName, columnName });
-    },
-    onStatsClick: ({
-      e,
-      drawPosition,
-      participant,
-      participantResults,
-      columnName,
-    }) => {
-      console.log({
-        e,
-        drawPosition,
-        participant,
-        participantResults,
-        columnName,
-      });
-    },
+    onScheduleClick: props => console.log('Schedule', props),
+    onRoundNameClick: props => console.log('Round Name', props),
+    onScoreClick: props => console.log('Scoring', props),
+    onParticipantClick: props => console.log('Participant', props),
+    onHeaderClick: props => console.log('header', props),
+    onStatsClick: props => console.log('stats', props),
   };
 
   const structures = eventData.drawsData[0].structures;
