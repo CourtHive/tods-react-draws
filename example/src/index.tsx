@@ -8,8 +8,6 @@ import {
   drawDefinitionConstants,
 } from 'tods-competition-factory';
 
-import { useStyles } from './styles';
-
 import { ExampleDrawStructures } from './ExampleDrawStructures';
 
 const {
@@ -19,8 +17,6 @@ const {
 } = drawDefinitionConstants;
 
 const App = () => {
-  const classes = useStyles();
-
   const initialDrawDetails = {
     drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
