@@ -1,4 +1,4 @@
-export function generateRoundsDefinition({ roundMatchUps }) {
+export function generateRoundsDefinition({ roundMatchUps, nameFilter }) {
   let feedTop = true;
 
   const roundProfile = Object.assign(
@@ -23,12 +23,25 @@ export function generateRoundsDefinition({ roundMatchUps }) {
 
   const firstRoundMatchUpsCount = roundProfile[roundNumbers[0]].matchUpsCount;
   const roundsColumns = roundNumbers.map(roundNumber => {
-    const matchUps = roundMatchUps[roundNumber];
+    const currentRoundMatchUps = roundMatchUps[roundNumber];
+    const matchUps = currentRoundMatchUps.filter(({ sides }) => {
+      const participantNames = sides
+        ?.map(({ participant }) => participant?.participantName?.toLowerCase())
+        .filter(f => f);
+      return (
+        !nameFilter ||
+        participantNames.find(
+          participantName => participantName.indexOf(nameFilter) >= 0
+        )
+      );
+    });
     const matchUpsCount = matchUps.length;
     const columnMultiplier =
       Math.log2(firstRoundMatchUpsCount / matchUpsCount) + 1;
 
-    const roundName = matchUps[0].roundName || `Round ${roundNumber}`;
+    const roundName =
+      (currentRoundMatchUps?.length && currentRoundMatchUps[0].roundName) ||
+      `Round ${roundNumber}`;
     const definition = {
       matchUpsCount: matchUps.length,
       columnType: 'classic',

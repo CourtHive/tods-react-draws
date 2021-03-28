@@ -7,6 +7,7 @@ import { Side } from './Side';
 
 export const ColumnComponents = ({
   column,
+  nameFilter,
   displayOnly,
   handleRoundNameClick,
   handleScheduleClick,
@@ -33,6 +34,7 @@ export const ColumnComponents = ({
     };
     const roundNameProps = {
       width: '100%',
+      wrap: 'nowrap',
       direction: 'row',
       justify: 'space-between',
       onClick: handleOnScheduleClick,
@@ -89,7 +91,9 @@ export const ColumnComponents = ({
         (isEven && !isDetails && !isFinal && classes.borderRight) || undefined,
     };
 
-    const className = columnEnd
+    const className = isDetails
+      ? classes.positionDetails
+      : columnEnd
       ? ''
       : isEven
       ? classes.bracketBottom
@@ -107,6 +111,7 @@ export const ColumnComponents = ({
           {columnEnd ? null : (
             <Side
               round={round}
+              nameFilter={nameFilter}
               sideDetails={sideDetails}
               displayOnly={displayOnly}
               onClick={handleParticipantClick}

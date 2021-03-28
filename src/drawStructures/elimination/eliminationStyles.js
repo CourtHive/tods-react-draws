@@ -28,10 +28,15 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: '#f5f5f5',
     },
   },
-  sourceDrawPositionRange: {
-    marginRight: '.5em',
+  positionDetails: {
+    fontSize: 'smaller',
   },
-  seededPrticipant: {
+  sourceDrawPositionRange: {
+    fontSize: 'smaller',
+    marginRight: '.5em',
+    whiteSpace: 'nowrap',
+  },
+  seededParticipant: {
     color: '#3e424e',
     fontWeight: 900,
   },

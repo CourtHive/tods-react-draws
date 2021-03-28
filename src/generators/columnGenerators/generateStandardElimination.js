@@ -1,4 +1,8 @@
-export function generateStandardElimination({ height, roundsDefinition }) {
+export function generateStandardElimination({
+  height,
+  roundsDefinition,
+  nameFilter,
+}) {
   let priorFeedOffset = 0;
   const topMargin = roundsDefinition.find(r => r.feedTop) && height / 2;
 
@@ -29,15 +33,18 @@ export function generateStandardElimination({ height, roundsDefinition }) {
 
   function generateColumn({ round }) {
     const { columnMultiplier, feedTop, feedBottom } = round;
-    const matchUpHeight = calcHeight({ height, columnMultiplier });
+    const matchUpHeight = nameFilter
+      ? height
+      : calcHeight({ height, columnMultiplier });
     const feedOffset =
       priorFeedOffset +
       matchUpHeight * ((feedTop && -0.5) || (feedBottom && 0.5) || 0);
     priorFeedOffset = feedOffset;
-    const firstMatchUpHeight =
-      calcFirstHeight({ height, columnMultiplier }) +
-      (topMargin || 0) +
-      feedOffset;
+    const firstMatchUpHeight = nameFilter
+      ? height
+      : calcFirstHeight({ height, columnMultiplier }) +
+        (topMargin || 0) +
+        feedOffset;
 
     const isFinal = round.finalMatchUp;
     const matchUps = round.matchUps || [];

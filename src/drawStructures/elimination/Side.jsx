@@ -4,7 +4,13 @@ import { Grid } from '@material-ui/core';
 import { useStyles } from './eliminationStyles';
 import cx from 'classnames';
 
-export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
+export const Side = ({
+  round,
+  nameFilter,
+  sideDetails,
+  displayOnly,
+  onClick,
+}) => {
   const classes = useStyles();
   const isFinal = round.finalMatchUp;
   const displayText = round?.columnType === 'classic';
@@ -15,7 +21,8 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
     side || {};
   const { feedRound, roundNumber } = matchUp || {};
 
-  const dpText = sourceDrawPositionRange || drawPosition || '';
+  const drawPositionText =
+    !nameFilter && (sourceDrawPositionRange || drawPosition || '');
   const readyToScore = isFinal
     ? matchUp?.readyToScore
     : side?.sourceMatchUp?.readyToScore;
@@ -33,7 +40,7 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const participantStyle = !displayOnly
     ? {
         className: cx(classes.participant, {
-          [classes.seededPrticipant]: seed,
+          [classes.seededParticipant]: seed,
           [classes.readyToScore]:
             (readyToScore && !displayOnly) || unfilledPosition,
           [classes.hoveredPrticipant]: !displayOnly,
@@ -42,7 +49,7 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
       }
     : {
         className: cx(classes.participant, {
-          [classes.seededPrticipant]: seed,
+          [classes.seededParticipant]: seed,
         }),
       };
 
@@ -74,7 +81,7 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
           {sourceDrawPositionRangeDisplay || ''}
         </Grid>
         <Grid item {...participantStyle}>
-          {(displayText && sideText) || (displayDetails && dpText)}
+          {(displayText && sideText) || (displayDetails && drawPositionText)}
         </Grid>
       </Grid>
       <Grid item>{participant?.displayInfo || ''}</Grid>
