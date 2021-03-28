@@ -23,10 +23,12 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   let sideText = bye ? 'BYE' : participant?.participantName || '';
   const seed = side?.seedValue;
   if (seed) sideText += ` (${seed})`;
-  if (feedRound && sourceDrawPositionRange)
-    sideText = `${sourceDrawPositionRange} ${sideText}`;
 
-  const unfilledPosition = roundNumber === 1 && !sideText && displayText;
+  const unfilledPosition =
+    !sideText &&
+    displayText &&
+    // (!matchUp.stage || matchUp.stage === 'MAIN') &&
+    (roundNumber === 1 || (feedRound && sideIndex === 0));
 
   const participantStyle = !displayOnly
     ? {
@@ -58,13 +60,24 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
     justify: 'space-between',
   };
 
+  const sourceDrawPositionRangeDisplay = feedRound && sourceDrawPositionRange;
+
   return (
-    <Grid container>
-      <Grid container {...participantStyle} {...participantProps}>
-        <Grid item>
+    <Grid container {...participantProps} wrap="nowrap">
+      <Grid container wrap="nowrap">
+        <Grid
+          item
+          className={
+            sourceDrawPositionRangeDisplay && classes.sourceDrawPositionRange
+          }
+        >
+          {sourceDrawPositionRangeDisplay || ''}
+        </Grid>
+        <Grid item {...participantStyle}>
           {(displayText && sideText) || (displayDetails && dpText)}
         </Grid>
       </Grid>
+      <Grid item>{participant?.displayInfo || ''}</Grid>
     </Grid>
   );
 };

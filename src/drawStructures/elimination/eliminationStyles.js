@@ -19,6 +19,7 @@ export const useStyles = makeStyles(theme => ({
   initialColumn: {},
   roundColumn: {},
   participant: {
+    flexGrow: 1,
     paddingLeft: 3,
     paddingRight: 3,
     whiteSpace: 'nowrap',
@@ -26,6 +27,9 @@ export const useStyles = makeStyles(theme => ({
       cursor: 'pointer',
       backgroundColor: '#f5f5f5',
     },
+  },
+  sourceDrawPositionRange: {
+    marginRight: '.5em',
   },
   seededPrticipant: {
     color: '#3e424e',
