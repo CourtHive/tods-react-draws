@@ -59,7 +59,8 @@ export function getColumnComponents({
               <Grid item>{participantDisplay}</Grid>
             </Grid>
           ),
-          cellClassName: !participantDisplay && classes.participantContainer,
+          cellClassName:
+            (!participantDisplay && classes.participantContainer) || '',
           contentClassName: classes.participantContent,
         };
       },
