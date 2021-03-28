@@ -7,10 +7,13 @@ import cx from 'classnames';
 export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   const classes = useStyles();
   const isFinal = round.finalMatchUp;
+  const displayText = round?.columnType === 'classic';
+  const displayDetails = round?.columnType === 'details';
+
   const { side, matchUp, sideIndex, feedBottom } = sideDetails || {};
   const { bye, drawPosition, participant, sourceDrawPositionRange } =
     side || {};
-  const { feedRound } = matchUp || {};
+  const { feedRound, roundNumber } = matchUp || {};
 
   const dpText = sourceDrawPositionRange || drawPosition || '';
   const readyToScore = isFinal
@@ -23,11 +26,14 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
   if (feedRound && sourceDrawPositionRange)
     sideText = `${sourceDrawPositionRange} ${sideText}`;
 
+  const unfilledPosition = roundNumber === 1 && !sideText && displayText;
+
   const participantStyle = !displayOnly
     ? {
         className: cx(classes.participant, {
           [classes.seededPrticipant]: seed,
-          [classes.readyToScore]: readyToScore && !displayOnly,
+          [classes.readyToScore]:
+            (readyToScore && !displayOnly) || unfilledPosition,
           [classes.hoveredPrticipant]: !displayOnly,
         }),
         width: '100%',
@@ -51,8 +57,6 @@ export const Side = ({ round, sideDetails, displayOnly, onClick }) => {
     direction: 'row',
     justify: 'space-between',
   };
-  const displayText = round?.columnType === 'classic';
-  const displayDetails = round?.columnType === 'details';
 
   return (
     <Grid container>
