@@ -50,10 +50,8 @@ const App = () => {
   const drawProfiles = [
     {
       drawType,
-      // drawSize,
-      // participantsCount: 30,
-      drawSize: 4,
-      participantsCount: 4,
+      drawSize,
+      participantsCount: 30,
       automated: completionState !== 'manual',
     },
   ];
