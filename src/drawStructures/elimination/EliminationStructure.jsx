@@ -33,13 +33,14 @@ export function EliminationStructure(props) {
   };
   const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
     if (typeof eventHandlers?.onParticipantClick === 'function') {
-      const participant =
-        matchUp?.sides && matchUp?.sides[sideIndex]?.participant;
+      const side = matchUp?.sides && matchUp?.sides[sideIndex];
+      const { participant, drawPosition } = side || {};
       eventHandlers.onParticipantClick({
         e,
         feedBottom,
         matchUp,
         participant,
+        drawPosition,
         sideIndex,
       });
     }
