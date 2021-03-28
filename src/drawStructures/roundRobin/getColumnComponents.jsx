@@ -7,8 +7,8 @@ import { getContextScoreString } from './getContextScoreString';
 export function getColumnComponents({
   contextData,
   dictionary,
-  rowData,
   eventHandlers,
+  rowData,
 }) {
   const classes = useStyles();
   const rowDetails = [
@@ -24,8 +24,9 @@ export function getColumnComponents({
           const { groupStructureId, structureName } = row;
           eventHandlers.onHeaderClick({
             e,
+            ...contextData,
+            groupStructureId,
             columnName: 'structureName',
-            structureId: groupStructureId,
             structureName,
           });
         }
@@ -41,6 +42,7 @@ export function getColumnComponents({
             e,
             drawPosition,
             participant,
+            ...contextData,
             participantResult,
             columnName: 'drawPosition',
           });
@@ -67,7 +69,12 @@ export function getColumnComponents({
       onClick: (e, row) => {
         const { drawPosition, participant } = row || {};
         if (typeof eventHandlers?.onParticipantClick === 'function') {
-          eventHandlers.onParticipantClick({ e, participant, drawPosition });
+          eventHandlers.onParticipantClick({
+            e,
+            participant,
+            drawPosition,
+            ...contextData,
+          });
         }
       },
     },
@@ -94,14 +101,24 @@ export function getColumnComponents({
       headerClick: e => {
         if (typeof eventHandlers?.onParticipantClick === 'function') {
           const { participant, drawPosition } = position;
-          eventHandlers.onParticipantClick({ e, drawPosition, participant });
+          eventHandlers.onParticipantClick({
+            e,
+            drawPosition,
+            participant,
+            ...contextData,
+          });
         }
       },
       onClick: (e, row) => {
         const matchUp = row?.matchUps && row?.matchUps[i];
         const sideNumber = getSideNumber(matchUp, row);
         if (typeof eventHandlers?.onScoreClick === 'function') {
-          eventHandlers.onScoreClick({ e, matchUp, sideNumber });
+          eventHandlers.onScoreClick({
+            e,
+            matchUp,
+            sideNumber,
+            ...contextData,
+          });
         }
       },
       getValue: row => {
@@ -153,6 +170,7 @@ export function getColumnComponents({
           eventHandlers.onHeaderClick({
             e,
             columnName: 'winLoss',
+            ...contextData,
           });
         }
       },
@@ -172,6 +190,7 @@ export function getColumnComponents({
           const { drawPosition, participant, participantResult } = row || {};
           eventHandlers.onStatsClick({
             e,
+            ...contextData,
             drawPosition,
             participant,
             participantResult,
@@ -194,6 +213,7 @@ export function getColumnComponents({
         if (typeof eventHandlers?.onHeaderClick === 'function') {
           eventHandlers.onHeaderClick({
             e,
+            ...contextData,
             columnName: 'finishingPosition',
           });
         }
@@ -212,6 +232,7 @@ export function getColumnComponents({
             e,
             drawPosition,
             participant,
+            ...contextData,
             participantResult,
             columnName: 'finishingPosition',
           });

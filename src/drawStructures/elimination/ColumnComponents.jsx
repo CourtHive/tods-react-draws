@@ -8,6 +8,7 @@ import { Side } from './Side';
 export const ColumnComponents = ({
   column,
   nameFilter,
+  contextData,
   displayOnly,
   eventHandlers,
 }) => {
@@ -30,6 +31,7 @@ export const ColumnComponents = ({
   };
 
   const RoundName = ({ round, onRoundNameClick, onScheduleClick }) => {
+    const isFinal = round.finalMatchUp;
     const notConnectors = round.columnType !== 'connectors';
     const roundName = notConnectors && round.roundName;
     const roundNumber = notConnectors && round.roundNumber;
@@ -38,18 +40,21 @@ export const ColumnComponents = ({
     const handleRoundNameClick = e => {
       e.stopPropagation();
       if (typeof onRoundNameClick === 'function')
-        onRoundNameClick({ e, roundNumber });
+        onRoundNameClick({ e, roundNumber, ...contextData, isFinal });
     };
     const handleOnScheduleClick = e => {
       if (typeof onScheduleClick === 'function')
-        onScheduleClick({ e, roundNumber });
+        onScheduleClick({ e, roundNumber, ...contextData, isFinal });
     };
     const roundNameProps = {
       width: '100%',
       wrap: 'nowrap',
       direction: 'row',
       justify: 'space-between',
-      onClick: handleOnScheduleClick,
+      onClick:
+        !isFinal && onScheduleClick
+          ? handleOnScheduleClick
+          : handleRoundNameClick,
       className: `${classes.roundName} ${bottom}`,
     };
     return (

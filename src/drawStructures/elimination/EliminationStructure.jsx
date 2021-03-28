@@ -11,7 +11,10 @@ export function EliminationStructure(props) {
 
   const { eventData, eventHandlers, nameFilter } = props;
 
-  const { drawsData } = eventData;
+  const {
+    drawsData,
+    eventInfo: { eventId },
+  } = eventData;
   let { drawId, structureId } = props;
 
   const drawData = drawsData?.find(drawData => drawData.drawId === drawId);
@@ -32,6 +35,8 @@ export function EliminationStructure(props) {
     roundsDefinition,
     nameFilter,
   });
+
+  const contextData = { eventId, drawId, structureId };
 
   const EliminationColumn = ({ column, columnIndex }) => {
     const { round } = column;
@@ -61,6 +66,7 @@ export function EliminationStructure(props) {
           <ColumnComponents
             column={column}
             nameFilter={nameFilter}
+            contextData={contextData}
             eventHandlers={eventHandlers}
           />
         )}
