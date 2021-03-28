@@ -66,6 +66,12 @@ const App = () => {
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
   const eventHandlers = {
+    onScheduleClick: ({ e, roundNumber }) => {
+      console.log({ e, roundNumber });
+    },
+    onRoundNameClick: ({ e, roundNumber }) => {
+      console.log({ e, roundNumber });
+    },
     onScoreClick: ({ e, matchUp, sideIndex }) => {
       console.log('Scoring', { e, matchUp, sideIndex });
     },

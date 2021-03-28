@@ -26,9 +26,14 @@ export function EliminationStructure(props) {
   const { roundsDefinition } = generateRoundsDefinition({ roundMatchUps });
   const columns = generateStandardElimination({ height: 70, roundsDefinition });
 
-  const handleScoreClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof eventHandlers?.onScoreClick === 'function') {
-      eventHandlers.onScoreClick({ e, feedBottom, matchUp, sideIndex });
+  const handleRoundNameClick = ({ e, roundNumber }) => {
+    if (typeof eventHandlers?.onRoundNameClick === 'function') {
+      eventHandlers.onRoundNameClick({ e, roundNumber });
+    }
+  };
+  const handleScheduleClick = ({ e, roundNumber }) => {
+    if (typeof eventHandlers?.onRoundNameClick === 'function') {
+      eventHandlers.onRoundNameClick({ e, roundNumber });
     }
   };
   const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
@@ -43,6 +48,11 @@ export function EliminationStructure(props) {
         drawPosition,
         sideIndex,
       });
+    }
+  };
+  const handleScoreClick = ({ e, feedBottom, matchUp, sideIndex }) => {
+    if (typeof eventHandlers?.onScoreClick === 'function') {
+      eventHandlers.onScoreClick({ e, feedBottom, matchUp, sideIndex });
     }
   };
 
@@ -73,6 +83,8 @@ export function EliminationStructure(props) {
         {!divider && (
           <ColumnComponents
             column={column}
+            handleScheduleClick={handleScheduleClick}
+            handleRoundNameClick={handleRoundNameClick}
             handleParticipantClick={handleParticipantClick}
             handleScoreClick={handleScoreClick}
           />

@@ -50,9 +50,11 @@ export const useStyles = makeStyles(theme => ({
     paddingLeft: 3,
   },
   roundName: {
-    marginLeft: 3,
-    marginRight: 4,
     height: '1.5em',
+  },
+  roundScheduleIcon: {
+    fontSize: 'small',
+    marginRight: '1em',
   },
   noBoderBottom: {
     paddingBottom: '2px',

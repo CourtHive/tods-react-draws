@@ -1,24 +1,55 @@
 import React from 'react';
 import { useStyles } from './eliminationStyles';
+
+import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import { Grid } from '@material-ui/core';
 import { Side } from './Side';
 
 export const ColumnComponents = ({
   column,
   displayOnly,
+  handleRoundNameClick,
+  handleScheduleClick,
   handleParticipantClick,
   handleScoreClick,
 }) => {
   const classes = useStyles();
   const { frames, round, matchUpHeight, firstMatchUpHeight } = column;
 
-  const RoundName = ({ round }) => {
+  const RoundName = ({ round, onRoundNameClick, onScheduleClick }) => {
     const notConnectors = round.columnType !== 'connectors';
     const roundName = notConnectors && round.roundName;
+    const roundNumber = notConnectors && round.roundNumber;
     const bottom =
       (roundName && classes.thickBorderBottom) || classes.noBoderBottom;
-    const className = `${classes.roundName} ${bottom}`;
-    return <div className={className}>{roundName || ' '}</div>;
+    const handleRoundNameClick = e => {
+      e.stopPropagation();
+      if (typeof onRoundNameClick === 'function')
+        onRoundNameClick({ e, roundNumber });
+    };
+    const handleOnScheduleClick = e => {
+      if (typeof onScheduleClick === 'function')
+        onScheduleClick({ e, roundNumber });
+    };
+    const roundNameProps = {
+      width: '100%',
+      direction: 'row',
+      justify: 'space-between',
+      onClick: handleOnScheduleClick,
+      className: `${classes.roundName} ${bottom}`,
+    };
+    return (
+      <Grid container {...roundNameProps}>
+        <Grid item onClick={handleRoundNameClick}>
+          {roundName || ' '}
+        </Grid>
+        <Grid item>
+          {roundNumber && onScheduleClick && (
+            <AccessTimeIcon className={classes.roundScheduleIcon} />
+          )}
+        </Grid>
+      </Grid>
+    );
   };
 
   const Score = ({ round, scoreDetails, displayOnly, onClick }) => {
@@ -95,9 +126,13 @@ export const ColumnComponents = ({
   );
 
   return (
-    <>
-      <RoundName round={round} />
+    <div style={{ marginLeft: '4px' }}>
+      <RoundName
+        onScheduleClick={handleScheduleClick}
+        onRoundNameClick={handleRoundNameClick}
+        round={round}
+      />
       <Frames frames={frames} />
-    </>
+    </div>
   );
 };
