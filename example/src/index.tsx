@@ -31,7 +31,7 @@ const App = () => {
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
-  const [completionState, setCompletionState] = React.useState(true);
+  const [completionState, setCompletionState] = React.useState('complete');
 
   const { drawType, structureIndex } = drawDetails;
 
@@ -50,15 +50,18 @@ const App = () => {
   const drawProfiles = [
     {
       drawType,
-      drawSize,
-      participantsCount: 30,
+      // drawSize,
+      // participantsCount: 30,
+      drawSize: 4,
+      participantsCount: 4,
+      automated: completionState !== 'manual',
     },
   ];
   const {
     eventIds: [eventId],
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
-    completeAllMatchUps: completionState,
+    completeAllMatchUps: completionState === 'complete',
     randomWinningSide: false,
   });
 
@@ -68,8 +71,20 @@ const App = () => {
     onScoreClick: ({ e, matchUp, sideIndex }) => {
       console.log('Scoring', { e, matchUp, sideIndex });
     },
-    onParticipantClick: ({ e, participant, matchUp, sideIndex }) => {
-      console.log('Participant', { e, participant, matchUp, sideIndex });
+    onParticipantClick: ({
+      e,
+      participant,
+      drawPosition,
+      matchUp,
+      sideIndex,
+    }) => {
+      console.log('Participant', {
+        e,
+        participant,
+        drawPosition,
+        matchUp,
+        sideIndex,
+      });
     },
     onHeaderClick: ({ e, structureId, structureName, columnName }) => {
       console.log({ e, structureId, structureName, columnName });
