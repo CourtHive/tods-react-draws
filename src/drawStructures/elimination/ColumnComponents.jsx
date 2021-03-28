@@ -9,13 +9,25 @@ export const ColumnComponents = ({
   column,
   nameFilter,
   displayOnly,
-  handleRoundNameClick,
-  handleScheduleClick,
-  handleParticipantClick,
-  handleScoreClick,
+  eventHandlers,
 }) => {
   const classes = useStyles();
   const { frames, round, matchUpHeight, firstMatchUpHeight } = column;
+
+  const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
+    if (typeof eventHandlers?.onParticipantClick === 'function') {
+      const side = matchUp?.sides && matchUp?.sides[sideIndex];
+      const { participant, drawPosition } = side || {};
+      eventHandlers.onParticipantClick({
+        e,
+        feedBottom,
+        matchUp,
+        participant,
+        drawPosition,
+        sideIndex,
+      });
+    }
+  };
 
   const RoundName = ({ round, onRoundNameClick, onScheduleClick }) => {
     const notConnectors = round.columnType !== 'connectors';
@@ -104,7 +116,7 @@ export const ColumnComponents = ({
         <Grid container {...contentProps}>
           <Score
             round={round}
-            onClick={handleScoreClick}
+            onClick={eventHandlers?.onScoreClick}
             scoreDetails={scoreDetails}
             displayOnly={displayOnly}
           />
@@ -133,8 +145,8 @@ export const ColumnComponents = ({
   return (
     <div style={{ marginLeft: '4px' }}>
       <RoundName
-        onScheduleClick={handleScheduleClick}
-        onRoundNameClick={handleRoundNameClick}
+        onScheduleClick={eventHandlers?.onScheduleClick}
+        onRoundNameClick={eventHandlers?.onRoundNameClick}
         round={round}
       />
       <Frames frames={frames} />

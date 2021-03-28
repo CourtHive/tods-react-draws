@@ -33,36 +33,6 @@ export function EliminationStructure(props) {
     nameFilter,
   });
 
-  const handleRoundNameClick = ({ e, roundNumber }) => {
-    if (typeof eventHandlers?.onRoundNameClick === 'function') {
-      eventHandlers.onRoundNameClick({ e, roundNumber });
-    }
-  };
-  const handleScheduleClick = ({ e, roundNumber }) => {
-    if (typeof eventHandlers?.onRoundNameClick === 'function') {
-      eventHandlers.onRoundNameClick({ e, roundNumber });
-    }
-  };
-  const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof eventHandlers?.onParticipantClick === 'function') {
-      const side = matchUp?.sides && matchUp?.sides[sideIndex];
-      const { participant, drawPosition } = side || {};
-      eventHandlers.onParticipantClick({
-        e,
-        feedBottom,
-        matchUp,
-        participant,
-        drawPosition,
-        sideIndex,
-      });
-    }
-  };
-  const handleScoreClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof eventHandlers?.onScoreClick === 'function') {
-      eventHandlers.onScoreClick({ e, feedBottom, matchUp, sideIndex });
-    }
-  };
-
   const EliminationColumn = ({ column, columnIndex }) => {
     const { round } = column;
 
@@ -91,10 +61,7 @@ export function EliminationStructure(props) {
           <ColumnComponents
             column={column}
             nameFilter={nameFilter}
-            handleScheduleClick={handleScheduleClick}
-            handleRoundNameClick={handleRoundNameClick}
-            handleParticipantClick={handleParticipantClick}
-            handleScoreClick={handleScoreClick}
+            eventHandlers={eventHandlers}
           />
         )}
       </Grid>
