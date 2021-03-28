@@ -6,7 +6,7 @@ export const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(3),
   },
   table: {
-    minWidth: 650,
+    minWidth: 400,
   },
   root: {
     padding: '0 16px 0 16px',
@@ -81,11 +81,17 @@ export const useStyles = makeStyles(theme => ({
   },
   participantHeader: {
     borderBottom: '2px solid #040E2C',
-    width: 200,
+    minWidth: 100,
     fontWeight: 'bold',
   },
+  participantContainer: {
+    '&:hover': {
+      backgroundColor: '#edf4fc',
+      cursor: 'pointer',
+    },
+  },
   participantContent: {
-    width: 200,
+    minWidth: 100,
   },
   tableContainer: {
     margin: '20px 0 30px 0',
