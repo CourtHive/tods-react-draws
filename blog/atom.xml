@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://courthive.github.io/blog</id>
+    <title>TODS React Draws Blog</title>
+    <updated>2021-04-01T00:00:00.000Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://courthive.github.io/blog"/>
+    <subtitle>TODS React Draws Blog</subtitle>
+    <icon>https://courthive.github.io/img/favicon.ico</icon>
+    <entry>
+        <title type="html"><![CDATA[Intro]]></title>
+        <id>Intro</id>
+        <link href="https://courthive.github.io/tods-competition-factory/blog/Intro"/>
+        <updated>2021-04-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet]]></summary>
+    </entry>
+</feed>

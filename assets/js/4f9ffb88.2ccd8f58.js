@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{81:function(o){o.exports=JSON.parse('{"allTagsPath":"/tods-competition-factory/blog/tags","slug":"courthive","name":"courthive","count":1,"permalink":"/tods-competition-factory/blog/tags/courthive"}')}}]);
