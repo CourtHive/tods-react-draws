@@ -3,7 +3,7 @@ module.exports = {
   title: 'TODS React Draws',
   tagline: 'Visualization of TODS Draw Structures',
   url: 'https://courthive.github.io',
-  baseUrl: '/tods-competition-factory/',
+  baseUrl: '/tods-react-draws/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
