@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[11],{83:function(a){a.exports=JSON.parse('{"allTagsPath":"/tods-competition-factory/blog/tags","slug":"react-draws","name":"react-draws","count":1,"permalink":"/tods-competition-factory/blog/tags/react-draws"}')}}]);
