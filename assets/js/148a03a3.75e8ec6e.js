@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{70:function(t){t.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Intro","permalink":"/tods-react-draws/blog/Intro"}]}')}}]);
