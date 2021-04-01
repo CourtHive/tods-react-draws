@@ -23,6 +23,11 @@ module.exports = {
           label: 'Docs',
           position: 'left',
         },
+        {
+          href: '/example',
+          label: 'Example',
+          position: 'left',
+        },
         //        { to: 'blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/CourtHive/tods-react-draws',
