@@ -954,7 +954,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
-"@babel/preset-env@^7.11.5", "@babel/preset-env@^7.12.1", "@babel/preset-env@^7.12.16":
+"@babel/preset-env@7.13.12", "@babel/preset-env@^7.12.1", "@babel/preset-env@^7.12.16":
   version "7.13.12"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.13.12.tgz#6dff470478290582ac282fb77780eadf32480237"
   integrity sha512-JzElc6jk3Ko6zuZgBtjOd01pf9yYDEIH8BcqVuYIuOkzOwDesoa/Nz4gIo4lBG6K861KTV9TvIgmFuT6ytOaAA==
@@ -1526,14 +1526,14 @@
     react-is "^16.8.0 || ^17.0.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^4.11.2":
+"@material-ui/icons@4.11.2", "@material-ui/icons@^4.11.2":
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-4.11.2.tgz#b3a7353266519cd743b6461ae9fdfcb1b25eb4c5"
   integrity sha512-fQNsKX2TxBmqIGJCSi3tGTO/gZ+eJgWmMJkgDiOfyNaunNaxcklJQFaFogYcFl0qFuaEz1qaXYXboa/bUXVSOQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/lab@^4.0.0-alpha.57":
+"@material-ui/lab@4.0.0-alpha.57":
   version "4.0.0-alpha.57"
   resolved "https://registry.yarnpkg.com/@material-ui/lab/-/lab-4.0.0-alpha.57.tgz#e8961bcf6449e8a8dabe84f2700daacfcafbf83a"
   integrity sha512-qo/IuIQOmEKtzmRD2E4Aa6DB4A87kmY6h0uYhjUmrrgmEAgbbw9etXpWPVXuRK6AGIQCjFzV6WO2i21m1R4FCw==
@@ -9751,7 +9751,7 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@^0.5.34, tods-competition-factory@^0.5.39:
+tods-competition-factory@0.5.43, tods-competition-factory@^0.5.39:
   version "0.5.43"
   resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.43.tgz#a4706c4125dd5864351029d0e21a5fdedeee5d69"
   integrity sha512-KFJ3ND9NFkvISrAP2BpCfjlSgnwzkRpK0g3/ErAIALuSugwnD7Y3IEy1VSGy67AhsOArKFJ38+VNeNseyW0eww==
@@ -9763,7 +9763,7 @@ tods-matchup-format-code@^1.0.7:
   resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.0.tgz#dd69cf158d0ea55ada805f542102fb0b121c3a09"
   integrity sha512-FIrWHemDfpGy7P86LE0wVjmR7acoe0joAtmAinuWKeSz4B5cC1hi+cozPjgqxOH9HzLD/149pZ12jrPVbLBRHA==
 
-tods-react-draws@^0.1.13:
+tods-react-draws@0.1.13:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.13.tgz#c2217386487a94d86299487e477cdfc85a1e9c3a"
   integrity sha512-w8V1BD+IDtSGtGH/syMGAYyocsvtZts0IG6bby7sBXltCNbTKzpdgTuhUw4p6+3DwHlyUWtZ1mlDnkX8Scg8IQ==
