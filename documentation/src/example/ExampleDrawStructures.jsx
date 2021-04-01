@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DrawStructure } from '../../dist';
+import { DrawStructure } from 'tods-react-draws';
 import { DrawType } from './components/SelectDrawType';
 import { Completion } from './components/toggleComplete';
 import { SelectStructure } from './components/selectStructure';

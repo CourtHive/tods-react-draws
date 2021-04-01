@@ -1,6 +1,4 @@
-import 'react-app-polyfill/ie11';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import {
   mocksEngine,
@@ -18,7 +16,7 @@ const {
   SINGLE_ELIMINATION,
 } = drawDefinitionConstants;
 
-const App = () => {
+export default function DrawsDemo() {
   const classes = useStyles();
 
   const initialDrawDetails = {
@@ -63,6 +61,4 @@ const App = () => {
     drawTypeChange,
   };
   return <ExampleDrawStructures {...props} />;
-};
-
-ReactDOM.render(<App />, document.getElementById('root'));
+}
