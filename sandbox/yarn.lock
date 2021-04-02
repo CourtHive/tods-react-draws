@@ -5509,10 +5509,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@^0.5.31:
-  version "0.5.31"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.31.tgz#2d39bd1e5ea46503b4db6187ec0bf4cfc6ece45e"
-  integrity sha512-KknISa8qvjVM20Kd8c7fC/tDpJbKb+VVTfuMZxBkOoV3ChBwAJH7thc8N8Erz8UB0Znti7iesZ1+MZgUaVZZmA==
+tods-competition-factory@^0.5.35:
+  version "0.5.45"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.45.tgz#8b4c54571864b40597a20458d181537ab64c798b"
+  integrity sha512-tlaQPF8ggD1NaMXdz/DDBE4+OuKCAmkaktGdo4RZgiTcVGQHfj2g9oEFPidlaG64PtS53L/Day7eQ+L8vApwEQ==
   dependencies:
     tods-matchup-format-code "^1.0.7"
 
