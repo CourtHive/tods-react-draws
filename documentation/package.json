@@ -26,7 +26,7 @@
     "@material-ui/icons": "4.11.2",
     "@material-ui/lab": "4.0.0-alpha.57",
     "tods-react-draws": "0.1.13",
-    "tods-competition-factory": "0.5.43"
+    "tods-competition-factory": "0.5.45"
   },
   "devDependencies": {
     "@types/jest": "26.0.22",
