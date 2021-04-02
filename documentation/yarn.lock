@@ -10015,10 +10015,10 @@ tods-matchup-format-code@^1.0.7:
   resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.0.tgz#dd69cf158d0ea55ada805f542102fb0b121c3a09"
   integrity sha512-FIrWHemDfpGy7P86LE0wVjmR7acoe0joAtmAinuWKeSz4B5cC1hi+cozPjgqxOH9HzLD/149pZ12jrPVbLBRHA==
 
-tods-react-draws@0.1.15:
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.15.tgz#29543bab14d509be0d9355061a7a7999eb1466d9"
-  integrity sha512-S54+MnjgWiq6rJdidBqGbz24UfxQqPEIPAjsmRszCvDSaifZdIjr5HORvUxu8sRan/ZyDAVfEHbCZV6Lfw25Lg==
+tods-react-draws@0.1.14:
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.14.tgz#7784a9f89976ac00925114e45dad13d5552c25fb"
+  integrity sha512-ySNTDvXLr+Kq3HBQ7MzVoytUQgZ9UZNtgbLCIftv5AuXGebvyh8HzT+0Uwya408LljHvoeI4Bn+xBwqlcm9PMg==
   dependencies:
     "@babel/preset-env" "^7.13.12"
     "@material-ui/icons" "^4.11.2"
