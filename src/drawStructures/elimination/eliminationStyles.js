@@ -13,9 +13,6 @@ export const useStyles = makeStyles(theme => ({
     minWidth: 15,
     maxWidth: 20,
   },
-  detailsColumn: {
-    flexWrap: 'nowrap',
-  },
   initialColumn: {},
   roundColumn: {},
   participant: {
@@ -28,8 +25,13 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: '#f5f5f5',
     },
   },
+  detailsColumn: {
+    flexWrap: 'nowrap',
+    whiteSpace: 'nowrap',
+  },
   positionDetails: {
     fontSize: 'smaller',
+    marginBottom: '1px',
   },
   sourceDrawPositionRange: {
     fontSize: 'smaller',

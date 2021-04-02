@@ -103,9 +103,11 @@ export const ColumnComponents = ({
     const contentProps = {
       style: { height },
       direction: 'column',
-      justify: 'space-between',
+      justify: isDetails ? 'flex-end' : 'space-between',
       className:
-        (isEven && !isDetails && !isFinal && classes.borderRight) || undefined,
+        (isDetails && classes.detailsColumn) ||
+        (isEven && !isFinal && classes.borderRight) ||
+        undefined,
     };
 
     const className = isDetails
@@ -125,14 +127,17 @@ export const ColumnComponents = ({
             scoreDetails={scoreDetails}
             displayOnly={displayOnly}
           />
-          {columnEnd ? null : (
-            <Side
-              round={round}
-              nameFilter={nameFilter}
-              sideDetails={sideDetails}
-              displayOnly={displayOnly}
-              onClick={handleParticipantClick}
-            />
+          {!columnEnd && (
+            <>
+              <Side
+                round={round}
+                nameFilter={nameFilter}
+                sideDetails={sideDetails}
+                displayOnly={displayOnly}
+                onClick={handleParticipantClick}
+              />
+              {isDetails && <div style={{ marginBlock: '1px' }}></div>}
+            </>
           )}
         </Grid>
       </Grid>
