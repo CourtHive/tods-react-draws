@@ -21,7 +21,7 @@ export function generateRoundRobinRows({ roundMatchUps, participantResults }) {
     const sides = groupMatchUps.map(({ sides }) => sides).flat();
     const drawPositions = groupMatchUps
       .reduce((drawPositions, matchUp) => {
-        matchUp.drawPositions.forEach(drawPosition => {
+        matchUp.drawPositions?.forEach(drawPosition => {
           if (!drawPositions.includes(drawPosition))
             drawPositions.push(drawPosition);
         });

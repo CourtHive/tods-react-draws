@@ -14,7 +14,7 @@ export function DrawStructure(props) {
     structureId =
       drawData?.structures?.length && drawData.structures[0].structureId;
 
-  const structure = drawData.structures.find(
+  const structure = drawData?.structures?.find(
     structure => structure.structureId === structureId
   );
 
