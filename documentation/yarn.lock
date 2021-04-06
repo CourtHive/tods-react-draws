@@ -10010,10 +10010,10 @@ tods-competition-factory@0.5.45:
   dependencies:
     tods-matchup-format-code "^1.0.7"
 
-tods-competition-factory@^0.5.39:
-  version "0.5.43"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.43.tgz#a4706c4125dd5864351029d0e21a5fdedeee5d69"
-  integrity sha512-KFJ3ND9NFkvISrAP2BpCfjlSgnwzkRpK0g3/ErAIALuSugwnD7Y3IEy1VSGy67AhsOArKFJ38+VNeNseyW0eww==
+tods-competition-factory@^0.5.45:
+  version "0.5.48"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.5.48.tgz#5740a76f3917c853ef13196e5edd9faa9211fa38"
+  integrity sha512-vmPFKy0bG+DQNzUi4T9IjO6uZpuzzAbOwlkerq+jeOGrtXHM/5OXM0oWKEOzRx9gPav7BydNGe87jgHcZW9dqg==
   dependencies:
     tods-matchup-format-code "^1.0.7"
 
@@ -10022,16 +10022,16 @@ tods-matchup-format-code@^1.0.7:
   resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.0.tgz#dd69cf158d0ea55ada805f542102fb0b121c3a09"
   integrity sha512-FIrWHemDfpGy7P86LE0wVjmR7acoe0joAtmAinuWKeSz4B5cC1hi+cozPjgqxOH9HzLD/149pZ12jrPVbLBRHA==
 
-tods-react-draws@0.1.15:
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.15.tgz#29543bab14d509be0d9355061a7a7999eb1466d9"
-  integrity sha512-S54+MnjgWiq6rJdidBqGbz24UfxQqPEIPAjsmRszCvDSaifZdIjr5HORvUxu8sRan/ZyDAVfEHbCZV6Lfw25Lg==
+tods-react-draws@0.1.16:
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.16.tgz#a41a5294896914e00b5e79066f1b1e130a34130f"
+  integrity sha512-nhE+kKN5KRvDj4+5HYnkzpeGNE/5sXY48/xERhMKSXra5ZxA/jdKlVNXGurohM4ABb5mBXt2TyUEbwtL1yR5ZQ==
   dependencies:
     "@babel/preset-env" "^7.13.12"
     "@material-ui/icons" "^4.11.2"
     babel-jest "^26.6.3"
     classnames "^2.2.6"
-    tods-competition-factory "^0.5.39"
+    tods-competition-factory "^0.5.45"
 
 toidentifier@1.0.0:
   version "1.0.0"
