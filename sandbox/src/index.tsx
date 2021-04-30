@@ -10,7 +10,7 @@ import {
 import { useStyles } from './styles';
 import { ExampleDrawStructures } from './ExampleDrawStructures';
 
-import tournamentRecord from './tournamentRecord/tods.json';
+// import tournamentRecord from './tournamentRecord/tods.json';
 
 const {
   FEED_IN,
@@ -46,7 +46,7 @@ const App = () => {
   ];
 
   let eventId;
-  console.log({ tournamentRecord });
+  let tournamentRecord;
   if (tournamentRecord?.events?.length) {
     eventId = tournamentRecord.events[0].eventId;
     tournamentEngine.setState(tournamentRecord);
