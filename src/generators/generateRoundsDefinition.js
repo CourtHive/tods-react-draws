@@ -1,4 +1,4 @@
-export function generateRoundsDefinition({ roundMatchUps, nameFilter }) {
+export function generateRoundsDefinition({ roundMatchUps = {}, nameFilter }) {
   let feedTop = true;
 
   const roundProfile = Object.assign(
@@ -21,7 +21,8 @@ export function generateRoundsDefinition({ roundMatchUps, nameFilter }) {
     }
   });
 
-  const firstRoundMatchUpsCount = roundProfile[roundNumbers[0]].matchUpsCount;
+  const firstRoundMatchUpsCount =
+    (roundNumbers?.length && roundProfile[roundNumbers[0]].matchUpsCount) || 0;
   const roundsColumns = roundNumbers.map(roundNumber => {
     const currentRoundMatchUps = roundMatchUps[roundNumber];
     const matchUps = currentRoundMatchUps.filter(({ sides }) => {
@@ -114,13 +115,13 @@ export function generateRoundsDefinition({ roundMatchUps, nameFilter }) {
     details: ['drawPosition'],
     columnMultiplier: 1,
     matchUps: firstRoundMatchUps,
-    matchUpsCount: firstRoundMatchUps.length,
+    matchUpsCount: firstRoundMatchUps?.length || 0,
   };
   // const dividerColumn = { columnType: 'divider' };
   // const roundsDefinition = [detailsColumn, dividerColumn, ...roundsColumns];
   const roundsDefinition = [detailsColumn, ...roundsColumns];
   const finalRound = roundsColumns[roundsColumns.length - 1];
-  if (finalRound.matchUps.length === 1) {
+  if (finalRound?.matchUps?.length === 1) {
     const final = {
       matchUpsCount: 0,
       finalMatchUp: finalRound.matchUps[0],
