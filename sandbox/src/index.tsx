@@ -1,4 +1,3 @@
-import 'react-app-polyfill/ie11';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -9,8 +8,9 @@ import {
 } from 'tods-competition-factory';
 
 import { useStyles } from './styles';
-
 import { ExampleDrawStructures } from './ExampleDrawStructures';
+
+import tournamentRecord from './tournamentRecord/tods.json';
 
 const {
   FEED_IN,
@@ -44,13 +44,21 @@ const App = () => {
       automated: completionState !== 'manual',
     },
   ];
-  const {
-    eventIds: [eventId],
-  } = mocksEngine.generateTournamentRecord({
-    drawProfiles,
-    completeAllMatchUps: completionState === 'complete',
-    randomWinningSide: false,
-  });
+
+  let eventId;
+  console.log({ tournamentRecord });
+  if (tournamentRecord?.events?.length) {
+    eventId = tournamentRecord.events[0].eventId;
+    tournamentEngine.setState(tournamentRecord);
+  } else {
+    ({
+      eventIds: [eventId],
+    } = mocksEngine.generateTournamentRecord({
+      drawProfiles,
+      completeAllMatchUps: completionState === 'complete',
+      randomWinningSide: false,
+    }));
+  }
 
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
