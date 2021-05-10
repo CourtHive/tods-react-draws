@@ -65,12 +65,13 @@
   "module": "dist/tods-react-draws.esm.js",
   "devDependencies": {
     "@babel/core": "7.14.0",
+    "@babel/preset-env": "^7.13.12",
     "@babel/preset-react": "7.13.13",
     "@babel/preset-typescript": "7.13.0",
-    "@material-ui/core": "4.11.4",
     "@types/jest": "26.0.23",
     "@types/react": "17.0.4",
     "@types/react-dom": "17.0.3",
+    "babel-jest": "^26.6.3",
     "babel-loader": "8.2.2",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "24.3.6",
@@ -81,17 +82,16 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2",
-    "react-virtuoso": "1.8.6",
     "size-limit": "4.10.2",
     "tsdx": "0.14.1",
     "tslib": "2.2.0",
     "typescript": "4.2.4"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.13.12",
     "@material-ui/icons": "^4.11.2",
-    "babel-jest": "^26.6.3",
+    "@material-ui/core": "4.11.4",
     "classnames": "^2.2.6",
+    "react-virtuoso": "1.8.6",
     "tods-competition-factory": "^0.5.45"
   }
 }
