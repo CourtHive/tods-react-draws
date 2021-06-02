@@ -9336,10 +9336,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@0.6.31:
-  version "0.6.31"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.6.31.tgz#e99033bec6ba9ce26105ffb4bd12423e73a4280e"
-  integrity sha512-WRDPxw6L0Lqfnbx4m/fFFl/KlCIC4cyYWX0Zdm50S7N8t8alLh1Z5IDIXuEKfb1nhxBq/eOV3qMHSgPUjCp0fA==
+tods-competition-factory@0.6.39:
+  version "0.6.39"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.6.39.tgz#e44b3fdc9d8aa7c079703048c372645997b5e5a6"
+  integrity sha512-XH+qU01des7r1bMxaHOwvsW0eoCtX+Q8bCKDDN/a6YMsfEZkO3ZSsMM3QH3CunR1PmcQVooSqNDjwn/9y/Z1bw==
   dependencies:
     tods-matchup-format-code "1.1.2"
 
