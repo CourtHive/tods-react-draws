@@ -1,0 +1,1 @@
+(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[681],{7233:function(a){"use strict";a.exports=JSON.parse('{"allTagsPath":"/tods-react-draws/blog/tags","slug":"react-draws","name":"react-draws","count":1,"permalink":"/tods-react-draws/blog/tags/react-draws"}')}}]);

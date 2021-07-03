@@ -1,0 +1,1 @@
+(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[598],{4716:function(t){"use strict";t.exports=JSON.parse('{"allTagsPath":"/tods-react-draws/blog/tags","slug":"courthive","name":"courthive","count":1,"permalink":"/tods-react-draws/blog/tags/courthive"}')}}]);
