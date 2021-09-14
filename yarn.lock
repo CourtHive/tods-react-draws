@@ -7571,14 +7571,13 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react-virtuoso@1.9.3:
-  version "1.9.3"
-  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-1.9.3.tgz#0ee83f777a466fcb5ef8ef0416ff59f69f7f1699"
-  integrity sha512-uij0oVlYEFSq1IJKuhCp7edR52oJr9kQjCZk4RCsL2lkNH+Yqbp+CZ8RLIIyPV652BtPyd7ijKOdI8qg0FqLXQ==
+react-virtuoso@2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/react-virtuoso/-/react-virtuoso-2.0.5.tgz#efc90c3c22171dba0e8d44056eebc24c8c59283a"
+  integrity sha512-lua8m1WOCTF22bi/upm0ATbUXWKkBjorhng5kZGpUeMVkfieOPEJHxHHcoPOFv6Ff3Sh6gnAIHd2xJkQUmHqAA==
   dependencies:
     "@virtuoso.dev/react-urx" "^0.2.5"
     "@virtuoso.dev/urx" "^0.2.5"
-    resize-observer-polyfill "^1.5.1"
 
 react@17.0.2:
   version "17.0.2"
@@ -7805,11 +7804,6 @@ require-main-filename@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-2.0.0.tgz#d0b329ecc7cc0f61649f62215be69af54aa8989b"
   integrity sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg==
-
-resize-observer-polyfill@^1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
-  integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-cwd@^3.0.0:
   version "3.0.0"
