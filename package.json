@@ -1,5 +1,5 @@
 {
-  "version": "0.1.21",
+  "version": "0.1.22",
   "license": "MIT",
   "private": false,
   "keywords": [
@@ -36,7 +36,6 @@
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
-    "lint": "tsdx lint",
     "prepare": "tsdx build",
     "release": "np",
     "size": "size-limit",
@@ -50,9 +49,7 @@
     "react": ">=16"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
+    "hooks": {}
   },
   "prettier": {
     "printWidth": 80,
@@ -88,7 +85,7 @@
     "typescript": "4.3.5"
   },
   "dependencies": {
-    "@material-ui/core": "4.11.4",
+    "@material-ui/core": "4.12.3",
     "@material-ui/icons": "^4.11.2",
     "classnames": "^2.2.6",
     "tods-competition-factory": "^0.25.0"
