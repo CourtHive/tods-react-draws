@@ -92,6 +92,6 @@
     "@material-ui/icons": "^4.11.2",
     "classnames": "^2.2.6",
     "react-virtuoso": "1.9.3",
-    "tods-competition-factory": "^0.7.0"
+    "tods-competition-factory": "^0.25.0"
   }
 }
