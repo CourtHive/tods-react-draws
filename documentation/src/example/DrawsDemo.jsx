@@ -44,12 +44,14 @@ export default function DrawsDemo() {
   ];
   const {
     eventIds: [eventId],
+    tournamentRecord,
   } = mocksEngine.generateTournamentRecord({
     drawProfiles,
     completeAllMatchUps: completionState === 'complete',
     randomWinningSide: false,
   });
 
+  tournamentEngine.setState(tournamentRecord);
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
   const props = {
