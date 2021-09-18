@@ -53,6 +53,7 @@ const App = () => {
   } else {
     ({
       eventIds: [eventId],
+      tournamentRecord,
     } = mocksEngine.generateTournamentRecord({
       drawProfiles,
       completeAllMatchUps: completionState === 'complete',
@@ -60,6 +61,7 @@ const App = () => {
     }));
   }
 
+  tournamentEngine.setState(tournamentRecord);
   const { eventData } = tournamentEngine.getEventData({ eventId }) || {};
 
   const props = {
