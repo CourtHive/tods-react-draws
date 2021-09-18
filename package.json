@@ -35,7 +35,7 @@
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
-    "test": "tsdx test --passWithNoTests",
+    "test": "jest test --passWithNoTests",
     "prepare": "tsdx build",
     "release": "np",
     "size": "size-limit",
