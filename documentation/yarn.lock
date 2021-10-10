@@ -2484,24 +2484,6 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
-"@material-ui/core@4.11.4":
-  version "4.11.4"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.11.4.tgz#4fb9fe5dec5dcf780b687e3a40cff78b2b9640a4"
-  integrity sha512-oqb+lJ2Dl9HXI9orc6/aN8ZIAMkeThufA5iZELf2LQeBn2NtjVilF5D2w7e9RpntAzDb4jK5DsVhkfOvFY/8fg==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/styles" "^4.11.4"
-    "@material-ui/system" "^4.11.3"
-    "@material-ui/types" "5.1.0"
-    "@material-ui/utils" "^4.11.2"
-    "@types/react-transition-group" "^4.2.0"
-    clsx "^1.0.4"
-    hoist-non-react-statics "^3.3.2"
-    popper.js "1.16.1-lts"
-    prop-types "^15.7.2"
-    react-is "^16.8.0 || ^17.0.0"
-    react-transition-group "^4.4.0"
-
 "@material-ui/core@4.12.3":
   version "4.12.3"
   resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-4.12.3.tgz#80d665caf0f1f034e52355c5450c0e38b099d3ca"
@@ -2558,16 +2540,6 @@
     jss-plugin-props-sort "^10.5.1"
     jss-plugin-rule-value-function "^10.5.1"
     jss-plugin-vendor-prefixer "^10.5.1"
-    prop-types "^15.7.2"
-
-"@material-ui/system@^4.11.3":
-  version "4.11.3"
-  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-4.11.3.tgz#466bc14c9986798fd325665927c963eb47cc4143"
-  integrity sha512-SY7otguNGol41Mu2Sg6KbBP1ZRFIbFLHGK81y4KYbsV2yIcaEPOmsCK6zwWlp+2yTV3J/VwT6oSBARtGIVdXPw==
-  dependencies:
-    "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^4.11.2"
-    csstype "^2.5.2"
     prop-types "^15.7.2"
 
 "@material-ui/system@^4.12.1":
@@ -9875,12 +9847,12 @@ tods-matchup-format-code@1.1.5:
   resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.5.tgz#3d1decf6e34fa23fe33ac0c9043055a004b641ae"
   integrity sha512-zeeNb0gAM0y8kpNM+BBX/YBDbIipAneL5+cCb7KWMNWE5i30d96+uar3Yudw99JAAZWIbyAhM38+QJ1GXcdVpQ==
 
-tods-react-draws@0.1.21:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.21.tgz#a4c648f6b69047898f1ed20027a7446a371c2f2e"
-  integrity sha512-p9Yq2qCskid1EV3N+nzYRJgf5Qnkc4q2h9Xc2Da70F6e0aqhMwknwtUeH2y/IZePzDxUlBJUzRa4ugxnrGSbiw==
+tods-react-draws@0.1.22:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.22.tgz#30a261cfedc01aec5bb0e88f8f9eff2f8539ab95"
+  integrity sha512-kEtprEG9NwGKLMzj7GEnAN9ZWX+sQehlKf62SKYwaKpZSXY72+aMOkPeSRVegmhWtAKbfpxtM0XTdSgpW8LmGw==
   dependencies:
-    "@material-ui/core" "4.11.4"
+    "@material-ui/core" "4.12.3"
     "@material-ui/icons" "^4.11.2"
     classnames "^2.2.6"
     tods-competition-factory "^0.25.0"
