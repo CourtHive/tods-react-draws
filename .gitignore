@@ -10,6 +10,7 @@ scratch
 # filesystem
 *.log
 .cache
+.parcel_cache
 .DS_Store
 
 # testing
