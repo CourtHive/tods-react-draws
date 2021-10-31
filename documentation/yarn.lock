@@ -9600,6 +9600,13 @@ tods-competition-factory@0.56.6:
   resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.56.6.tgz#654d074fa92fb717784991b04e85635a39f278c1"
   integrity sha512-QQBSD41H0U+UXdH1m7ogfHziueSP214XV8QuwkjQHaWFJsskWZ030y9dMt3p5Qb9vvLimyjZGewlpkyJ2aDLEw==
 
+tods-competition-factory@^0.39.0:
+  version "0.39.4"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.39.4.tgz#422cadc6a0204f9f9a102f3e9090b5d0f181e50d"
+  integrity sha512-SerAn5JlY7FyyHGwc3Ko03w6uhxnRgTT9Ogw1qQi29WTBy2t1izSrYA0HgV5+u0wfI/gLQ8pM1JJnfYwSRlJGw==
+  dependencies:
+    tods-matchup-format-code "1.1.5"
+
 tods-matchup-format-code@1.1.5:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.5.tgz#3d1decf6e34fa23fe33ac0c9043055a004b641ae"
