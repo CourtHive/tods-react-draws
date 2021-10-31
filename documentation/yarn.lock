@@ -9595,32 +9595,20 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@0.56.7:
+tods-competition-factory@0.56.7, tods-competition-factory@^0.56.0:
   version "0.56.7"
   resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.56.7.tgz#15a1a1168030076d041ef4ac1019713dec4023fc"
   integrity sha512-61i1NrtgnOL0/DBrpsJnPNALQWbMp2/Tq5KBEpp0peWr1xjwO+uo+cgSdKWVaF2Q119yNU9uIh1Z8v6Ets0gJg==
 
-tods-competition-factory@^0.39.0:
-  version "0.39.4"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.39.4.tgz#422cadc6a0204f9f9a102f3e9090b5d0f181e50d"
-  integrity sha512-SerAn5JlY7FyyHGwc3Ko03w6uhxnRgTT9Ogw1qQi29WTBy2t1izSrYA0HgV5+u0wfI/gLQ8pM1JJnfYwSRlJGw==
-  dependencies:
-    tods-matchup-format-code "1.1.5"
-
-tods-matchup-format-code@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/tods-matchup-format-code/-/tods-matchup-format-code-1.1.5.tgz#3d1decf6e34fa23fe33ac0c9043055a004b641ae"
-  integrity sha512-zeeNb0gAM0y8kpNM+BBX/YBDbIipAneL5+cCb7KWMNWE5i30d96+uar3Yudw99JAAZWIbyAhM38+QJ1GXcdVpQ==
-
-tods-react-draws@0.1.23:
-  version "0.1.23"
-  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.23.tgz#0c456d441ac5e3b25d31e2f264aa3208a118ad6c"
-  integrity sha512-SmgfELSVyf6VajoYEb87qw4ZgoNArKFRdiUmBty0UowIGuoQUXx2L1Q1mQUFing/5E2N0oPiHy+pEWesY8thBQ==
+tods-react-draws@0.1.24:
+  version "0.1.24"
+  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.24.tgz#b4313a6183bef96d5bfce24bf7f9307a33964133"
+  integrity sha512-+ngwCPni3Z0lKbuz8CYQFrPOU/Ymwm5YEKDzqyMnn9mmy516Y7g42GA97JAr9NGMCaRXaoRu0otuCZQ+b2+6hA==
   dependencies:
     "@material-ui/core" "4.12.3"
     "@material-ui/icons" "^4.11.2"
     classnames "^2.2.6"
-    tods-competition-factory "^0.39.0"
+    tods-competition-factory "^0.56.0"
 
 toidentifier@1.0.0:
   version "1.0.0"
