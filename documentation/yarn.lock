@@ -9655,25 +9655,20 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@0.76.0:
+tods-competition-factory@0.76.0, tods-competition-factory@^0.76.0:
   version "0.76.0"
   resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.76.0.tgz#c3b73f414534ab62544ea115b89cd60fd6db5c4d"
   integrity sha512-Jydw7yDfr7Zf/DzEwaz8NyHGkFarppW3rYy9moqffOm1+HH7WtlPJTQndwVugZuHtoVqt0Ap2z/82CSKW5pF2A==
 
-tods-competition-factory@^0.63.0:
-  version "0.63.1"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.63.1.tgz#cd61eeb1e26fe30beb058ceba500f4eaaf4f2477"
-  integrity sha512-G4B+gVBvo7c1mqqgxEM/1DAIlifuuZ0mzOEGscRXZMh3HtziLw92QLiGxfjIHUIxryOC7nuxtzzkbuQcq98Ktg==
-
-tods-react-draws@0.1.25:
-  version "0.1.25"
-  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.25.tgz#1f78ce84726fa3c96450805045a46f18fde592f0"
-  integrity sha512-HA+lz2myi6vnlBwHl8QDG5EJ4dMccejMNLHKRF9B7FJQAT4uWxnkLpOs+jIS8hOsokS8YV4pvRwBFp9s2tYdeg==
+tods-react-draws@0.1.26:
+  version "0.1.26"
+  resolved "https://registry.yarnpkg.com/tods-react-draws/-/tods-react-draws-0.1.26.tgz#032becc29ee4139e8cf717724f7d8068b85cf2a9"
+  integrity sha512-t0+5vdN3woNkzEL93YQ2Av4dhtvqBPewJxDMAcT9IiwpPMFKX8S/MVqoZFZ1Rnx7Eoltnm6repcN8FZTbw1gUw==
   dependencies:
     "@material-ui/core" "4.12.3"
     "@material-ui/icons" "^4.11.2"
     classnames "^2.2.6"
-    tods-competition-factory "^0.63.0"
+    tods-competition-factory "^0.76.0"
 
 toidentifier@1.0.0:
   version "1.0.0"
