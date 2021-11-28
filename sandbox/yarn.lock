@@ -7753,10 +7753,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@0.63.1:
-  version "0.63.1"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.63.1.tgz#cd61eeb1e26fe30beb058ceba500f4eaaf4f2477"
-  integrity sha512-G4B+gVBvo7c1mqqgxEM/1DAIlifuuZ0mzOEGscRXZMh3HtziLw92QLiGxfjIHUIxryOC7nuxtzzkbuQcq98Ktg==
+tods-competition-factory@0.76.0:
+  version "0.76.0"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.76.0.tgz#c3b73f414534ab62544ea115b89cd60fd6db5c4d"
+  integrity sha512-Jydw7yDfr7Zf/DzEwaz8NyHGkFarppW3rYy9moqffOm1+HH7WtlPJTQndwVugZuHtoVqt0Ap2z/82CSKW5pF2A==
 
 toidentifier@1.0.0:
   version "1.0.0"
