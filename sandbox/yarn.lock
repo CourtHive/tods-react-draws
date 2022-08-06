@@ -2647,15 +2647,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001271:
-  version "1.0.30001274"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001274.tgz#26ca36204d15b17601ba6fc35dbdad950a647cc7"
-  integrity sha512-+Nkvv0fHyhISkiMIjnyjmf5YJcQ1IQHZN6U9TLUMroWR38FNwpsC51Gb68yueafX1V6ifOisInSgP9WJFS13ew==
-
-caniuse-lite@^1.0.30001280:
-  version "1.0.30001280"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001280.tgz#066a506046ba4be34cde5f74a08db7a396718fb7"
-  integrity sha512-kFXwYvHe5rix25uwueBxC569o53J6TpnGu0BEEn+6Lhl2vsnAumRFWEBhDft1fwyo6m1r4i+RqA4+163FpeFcA==
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001271, caniuse-lite@^1.0.30001280:
+  version "1.0.30001374"
+  resolved "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001374.tgz"
+  integrity sha512-mWvzatRx3w+j5wx/mpFN5v5twlPrabG8NqX2c6e45LCpymdoGqNvRkRutFUqpRTXKFQFNQJasvK0YT7suW6/Hw==
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -7753,10 +7748,10 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
-tods-competition-factory@0.76.0:
-  version "0.76.0"
-  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.76.0.tgz#c3b73f414534ab62544ea115b89cd60fd6db5c4d"
-  integrity sha512-Jydw7yDfr7Zf/DzEwaz8NyHGkFarppW3rYy9moqffOm1+HH7WtlPJTQndwVugZuHtoVqt0Ap2z/82CSKW5pF2A==
+tods-competition-factory@0.280.0:
+  version "0.280.0"
+  resolved "https://registry.yarnpkg.com/tods-competition-factory/-/tods-competition-factory-0.280.0.tgz#fb5c1cc146a14e5bca544493f6156b3c033f9331"
+  integrity sha512-E1E5FVNFRxWXnTadvdmBtW9WmYxUNGHyJcp06yM3szmez8xfX5t7wqZQ8lcD9jScHlh4/NBSOGvAwyKXbNeh4A==
 
 toidentifier@1.0.0:
   version "1.0.0"
