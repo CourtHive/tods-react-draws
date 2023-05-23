@@ -1,16 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
+import { ExampleDrawStructures } from "./ExampleDrawStructures";
 import {
-  mocksEngine,
-  tournamentEngine,
   drawDefinitionConstants,
-} from 'tods-competition-factory';
-
-import { useStyles } from './styles';
-import { ExampleDrawStructures } from './ExampleDrawStructures';
-
-// import tournamentRecord from './tournamentRecord/tods.json';
+  tournamentEngine,
+  mocksEngine,
+} from "tods-competition-factory";
 
 const {
   FEED_IN,
@@ -19,18 +15,16 @@ const {
 } = drawDefinitionConstants;
 
 const App = () => {
-  const classes = useStyles();
-
   const initialDrawDetails = {
     drawType: SINGLE_ELIMINATION,
     structureIndex: 0,
   };
   const [drawDetails, setDrawDetails] = React.useState(initialDrawDetails);
-  const [completionState, setCompletionState] = React.useState('complete');
+  const [completionState, setCompletionState] = React.useState("complete");
 
-  const { drawType, structureIndex } = drawDetails;
+  const { drawType } = drawDetails;
 
-  const drawTypeChange = drawType =>
+  const drawTypeChange = (drawType) =>
     drawType && setDrawDetails({ structureIndex: 0, drawType });
   const completionChange = (_, v) => v !== undefined && setCompletionState(v);
 
@@ -41,7 +35,7 @@ const App = () => {
       drawType,
       drawSize,
       participantsCount: 30,
-      automated: completionState !== 'manual',
+      automated: completionState !== "manual",
     },
   ];
 
@@ -56,7 +50,7 @@ const App = () => {
       tournamentRecord,
     } = mocksEngine.generateTournamentRecord({
       drawProfiles,
-      completeAllMatchUps: completionState === 'complete',
+      completeAllMatchUps: completionState === "complete",
       randomWinningSide: false,
     }));
   }
@@ -75,4 +69,4 @@ const App = () => {
   return <ExampleDrawStructures {...props} />;
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
