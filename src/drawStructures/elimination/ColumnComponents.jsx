@@ -1,9 +1,9 @@
-import React from 'react';
-import { useStyles } from './eliminationStyles';
+import React from "react";
+import { useStyles } from "./eliminationStyles";
 
-import AccessTimeIcon from '@material-ui/icons/AccessTime';
-import { Grid } from '@material-ui/core';
-import { Side } from './Side';
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import { Grid } from "@material-ui/core";
+import { Side } from "./Side";
 
 export const ColumnComponents = ({
   column,
@@ -16,7 +16,7 @@ export const ColumnComponents = ({
   const { frames, round, matchUpHeight, firstMatchUpHeight } = column;
 
   const handleParticipantClick = ({ e, feedBottom, matchUp, sideIndex }) => {
-    if (typeof eventHandlers?.onParticipantClick === 'function') {
+    if (typeof eventHandlers?.onParticipantClick === "function") {
       const side = matchUp?.sides && matchUp?.sides[sideIndex];
       const { participant, drawPosition } = side || {};
       eventHandlers.onParticipantClick({
@@ -32,25 +32,25 @@ export const ColumnComponents = ({
 
   const RoundName = ({ round, onRoundNameClick, onScheduleClick }) => {
     const isFinal = round.finalMatchUp;
-    const notConnectors = round.columnType !== 'connectors';
+    const notConnectors = round.columnType !== "connectors";
     const roundName = notConnectors && round.roundName;
     const roundNumber = notConnectors && round.roundNumber;
     const bottom =
       (roundName && classes.thickBorderBottom) || classes.noBoderBottom;
-    const handleRoundNameClick = e => {
+    const handleRoundNameClick = (e) => {
       e.stopPropagation();
-      if (typeof onRoundNameClick === 'function')
+      if (typeof onRoundNameClick === "function")
         onRoundNameClick({ e, roundNumber, ...contextData, isFinal });
     };
-    const handleOnScheduleClick = e => {
-      if (typeof onScheduleClick === 'function')
+    const handleOnScheduleClick = (e) => {
+      if (typeof onScheduleClick === "function")
         onScheduleClick({ e, roundNumber, ...contextData, isFinal });
     };
     const roundNameProps = {
-      width: '100%',
-      wrap: 'nowrap',
-      direction: 'row',
-      justify: 'space-between',
+      width: "100%",
+      wrap: "nowrap",
+      direction: "row",
+      justifyContent: "space-between",
       onClick:
         !isFinal && onScheduleClick
           ? handleOnScheduleClick
@@ -60,7 +60,7 @@ export const ColumnComponents = ({
     return (
       <Grid container {...roundNameProps}>
         <Grid item onClick={handleRoundNameClick}>
-          {roundName || ' '}
+          {roundName || " "}
         </Grid>
         <Grid item>
           {roundNumber && onScheduleClick && (
@@ -74,9 +74,9 @@ export const ColumnComponents = ({
   const Score = ({ round, scoreDetails, displayOnly, onClick }) => {
     const { scoreString, sourceMatchUp, sideIndex, feedBottom } =
       scoreDetails || {};
-    const displayText = round?.columnType === 'classic';
+    const displayText = round?.columnType === "classic";
     const scoreProps = {
-      onClick: e => {
+      onClick: (e) => {
         !displayOnly &&
           onClick({ matchUp: sourceMatchUp, e, feedBottom, sideIndex });
       },
@@ -88,7 +88,7 @@ export const ColumnComponents = ({
 
   const Frame = ({ frame, index }) => {
     const isFinal = round.finalMatchUp;
-    const isDetails = round?.columnType === 'details';
+    const isDetails = round?.columnType === "details";
     const scoreDetails = (index && frame[0]) || [];
     const sideDetails = frame[frame.length - 1];
 
@@ -102,8 +102,8 @@ export const ColumnComponents = ({
 
     const contentProps = {
       style: { height },
-      direction: 'column',
-      justify: isDetails ? 'flex-end' : 'space-between',
+      direction: "column",
+      justifyContent: isDetails ? "flex-end" : "space-between",
       className:
         (isDetails && classes.detailsColumn) ||
         (isEven && !isFinal && classes.borderRight) ||
@@ -113,7 +113,7 @@ export const ColumnComponents = ({
     const className = isDetails
       ? classes.positionDetails
       : columnEnd
-      ? ''
+      ? ""
       : isEven
       ? classes.bracketBottom
       : classes.bracketTop;
@@ -136,7 +136,7 @@ export const ColumnComponents = ({
                 displayOnly={displayOnly}
                 onClick={handleParticipantClick}
               />
-              {isDetails && <div style={{ marginBlock: '1px' }}></div>}
+              {isDetails && <div style={{ marginBlock: "1px" }}></div>}
             </>
           )}
         </Grid>
@@ -153,7 +153,7 @@ export const ColumnComponents = ({
   );
 
   return (
-    <div style={{ marginLeft: '4px' }}>
+    <div style={{ marginLeft: "4px" }}>
       <RoundName
         onScheduleClick={eventHandlers?.onScheduleClick}
         onRoundNameClick={eventHandlers?.onRoundNameClick}

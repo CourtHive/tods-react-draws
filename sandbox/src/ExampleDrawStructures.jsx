@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import { DrawStructure } from '../../dist';
-import { DrawType } from './components/SelectDrawType';
-import { Completion } from './components/toggleComplete';
-import { SelectStructure } from './components/selectStructure';
+import { DrawStructure } from "../../dist";
+import { DrawType } from "./components/SelectDrawType";
+import { Completion } from "./components/toggleComplete";
+import { SelectStructure } from "./components/selectStructure";
 
-import { Box, Grid, TextField } from '@material-ui/core';
+import { Box, Grid, TextField } from "@material-ui/core";
 
-import { useStyles } from './styles';
+import { useStyles } from "./styles";
 
 export const ExampleDrawStructures = ({
   eventData,
@@ -22,8 +22,8 @@ export const ExampleDrawStructures = ({
   const [nameFilter, setNameFilter] = React.useState();
   const { drawType, structureIndex } = drawDetails;
 
-  const filterChange = e => setNameFilter(e.target.value);
-  const structureChange = newName => {
+  const filterChange = (e) => setNameFilter(e.target.value);
+  const structureChange = (newName) => {
     if (newName) {
       const newIndex = structureNames.indexOf(newName);
       setDrawDetails({ structureIndex: newIndex, drawType });
@@ -31,12 +31,12 @@ export const ExampleDrawStructures = ({
   };
 
   const eventHandlers = {
-    onScheduleClick: props => console.log('Schedule', props),
-    onRoundNameClick: props => console.log('Round Name', props),
-    onScoreClick: props => console.log('Scoring', props),
-    onParticipantClick: props => console.log('Participant', props),
-    onHeaderClick: props => console.log('header', props),
-    onStatsClick: props => console.log('stats', props),
+    onScheduleClick: (props) => console.log("Schedule", props),
+    onRoundNameClick: (props) => console.log("Round Name", props),
+    onScoreClick: (props) => console.log("Scoring", props),
+    onParticipantClick: (props) => console.log("Participant", props),
+    onHeaderClick: (props) => console.log("header", props),
+    onStatsClick: (props) => console.log("stats", props),
   };
 
   const structures = eventData.drawsData[0].structures;
@@ -61,7 +61,7 @@ export const ExampleDrawStructures = ({
         <Grid
           container
           direction="row"
-          justify="space-between"
+          justifyContent="space-between"
           className={classes.headerRoot}
         >
           <Grid item>
@@ -78,7 +78,7 @@ export const ExampleDrawStructures = ({
             <TextField
               name="nameFilter"
               onChange={filterChange}
-              label={'Participant Filter'}
+              label={"Participant Filter"}
               InputLabelProps={{
                 shrink: true,
               }}

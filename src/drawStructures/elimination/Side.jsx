@@ -1,8 +1,8 @@
-import React from 'react';
-import { Grid } from '@material-ui/core';
+import React from "react";
+import { Grid } from "@material-ui/core";
 
-import { useStyles } from './eliminationStyles';
-import cx from 'classnames';
+import { useStyles } from "./eliminationStyles";
+import cx from "classnames";
 
 export const Side = ({
   round,
@@ -13,8 +13,8 @@ export const Side = ({
 }) => {
   const classes = useStyles();
   const isFinal = round.finalMatchUp;
-  const displayText = round?.columnType === 'classic';
-  const displayDetails = round?.columnType === 'details';
+  const displayText = round?.columnType === "classic";
+  const displayDetails = round?.columnType === "details";
 
   const { side, matchUp, sideIndex, feedBottom } = sideDetails || {};
   const { bye, drawPosition, participant, sourceDrawPositionRange } =
@@ -22,12 +22,12 @@ export const Side = ({
   const { feedRound, roundNumber } = matchUp || {};
 
   const drawPositionText =
-    !nameFilter && (sourceDrawPositionRange || drawPosition || '');
+    !nameFilter && (sourceDrawPositionRange || drawPosition || "");
   const readyToScore = isFinal
     ? matchUp?.readyToScore
     : side?.sourceMatchUp?.readyToScore;
 
-  let sideText = bye ? 'BYE' : participant?.participantName || '';
+  let sideText = bye ? "BYE" : participant?.participantName || "";
   const seed = side?.seedValue;
   if (seed) sideText += ` (${seed})`;
 
@@ -45,7 +45,7 @@ export const Side = ({
             (readyToScore && !displayOnly) || unfilledPosition,
           [classes.hoveredPrticipant]: !displayOnly,
         }),
-        width: '100%',
+        width: "100%",
       }
     : {
         className: cx(classes.participant, {
@@ -54,7 +54,7 @@ export const Side = ({
       };
 
   const participantProps = {
-    onClick: e => {
+    onClick: (e) => {
       onClick({
         feedBottom,
         sideIndex,
@@ -62,9 +62,9 @@ export const Side = ({
         e,
       });
     },
-    width: '100%',
-    direction: 'row',
-    justify: 'space-between',
+    width: "100%",
+    direction: "row",
+    justifyContent: "space-between",
   };
 
   const sourceDrawPositionRangeDisplay = feedRound && sourceDrawPositionRange;
@@ -78,13 +78,13 @@ export const Side = ({
             sourceDrawPositionRangeDisplay && classes.sourceDrawPositionRange
           }
         >
-          {sourceDrawPositionRangeDisplay || ''}
+          {sourceDrawPositionRangeDisplay || ""}
         </Grid>
         <Grid item {...participantStyle}>
           {(displayText && sideText) || (displayDetails && drawPositionText)}
         </Grid>
       </Grid>
-      <Grid item>{participant?.displayInfo || ''}</Grid>
+      <Grid item>{participant?.displayInfo || ""}</Grid>
     </Grid>
   );
 };
