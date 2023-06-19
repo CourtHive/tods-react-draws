@@ -13,7 +13,7 @@
     "react": "^16.8.0 || ^17.0.0 || ^17.0.1",
     "react-app-polyfill": "^.0.0",
     "react-dom": "^16.8.0 || ^17.0.0 || ^17.0.1",
-    "tods-competition-factory": "0.501.0"
+    "tods-competition-factory": "0.512.8"
   },
   "alias": {
     "react": "../node_modules/react",
